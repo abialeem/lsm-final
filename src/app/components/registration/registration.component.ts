@@ -13,7 +13,7 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationComponent implements OnInit {
   user = new User();
   professor = new Professor();
-  msg = ' ';
+  msg = ' '; 
 
   constructor(private _registrationService : RegistrationService, private _professorService : ProfessorService, private _router : Router) { }
 

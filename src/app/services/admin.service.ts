@@ -17,42 +17,42 @@ export class AdminService {
 
   public addProfessor(professor : Professor):Observable<any>
   {
-    return this._http.post<any>(`${NAV_URL}/addProfessor`,professor);
+    return this._http.post<any>(`${NAV_URL}/api/v1/admins/addProfessor`,professor);
   }
 
   getTotalProfessors(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalprofessors`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalprofessors`);
   }
 
   getTotalUsers(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalusers`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalusers`);
   }
 
   getTotalCourses(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalcourses`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalcourses`);
   }
 
   getTotalWishlist(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalwishlist`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalwishlist`);
   }
 
   getTotalEnrollments(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalenrollments`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalenrollments`);
   }
 
   getTotalEnrollmentCount(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalenrollmentcount`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalenrollmentcount`);
   }
 
   getTotalChapters(): Observable<any[]> | undefined 
   {
-    return this._http.get<any>(`${NAV_URL}/gettotalchapters`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalchapters`);
   }
 
 }

@@ -106,7 +106,7 @@
           <small class="text-danger"><b>{{msg}}</b></small>
             <div class="form-group">
             <label for="email"> Admin Email address: <b class="text-danger">*</b></label>
-            <input type="email" class="form-control" placeholder="enter admin email" name="email" [(ngModel)]="adminEmail" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+            <input type="email" class="form-control" placeholder="enter admin email" name="email" [(ngModel)]="admin.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
             #adminemail="ngModel"
             [class.is-invalid]="adminemail.invalid && adminemail.touched"
             >
@@ -119,7 +119,7 @@
     
           <div class="form-group">
             <label for="pwd" style="margin-top: 5px;">Admin Password: <b class="text-danger">*</b></label>
-            <input type="password" class="form-control" placeholder="enter admin password" name="pwd" [(ngModel)]="adminPassword" required 
+            <input type="password" class="form-control" placeholder="enter admin password" name="pwd" [(ngModel)]="admin.password" required 
             #adminpassword="ngModel"
             [class.is-invalid]="adminpassword.invalid && adminpassword.touched"
             >

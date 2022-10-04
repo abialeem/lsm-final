@@ -18,12 +18,12 @@ export class RegistrationService {
 
 public registerUserFromRemote(user : User):Observable<any>
 {
-    return this._http.post<any>(`${NAV_URL}/registeruser`,user)
+    return this._http.post<any>(`${NAV_URL}/api/v1/auth/registeruser`,user)
 }
 
 public registerProfessorFromRemote(professor : Professor):Observable<any>
 {
-    return this._http.post<any>(`${NAV_URL}/registerprofessor`,professor)
+    return this._http.post<any>(`${NAV_URL}/api/v1/auth/registerprofessor`,professor)
 }
 
-}
+} 

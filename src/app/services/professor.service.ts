@@ -16,62 +16,62 @@ export class ProfessorService
 
   acceptRequestForProfessorApproval(curremail: string): Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/acceptstatus/`+curremail);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/acceptstatus/`+curremail);
   }
   
   rejectRequestForProfessorApproval(curremail: string): Observable<any> 
   {
-    return this._http.get<any>(`${NAV_URL}/rejectstatus/`+curremail);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/rejectstatus/`+curremail);
   }
   
   getProfessorList() : Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/professorlist`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/professorlist`);
   }
 
   getYoutubeCourseList() : Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/youtubecourselist`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/youtubecourselist`);
   }
 
   getWebsiteCourseList() : Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/websitecourselist`);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/websitecourselist`);
   }
 
   getCourseListByName(coursename : string) : Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/courselistbyname/`+coursename);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/courselistbyname/`+coursename);
   }
 
   addCourse(course : Course) : Observable<any>
   {
-    return this._http.post<any>(`${NAV_URL}/addCourse`,course);
+    return this._http.post<any>(`${NAV_URL}/api/v1/professors/addCourse`,course);
   }
 
   getProfessorListByEmail(email : string) : Observable<any>
   {
-    return this._http.get<any>(`${NAV_URL}/professorlistbyemail/`+email);
+    return this._http.get<any>(`${NAV_URL}/api/v1/professors/professorlistbyemail/`+email);
   }
 
   addNewChapters(chapter : Chapter) : Observable<any>
   {
-    return this._http.post<any>(`${NAV_URL}/addnewchapter`,chapter);
+    return this._http.post<any>(`${NAV_URL}/api/v1/professors/addnewchapter`,chapter);
   }
 
   getProfileDetails(loggedUser : string) : Observable<any>
   {
-    return this._http.get(`${NAV_URL}/professorprofileDetails/`+loggedUser);
+    return this._http.get(`${NAV_URL}/api/v1/professors/professorprofileDetails/`+loggedUser);
   }
   
   UpdateUserProfile(professor : any):Observable<any>
   {
-    return this._http.put<any>(`${NAV_URL}/updateprofessor`,professor);
+    return this._http.put<any>(`${NAV_URL}/api/v1/professors/updateprofessor`,professor);
   }
   
   getCourseListNames() : Observable<any>
   {
-    return this._http.get(`${NAV_URL}/getcoursenames/`);
+    return this._http.get(`${NAV_URL}/api/v1/professors/getcoursenames/`);
   }
   
 }
