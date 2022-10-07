@@ -25,6 +25,7 @@ export class LoginService {
     map(
       data => {
         sessionStorage.setItem('USER', user.email);
+        sessionStorage.setItem('USERNAME', user.username);
         sessionStorage.setItem('ROLE', 'USER');
         sessionStorage.setItem('TOKEN', `Bearer ${data.token}`);
         return data;
@@ -40,6 +41,7 @@ export class LoginService {
     map(
       data => {
         sessionStorage.setItem('USER', professor.email);
+        sessionStorage.setItem('USERNAME', professor.professorname);
         sessionStorage.setItem('ROLE', 'PROFESSOR');
         sessionStorage.setItem('TOKEN', `Bearer ${data.token}`);
         return data;
@@ -55,6 +57,7 @@ export class LoginService {
     map(
       data => {
         sessionStorage.setItem('USER', admin.email);
+        sessionStorage.setItem('USERNAME', admin.username);
         sessionStorage.setItem('ROLE', 'ADMIN');
         sessionStorage.setItem('TOKEN', `Bearer ${data.token}`);
         return data;

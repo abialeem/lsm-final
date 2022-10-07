@@ -10,7 +10,7 @@ const NAV_URL = environment.apiURL;
   providedIn: 'root'
 })
 export class AdminService {
-
+ 
   professor = new Professor();
 
   constructor(private _http : HttpClient) { }

@@ -22,6 +22,7 @@
     "file-saver": "^2.0.5",
     "firebase": "^9.10.0",
     "jquery": "^3.6.1",
+    "mdb-ui-kit": "^5.0.0",
     "ngx-owl-carousel-o": "^14.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.4.0",

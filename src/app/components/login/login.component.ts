@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.clear();
           sessionStorage.setItem('loggedUser', this.professor.email);
           sessionStorage.setItem('USER', this.professor.professorname);
-          sessionStorage.setItem('ROLE', "professor");
+          sessionStorage.setItem('ROLE', "PROFESSOR");
           sessionStorage.setItem('professorname',this.professor.professorname);
           sessionStorage.setItem('gender', this.professor.gender);
           this._router.navigate(['/professordashboard']);

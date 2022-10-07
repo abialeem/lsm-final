@@ -27,7 +27,6 @@ import { WelcomepageComponent } from './components/welcomepage/welcomepage.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
 @NgModule({
   declarations: [
     AppComponent,

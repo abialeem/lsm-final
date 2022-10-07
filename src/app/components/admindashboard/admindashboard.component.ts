@@ -36,13 +36,13 @@ export class AdmindashboardComponent implements OnInit {
     this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}'); 
     this.currRole = this.currRole.replace(/"/g, '');
 
-    this.professors = this._service.getTotalProfessors();
-    this.users = this._service.getTotalUsers();
-    this.courses = this._service.getTotalCourses();
-    this.enrollments = this._service.getTotalEnrollments();
-    this.enrollmentcount = this._service.getTotalEnrollmentCount();
-    this.wishlist = this._service.getTotalWishlist();
-    this.chapters = this._service.getTotalChapters();
+    // this.professors = this._service.getTotalProfessors();
+    // this.users = this._service.getTotalUsers();
+    // this.courses = this._service.getTotalCourses();
+    // this.enrollments = this._service.getTotalEnrollments();
+    // this.enrollmentcount = this._service.getTotalEnrollmentCount();
+    // this.wishlist = this._service.getTotalWishlist();
+    // this.chapters = this._service.getTotalChapters();
 
   }
 }
