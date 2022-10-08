@@ -13,8 +13,13 @@ export class ApprovalstatusComponent implements OnInit {
   
   currRole = '';
   loggedUser = '';
-  approval : Observable<Professor[]> | undefined;
-  professorlist : Observable<Professor[]> | undefined;
+  // approval : Observable<Professor[]> | undefined;
+  // professorlist : Observable<Professor[]> | undefined;
+
+  approval : Professor[] | undefined;
+  professorlist : Professor[] | undefined;
+
+
   responses : Observable<any> | undefined;
 
   constructor(private _service : ProfessorService) { }
@@ -28,7 +33,8 @@ export class ApprovalstatusComponent implements OnInit {
     this.currRole = this.currRole.replace(/"/g, '');
 
     this.professorlist = this._service.getProfessorList();
-    this.approval = this._service.getProfessorListByEmail(this.loggedUser);
+    // this.approval = this._service.getProfessorListByEmail(this.loggedUser);
+    this.approval = this._service.getProfessorList();
 
     if(this.currRole === 'professor' || this.currRole === 'PROFESSOR')
     {

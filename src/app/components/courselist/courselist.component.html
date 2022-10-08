@@ -1,10 +1,35 @@
-<app-header></app-header>
+<div class="wrapper">
+  <app-header></app-header>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Course List</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']">Dashboard</a></li>
+                <li class="breadcrumb-item active">Course List</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
 
 <div id="youtubecoursecard" style="margin-left: 10%; margin-right: 10%; margin-top: 5%;">
   <div class="headtext">Courses with Youtube Videos</div>
 <owl-carousel-o  [options]="owlOptions" (dragging)="owlDragging($event)">
   <ng-container>
-    <ng-container *ngFor="let data of youtubecourselist | async">
+    <ng-container *ngFor="let data of youtubecourselist ">
       <ng-template  carouselSlide class="card" style="width: 25rem;">
         <!--<iframe width="100%" ng-src="getSafeUrl(data.youtubeurl)" frameborder="0 " allowfullscreen></iframe>-->
         <!--<embed height="250" width="250" [src]="data.youtubeurl">-->
@@ -33,7 +58,7 @@
   <div class="headtext">Courses with Website Content</div>
 <owl-carousel-o [options]="owlOptions" (dragging)="owlDragging($event)">
   <ng-container>
-    <ng-container *ngFor="let data of websitecourselist | async">
+    <ng-container *ngFor="let data of websitecourselist ">
       <ng-template carouselSlide class="card" style="width: 18rem;">
         <div class="card-body" id="websitecard" (click)="getcoursedetails(data.coursename)" style="box-shadow: 2px 2px 15px 8px rgb(147, 158, 147); margin-right: 5%; margin-top: 2%; margin-bottom: 10%; width: 300px; background-color: white;">
           <img class="card-img-top" [src]="'assets/img/websitebg.png'" [alt]="data.courseid">
@@ -57,7 +82,7 @@
 </owl-carousel-o>
 </div>
 
-<div id="coursedetailscard" style="margin-left: 30%; margin-top: 5%;" *ngFor="let data of courselist | async">
+<!-- <div id="coursedetailscard" style="margin-left: 30%; margin-top: 5%;" *ngFor="let data of courselist ">
   <div class="card-body" style="box-shadow: 2px 2px 15px 8px rgb(147, 158, 147); margin-right: 5%; margin-bottom: 10%; padding-left: 3%; width: 520px; border-radius: 10px; background-color: white;">
     <h4 class="card-title text-center" style="margin-bottom: 4%;"><b style="font-size: 30px;">{{data.coursename}}</b></h4>
     <h6 class="text-center" style="margin-left: auto; margin-right: auto; padding: 5px 10px 5px 10px; background-color: darkgoldenrod; border-radius: 5px; font-weight: bold; margin-bottom: 4%; width: 40%; color: white;">{{data.courseid}}</h6>
@@ -96,7 +121,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div id="enrollsuccess" style="margin-left: 5%; margin-top: 3%;">
   <div class="card-body" style="box-shadow: 2px 2px 15px 8px rgb(147, 158, 147); margin-right: 5%; margin-bottom: 10%; padding: 25px; height: 550px; width: 95%; border-radius: 10px; background-color: white;">
@@ -139,5 +164,22 @@
   </div>
 </div>
 
-<br>
+  </div>
+    </div>
+
+  </div>
+
+
+ <!-- Control Sidebar -->
+ <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+ 
 <app-footer></app-footer>
+
+</div>

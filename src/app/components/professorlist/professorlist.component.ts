@@ -12,8 +12,9 @@ export class ProfessorlistComponent implements OnInit {
 
   loggedUser = '';
   currRole = '';
-  professorlist : Observable<Professor[]> | undefined;
-  
+  // professorlist : Observable<Professor[]> | undefined;
+  professorlist : Professor[] | undefined;
+
   constructor(private _service : ProfessorService) { }
 
   ngOnInit(): void 

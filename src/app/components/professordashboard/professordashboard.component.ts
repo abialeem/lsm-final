@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs';
+import { Chapter } from 'src/app/models/chapter';
+import { Course } from 'src/app/models/course';
+import { Enrollment } from 'src/app/models/enrollment';
+import { Professor } from 'src/app/models/professor';
+import { User } from 'src/app/models/user';
+import { Wishlist } from 'src/app/models/wishlist';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -12,11 +18,19 @@ export class ProfessordashboardComponent implements OnInit {
 
   loggedUser = '';
   currRole = '';
-  courses : Observable<any[]> | undefined;
-  enrollments : Observable<any[]> | undefined;
-  enrollmentcount : Observable<any[]> | undefined;
-  wishlist : Observable<any[]> | undefined;
-  chapters : Observable<any[]> | undefined;
+  // courses : Observable<any[]> | undefined;
+  // enrollments : Observable<any[]> | undefined;
+  // enrollmentcount : Observable<any[]> | undefined;
+  // wishlist : Observable<any[]> | undefined;
+  // chapters : Observable<any[]> | undefined;
+  professors : Professor[] | undefined;
+  users : User[] | undefined;
+  usercount = 0 ;
+  courses : Course[] | undefined;
+  enrollments : Enrollment[] | undefined;
+  enrollmentcount : any[] | undefined;
+  wishlist : Wishlist[] | undefined;
+  chapters : Chapter[] | undefined;
   
   constructor(private _service : AdminService) {}
 

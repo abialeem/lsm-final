@@ -16,9 +16,14 @@ import * as bootstrap from "bootstrap";
   styleUrls: ['./courselist.component.css']
 })
 export class CourselistComponent implements OnInit {
-  youtubecourselist : Observable<Course[]> | undefined;
-  websitecourselist : Observable<Course[]> | undefined;
-  courselist : Observable<Course[]> | undefined;
+  // youtubecourselist : Observable<Course[]> | undefined;
+  // websitecourselist : Observable<Course[]> | undefined;
+  // courselist : Observable<Course[]> | undefined;
+
+  youtubecourselist : Course[] | undefined;
+  websitecourselist : Course[] | undefined;
+  courselist : Course[] | undefined;
+
   enrollmentstatus : Observable<any[]> | undefined;
   wishliststatus : Observable<any[]> | undefined;
   enrollment = new Enrollment();
@@ -85,7 +90,8 @@ getcoursedetails(coursename : string)
   $("#youtubecoursecard").css('display','none');
   $("#websitecoursecard").css('display','none');
   $("#coursedetailscard").show();
-  this.courselist = this.userService.getCourseListByName(coursename);
+  // this.courselist = this.userService.getCourseListByName(coursename);
+  this.courselist = this.userService.getYoutubeCourseList();
   this.enrollmentstatus = this.userService.getEnrollmentStatus(coursename,this.loggedUser,this.currRole);
   this.wishliststatus = this.userService.getWishlistStatus(coursename,this.loggedUser);
   this.enrollmentstatus.subscribe(val=> { this.enrolledStatus = val});

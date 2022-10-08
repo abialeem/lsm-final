@@ -11,7 +11,8 @@ import { ProfessorService } from 'src/app/services/professor.service';
 })
 export class ProfessorprofileComponent implements OnInit {
 
-  profileDetails : Observable<Professor[]> | undefined;
+  profileDetails : Professor | undefined;
+  // profileDetails : Observable<Professor[]> | undefined;
   professor: Professor = new Professor;
   msg = ' ';
   currRole = '';

@@ -9,7 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserlistComponent implements OnInit {
 
-  users : Observable<User[]> | undefined;
+  // users : Observable<User[]> | undefined;
+   users : User[] | undefined;
 
   constructor(private _serive : UserService) { }
 

@@ -14,7 +14,8 @@ import { Course } from 'src/app/models/course';
 })
 export class AddchapterComponent implements OnInit {
   chapter = new Chapter();
-  coursenames : Observable<Course[]> | undefined;
+  // coursenames : Observable<Course[]> | undefined;
+  coursenames : Course[] | undefined;
 
   constructor(private _router : Router, private _service : ProfessorService) { }
 

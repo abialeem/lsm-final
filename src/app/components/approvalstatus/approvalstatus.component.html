@@ -1,9 +1,34 @@
-<app-header></app-header>
+<div class="wrapper">
+  <app-header></app-header>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Approvals</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']">Dashboard</a></li>
+                <li class="breadcrumb-item active">Approvals</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
 
 <div class="panel panel-primary" id="professorapproval">
     <div class="panel-heading">
       <h2 *ngIf="currRole === 'professor' || currRole === 'PROFESSOR'" style="text-align: center; font-family: 'Oswald', sans-serif;color: maroon; margin-top: 3%; margin-bottom: 4%;"> Your Approval Status 
-        <div *ngFor="let professor of approval | async" style="margin-top: 1%;">
+        <div *ngFor="let professor of approval " style="margin-top: 1%;">
             <div *ngIf="professor.status === 'accept'"><h2><small style="color: green;">(Verified & Accepted) ID : <small class="date-cover">{{professor.professorid}}</small></small></h2></div>
             <div *ngIf="professor.status === 'false'"><h2><small style="color: rgb(161, 106, 34);">(Not yet Verified)</small></h2></div>
             <div *ngIf="professor.status === 'reject'"><h2><small style="color: rgb(184, 36, 36);">(Verified & Rejected)</small></h2></div>
@@ -26,7 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let professor of approval | async">
+          <tr *ngFor="let professor of approval ">
             <td><img *ngIf="professor.gender === 'Male' || professor.gender === 'male'" class="bloodimg" [src]="'assets/img/maleprofessor.png'" width="80" height="80">
               <img *ngIf="professor.gender === 'Female' || professor.gender === 'female'" class="bloodimg" [src]="'assets/img/femaleprofessor.png'" width="80" height="80">
               </td>
@@ -71,7 +96,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let professor of professorlist | async">
+          <tr *ngFor="let professor of professorlist ">
             <td><img *ngIf="professor.gender === 'Male' || professor.gender === 'male'" class="bloodimg" [src]="'assets/img/maleprofessor.png'" width="80" height="80">
               <img *ngIf="professor.gender === 'Female' || professor.gender === 'female'" class="bloodimg" [src]="'assets/img/femaleprofessor.png'" width="80" height="80">
             </td>
@@ -102,6 +127,23 @@
       </table>
     </div>
 </div>
+</div>
+</div>
 
-<br><br><br>
+</div>
+
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+<!-- Control sidebar content goes here -->
+<div class="p-3">
+  <h5>Title</h5>
+  <p>Sidebar content</p>
+</div>
+</aside>
+<!-- /.control-sidebar -->
+
+
+
 <app-footer></app-footer>
+</div>

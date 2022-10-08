@@ -18,8 +18,10 @@ export class FullcourseComponent implements OnInit {
 
   video = 'P2wNzig_SLA';
   courseName = 'springboot';
-  chapterlist : Observable<Chapter[]> | undefined;
-  courselist : Observable<Course[]> | undefined;
+  // chapterlist : Observable<Chapter[]> | undefined;
+  // courselist : Observable<Course[]> | undefined;
+  chapterlist : Chapter[] | undefined;
+  courselist : Course[] | undefined;
   chapter = new Chapter();
 
   constructor(private _router : Router, private _service : UserService, private activatedRoute: ActivatedRoute) { }
