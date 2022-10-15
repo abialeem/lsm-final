@@ -27,6 +27,28 @@ import { WelcomepageComponent } from './components/welcomepage/welcomepage.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MadrasasComponent } from './components/madrasas/madrasas.component';
+import { AddmadrasaComponent } from './components/addmadrasa/addmadrasa.component';
+import { EditmadrasaComponent } from './components/editmadrasa/editmadrasa.component';
+import { PrincipalsComponent } from './components/principals/principals.component';
+import { AddprincipalComponent } from './components/addprincipal/addprincipal.component';
+import { EditprincipalComponent } from './components/editprincipal/editprincipal.component';
+import { EditteacherComponent } from './components/editteacher/editteacher.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { AddteacherComponent } from './components/addteacher/addteacher.component';
+import { EditcourseComponent } from './components/editcourse/editcourse.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { SubjectsComponent } from './components/subjects/subjects.component';
+import { AddsubjectComponent } from './components/addsubject/addsubject.component';
+import { EditsubjectComponent } from './components/editsubject/editsubject.component';
+import { SingleprincipalComponent } from './components/singleprincipal/singleprincipal.component';
+import { SingleteacherComponent } from './components/singleteacher/singleteacher.component';
+import { SinglecourseComponent } from './components/singlecourse/singlecourse.component';
+import { SinglesubjectComponent } from './components/singlesubject/singlesubject.component';
+import { StudentsComponent } from './components/students/students.component';
+import { AddstudentComponent } from './components/addstudent/addstudent.component';
+import { EditstudentComponent } from './components/editstudent/editstudent.component';
+import { SinglestudentComponent } from './components/singlestudent/singlestudent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +72,29 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     AddchapterComponent,
     MycoursesComponent,
     MywishlistComponent,
-    WelcomepageComponent
+    WelcomepageComponent,
+    MadrasasComponent,
+    AddmadrasaComponent,
+    EditmadrasaComponent,
+    PrincipalsComponent,
+    AddprincipalComponent,
+    EditprincipalComponent,
+    EditteacherComponent,
+    TeachersComponent,
+    AddteacherComponent,
+    EditcourseComponent,
+    CoursesComponent,
+    SubjectsComponent,
+    AddsubjectComponent,
+    EditsubjectComponent,
+    SingleprincipalComponent,
+    SingleteacherComponent,
+    SinglecourseComponent,
+    SinglesubjectComponent,
+    StudentsComponent,
+    AddstudentComponent,
+    EditstudentComponent,
+    SinglestudentComponent
   ],
   imports: [
     BrowserModule,

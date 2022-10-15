@@ -21,7 +21,7 @@
         <span class=""> Welcome {{loggedUser}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        
+      
         <div class="dropdown-divider"></div>
         <a class="dropdown-item dropdown-footer">See All dropdown options</a>
       </div>
@@ -84,14 +84,150 @@
           </a>
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/addProfessor']" class="nav-link">
-            <i class="nav-icon fas fa-plus"></i>
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-school"></i>
             <p>
-              Add Professor
+              Manage Madrasas 
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-success right">{{ madrasa_count  }}  <!--madrasa count here-->  </span>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allMadrasas']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Madrasas</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addMadrasa']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Madrasa</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-brain"></i>
+            <p>
+              Manage Principals
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-success right">{{ principal_count  }}  <!--principal count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allPrincipals']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Principals</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addPrincipal']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Principal</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Manage Teachers
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right"> {{ teacher_count  }}  <!--teachers count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allTeachers']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Teachers</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addTeacher']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Teacher</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <p>
+              Manage Courses
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right"> {{ course_count  }}  <!--courses count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allCourses']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Courses</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addCourse']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Course</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Manage Subjects
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-primary right"> {{ subject_count  }}  <!--subjects count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allSubjects']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Subjects</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addSubject']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Subject</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Manage Students
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-success right"> {{ student_count  }}  <!--students count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allStudents']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Students</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addStudent']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Student</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item">
           <a [routerLink]="['/addCourse']" class="nav-link">
             <i class="nav-icon fas fa-cart-plus" ></i>
             <p>
@@ -146,7 +282,7 @@
               Users List
             </p>
           </a>
-        </li>
+        </li> -->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -6,9 +6,8 @@ import { Professor } from '../models/professor';
 import { Admin } from '../models/admin';
 import { Chapter } from '../models/chapter';
 import { Course } from '../models/course';
-import { Enrollment } from '../models/enrollment';
 import { User } from '../models/user';
-import { Wishlist } from '../models/wishlist';
+import { Madrasa } from '../models/madrasa';
 
 const NAV_URL = environment.apiURL;
 
@@ -242,6 +241,55 @@ private Professors: Professor[] = [
                         //fake service functions ends here
 
             // real service functions starts here
+
+
+
+    //get all stuff starts here
+public  getMadrasas(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/api/v1/admins/getMadrasas`);
+    }
+
+    //get all functions stuff ends here
+
+                          //count of stuff service functions starts here
+public getMadrasaCount(): Observable<any>
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getMadrasaCount`);
+}
+public getPrincipalCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getPrincipalCount`);
+}
+public getTeacherCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getTeacherCount`);
+}
+public getStudentCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getStudentCount`);
+}
+public getCourseCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getCourseCount`);
+}
+public getSubjectCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getSubjectCount`);
+}
+                    //count of stuff service functions ends here
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public addProfessor(professor : Professor):Observable<any>
   {
