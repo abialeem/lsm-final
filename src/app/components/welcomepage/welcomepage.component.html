@@ -1,46 +1,145 @@
-<div class="content">
-    <div class="header" id="header">
-      <div class="nav">
-       <label></label>
-       <div class="switchs">
-        <button style="font-weight: bold;" class="log" id="log" [routerLink]="['']"><i class="fa fa-home"></i> Home</button>
-        <button style="font-weight: bold;" class="log" id="log" onclick="location.href='#services';"><i class="fa fa-cog"></i> Services</button>
-        <button style="font-weight: bold;" class="log" id="log" [routerLink]="['/login']"><i class="fa fa-sign-in"></i> LOGIN</button>
-        <button style="font-weight: bold;" class="create_acc" id="create_acc" [routerLink]="['/registration']"><i class="fa fa-user-plus"></i> CREATE ACCOUNT</button>
-      </div>
-    </div>
-    <div class="main">
-    	<div class="text">
-    		<h1 style="margin-left: -10%; font-family: Verdana;">ELearning Management System</h1><br>
-    		<!-- <h4 style="font-family: monospace; font-weight: bolder; margin-left: -8%; color: rgb(248, 247, 247);">Developed by - Aabid aleem sheikh</h4><br><br> -->
-    	</div><br>
-      <img class="floating" id="img3" [src]="'assets/img/lms-bg.png'">
-    </div>
-  </div>
-  <br>
+ <!-- Content Header (Page header) -->
+ <div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0" style="color:white;">Welcome To Taalimul Quran </h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right" style="color:white;">
+          <li class="breadcrumb-item" style="color:white;"><a routerLink="/" style="color:white;">Home</a></li>
+          <li class="breadcrumb-item active"  style="color:white;" >Welcome Page</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
 </div>
-<br><br>
-<!-- <marquee class="marquee" direction="left"> This Elearning Management system is designed by Aabid Aleem Sheikh. If Already our Customer, please Login to see your Current Learning Status  </marquee> -->
+<!-- /.content-header -->
 
-<section id="about" class="about about-bg">
-  <div class="about-container">
-      <div class="subtext1" id="subtext1"><span class="counter">01</span> &nbsp;User Friendly Learning Portal<i id="subtext1" class="fa fa-caret-down"></i></div>
-        <div class="innertext1" id="innertext1">This Portal facilitates you for an <b style="color: darkmagenta; font-size: larger; font-weight: bolder;">user-friendly</b> experience with all the learning contents and resources to improve your skills. You can also <b style="color: darkgreen; font-size: large; font-weight: bolder;">download the course related materials</b> from our portal which can make your learning process much easier</div>
+<div class="content">
+  <div class="container-fluid" style="padding:20px;">
+
+  
+    <div class="text" >
+      <section class="row">
+        <section class="col-lg-3 col-md-12 col-sm-12">
+          <img src=".././../../assets/img/islam_madrasa.png" class="img-fluid">
+        </section>
+        <section class="col-lg-9 col-md-12 col-sm-12">
+          <h1>Taalimul Quran is a digital Islamic platform for <br> <span>all Muslim Ummah</span></h1>
+          <p>
+            In fact it is made for Muslims and reverted Muslims. So that they can easily learn and understand the Quran and Livestyle of our beloved Prophet.
+          </p>
+        </section>
+        
+       
+
+      </section>
+      
+      
+
+
+
+      <div class="card card-default card-outline my-5" style="background:transparent;"><!--card of heading and features starts here-->
+        <div class="card-body">
+          <h2>Features:</h2> 
+          <ul class="list-group list-group-flush" style="background-color:transparent;color:white;">
+           <li class="list-group-item" style="background-color:transparent;color:white;">Beautiful and versatile courses tailored for all learning age groups.</li>
+           <li class="list-group-item" style="background-color:transparent;color:white;">Strong community of Madrasas and talented teachers across whole india</li>
+            <li class="list-group-item" style="background-color:transparent;color:white;">Quran and prayer teaching videos.</li> 
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">Translation of Quran in more languages - which can be easily understood by the people of any country.</li> 
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">Pure Tafsir of the Qur'an - which is capable of explaining the Qur'an to a person.</li> 
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">International Reciter - which will cool your heart.</li> 
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">An easy way to memorize Surahs and Doa very quickly - so that people benefit.</li>
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">Question and answer system - so that people can know the unknown and follow Islam fully in daily life.</li>
+            
+            <li class="list-group-item" style="background-color:transparent;color:white;">There are also Quizs and Exciting Programs - to discuss and learn various aspects of Islam and how to apply it in real life.</li>  
+   
+          </ul>
+
+        </div>
+      </div><!--card of heading and features ends here-->
+      
+
+
+     </div>
+
+
+    <div class="card card-default card-outline my-5" style="background:transparent;"><!--card of getting started starts here-->
+      <div class="card-header">
+        <h2 class="card-title" style="color:white;">Get Started</h2>
+      </div>
+      <div class="card-body text-center" >
+        
+
+        <div class="row">
+             <div class="col-lg-6 col-6">
+            <!-- small box -->
+                 <div class="small-box bg-primary">
+              <div class="inner">
+                <p>Sign In To Your Account</p>
+                <button class="btn btn-primary btn-shadow btn-lg mr-2" [routerLink]="['/login']">
+                  <i class="fa fa-sign-in"></i>
+                   LOGIN
+                </button>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+            </div>
+             </div>
+          <!-- ./col -->
+              <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <p>Create A New Account</p>
+              <button  class="btn btn-success btn-shadow btn-lg mx-2"  [routerLink]="['/registration']">
+                <i class="fa fa-user-plus"></i>
+                 CREATE ACCOUNT
+              </button>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+            </div>
+               </div>
+        </div>
+        <div >     
+         </div>
+
+      </div>
+    </div><!--card of getting started ends here-->
+
+    <div class="card card-default card-outline my-5" style="background:transparent;"><!--card of extra landing page stuff starts here-->
+
+    <div class="card-body">
+      <p class="alert alert-info">More Stuff About Taalimul Quran Goes Here</p>
+
+    </div>
+
+    </div><!--card of extra landing page stuff ends here-->
+  
+
+
+
   </div>
-  <div class="about-container">
-        <div class="subtext1" id="subtext2"><span class="counter">02</span> &nbsp;Three Different Modes<i id="subtext2" class="fa fa-caret-down"></i></div>
-        <!-- <div class="innertext1" id="innertext2">This elearning Portal has three different modes of working as <b style="color:darkblue; font-size: larger; font-weight: bolder;">ADMIN, PROFESSOR & USER.</b> Each of them can access to their respective features and perform their task accordingly. (by default, the ADMIN will be <b style="color: darkgreen; font-size: larger; font-weight: bolder;">aabid aleem sheikh </b><b style="color: darkred;">(portal creator)</b></div> -->
-  </div>
-  <div class="about-container">
-        <div class="subtext1" id="subtext3"><span class="counter">03</span> &nbsp;Specific Learning Contents<i id="subtext3" class="fa fa-caret-down"></i></div>
-        <div class="innertext1" id="innertext3">Seperate Learning contents have been included for both <b style="color: darkgreen; font-size: larger; font-weight: bolder;">video based lectures</b> and <b style="color: darkgreen; font-size: larger; font-weight: bolder;">website based lectures.</b> The <b style="color: darkred; font-size: medium; font-weight: bolder;">ADMIN</b> or <b style="color: darkred; font-size: medium; font-weight: bolder;">PROFESSOR</b> can specify the course type while adding a new course</div>
-  </div>
-  <div class="about-container">
-        <div class="subtext1" id="subtext4"><span class="counter">04</span> &nbsp;Plug-In Play Embedded video lectures<i id="subtext4" class="fa fa-caret-down"></i></div>
-        <div class="innertext1" id="innertext4"><b style="color: darkgreen; font-size: larger; font-weight: bolder;">Video based lectures</b> are also divided into <b style="color: darkgreen; font-size: larger; font-weight: bolder;">chapters</b> as per the instructors and users are facilitated to learn as an embedded video lecture in our <b style="color: maroon; font-size: large; font-weight: bolder;">custom video player.</b> You can also <b style="color: darkblue; font-size: medium; font-weight: bolder;">take notes, download resources, ask queries and give feedback about the course.</b></div>
-  </div><br>
-  <img class="automation" [src]="'assets/img/website.png'" width="470" height="470">
-</section>
+</div><!--content div ends here-->
+
+
+
+
+<!--
+ <div class="content">
+    
+
 
 <main id="main">
   <section id="services" class="services section-bg">
@@ -74,4 +173,4 @@
   </section>
 </main>
 
-<app-footer></app-footer>
+ -->

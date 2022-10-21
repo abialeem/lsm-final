@@ -1,137 +1,195 @@
 
-<div class="wrapper">
-    <div class="container">
-        <button class="headbtn1" id="userbtn">user</button>
-        <button class="headbtn2" id="professorbtn">Professor</button>
-        <button class="headbtn3" id="adminbtn">admin</button>
-      <div class="user-login-form">
-       <h2 class="textual">User Login</h2>
-        <form #userloginform="ngForm" (ngSubmit)="loginUser()">
-          <small class="text-danger"><b>{{msg}}</b></small>
-            <div class="form-group">
-            <label for="email">User Email address: <b class="text-danger">*</b></label>
-            <input type="email" class="form-control" placeholder="enter email" name="email" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
-            #email="ngModel"
-            [class.is-invalid]="email.invalid && email.touched"
-            >
-          <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched"><b>required field</b></small>-->
-          <div *ngIf="email.errors && email.invalid && email.touched">
-            <small class="text-danger" *ngIf="email.errors.required"><b>required field</b></small>
-            <small class="text-danger" *ngIf="email.errors.pattern"><b>Invalid email Id</b></small>
-          </div>
-          </div>
-    
-          <div class="form-group">
-            <label for="pwd" style="margin-top: 5px;">User Password: <b class="text-danger">*</b></label>
-            <input type="password" class="form-control" placeholder="enter password" name="pwd" [(ngModel)]="user.password" required 
-            #password="ngModel"
-            [class.is-invalid]="password.invalid && password.touched"
-            >
-            <div *ngIf="password.errors && password.invalid && password.touched">
-              <small class="text-danger" *ngIf="password.errors.required"><b>required field</b></small>
-            </div>
-            <small style="color: gray; font-size: 10px;">atleast one uppercase, numeric digit, lowercase, special character, length of 6-20</small>
-          </div>
-    
-          <div class="checkbox" style="margin-top: 5px;">
-            <small style="color: gray;"><input type="checkbox" name="remember"> Remember me</small>
-            <small style="color: navy; margin-left: 42%; cursor: pointer;">forgot password?</small>
-          </div>
-          <button [disabled]="userloginform.form.invalid" type="submit" class="btn loginbtn">Login</button>
-        </form>
-        <div class="sign-up" style=" text-align: center; margin-top: 10px;">Don't have an Account? <small [routerLink]="['/registration']" style="color: navy; text-align: center; cursor: pointer;"><b>Create One</b></small></div>
-        <hr>
-        <p class="text-center mt-3"><b> or Login with </b></p>
-            <div class="text-center">
-              <i class="fa fa-google  mx-3 fa-2x"></i>
-              <i class="fa fa-linkedin mx-3 fa-2x"></i>
-              <i class="fa fa-twitter  mx-3 fa-2x"></i>
-              <i class="fa fa-windows  mx-3 fa-2x"></i>
-              <i class="fa fa-apple fa-retro mx-3 fa-2x"></i>
-              <i class="fa fa-github  mx-3 fa-2x"></i>
-            </div>
-      </div>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0" style="color:white;">Log In To Taalimul Quran </h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right" style="color:white;">
+          <li class="breadcrumb-item" style="color:white;"><a routerLink="/" style="color:white;">Home</a></li>
+          <li class="breadcrumb-item active"  style="color:white;" >Login Page</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
 
-        <div class="professor-login-form">
-            <h2 class="textual">Professor Login</h2>
+
+
+
+
+<div class="content">
+  <div class="container-fluid" style="padding:20px;">
+
+
+
+
+    <div class="card" style="background-color: transparent;">
+
+      <div class="card-header p-2">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item"><a class="nav-link active" href="#student" data-toggle="tab" style="color:white;">Student / Talib</a></li>
+          <li class="nav-item"><a class="nav-link" href="#teacher" data-toggle="tab"  style="color:white;">Teacher / Aalim</a></li>
+          <li class="nav-item"><a class="nav-link" href="#admin" data-toggle="tab"  style="color:white;">Admin </a></li>
+        </ul>
+      </div><!-- /.card-header -->
+
+      <div class="card-body row" style="background-color: transparent;">
+
+        <section class="col-lg-3 col-md-12 col-sm-12">
+          <img src=".././../../assets/img/islam_madrasa.png" class="img-fluid">
+        </section>
+
+
+        <div class="tab-content col-lg-9 col-md-12 col-sm-12" >
+
+          <div class="active tab-pane p-4" id="student"><!--student tab pane starts here-->
+
+            <h2  style="color:white;text-align:center;">Student / Talib Login</h2>
+            <form #userloginform="ngForm" (ngSubmit)="loginUser()">
+              <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <b>{{msg}}</b>
+              </div>
+                <div class="form-group mt-2">
+                <label for="email" style="color:white;">Student / Talib Email Address: <b class="text-danger">*</b></label>
+                <input type="email" class="form-control" placeholder="enter email" name="email" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                #email="ngModel"
+                [class.is-invalid]="email.invalid && email.touched"
+                >
+              <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched"><b>required field</b></small>-->
+              <div *ngIf="email.errors && email.invalid && email.touched">
+                <small class="text-danger" *ngIf="email.errors.required" style="color:white;"><b>required field</b></small>
+                <small class="text-danger" *ngIf="email.errors.pattern" style="color:white;"><b>Invalid email Id</b></small>
+              </div>
+              </div>
+        
+              <div class="form-group mt-2">
+                <label for="pwd" style="margin-top: 5px;color:white;">Password: <b class="text-danger" style="color:white;">*</b></label>
+                <input type="password" class="form-control" placeholder="enter password" name="pwd" [(ngModel)]="user.password" required 
+                #password="ngModel"
+                [class.is-invalid]="password.invalid && password.touched"
+                >
+                <div *ngIf="password.errors && password.invalid && password.touched">
+                  <small class="text-danger" *ngIf="password.errors.required" style="color:white;"><b>required field</b></small>
+                </div>
+                <small style="color:white; font-size: 10px;">combination of uppercase, numeric digit, lowercase, special character, length of 6-20</small>
+              </div>
+        
+              <!-- <div class="checkbox" style="margin-top: 5px;">
+                <small style="color: white;"><input type="checkbox" name="remember"> Remember me</small>
+                <small style="color: white; margin-left: 42%; cursor: pointer;">forgot password?</small>
+              </div> -->
+              <button [disabled]="userloginform.form.invalid" type="submit" class="btn btn-info btn-block btn-lg btn-outline"><i class="fa fa-sign-in"></i> Student Login</button>
+            </form>
+            <div class="sign-up" style=" text-align: center; margin-top: 10px;color:white;">
+              Don't have an Account? 
+              <small [routerLink]="['/registration']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fa fa-user-plus"></i> Create One</b></small>
+            </div>
+         
+                   
+         
+
+        </div><!--student tab pane ends here-->
+        <div class="tab-pane p-4" id="teacher"><!--teacher tab pane starts here-->
+
+          <h2  style="color:white;text-align:center;">Teacher / Aalim Login</h2>
              <form #professorloginform="ngForm" (ngSubmit)="loginProfessor()">
-               <small class="text-danger"><b>{{msg}}</b></small>
-                 <div class="form-group">
-                 <label for="email">Professor Email address: <b class="text-danger">*</b></label>
+              <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <b>{{msg}}</b>
+              </div>
+                 <div class="form-group mt-2">
+                 <label for="email" style="color:white;">Teacher / Aalim Email address: <b class="text-danger">*</b></label>
                  <input type="email" class="form-control" placeholder="enter email" name="professoremail" [(ngModel)]="professor.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
                  #professoremail="ngModel"
                  [class.is-invalid]="professoremail.invalid && professoremail.touched"
                  >
                <!--<small class="text-danger" [class.d-none]="professoremail.valid || professoremail.untouched"><b>required field</b></small>-->
                <div *ngIf="professoremail.errors && professoremail.invalid && professoremail.touched">
-                 <small class="text-danger" *ngIf="professoremail.errors.required"><b>required field</b></small>
-                 <small class="text-danger" *ngIf="professoremail.errors.pattern"><b>Invalid email Id</b></small>
+                 <small class="text-danger" *ngIf="professoremail.errors.required" style="color:white;"><b>required field</b></small>
+                 <small class="text-danger" *ngIf="professoremail.errors.pattern" style="color:white;"><b>Invalid email Id</b></small>
                </div>
                </div>
          
-               <div class="form-group">
-                 <label for="pwd" style="margin-top: 5px;">Professor Password: <b class="text-danger">*</b></label>
+               <div class="form-group mt-2">
+                 <label for="pwd" class="mt-2" style="color:white;">Password: <b class="text-danger">*</b></label>
                  <input type="password" class="form-control" placeholder="enter password" name="pwd" [(ngModel)]="professor.password" required 
                  #professorpassword="ngModel"
                  [class.is-invalid]="professorpassword.invalid && professorpassword.touched"
                  >
                  <div *ngIf="professorpassword.errors && professorpassword.invalid && professorpassword.touched">
-                   <small class="text-danger" *ngIf="professorpassword.errors.required"><b>required field</b></small>
+                   <small class="text-danger" *ngIf="professorpassword.errors.required" style="color:white;"><b>required field</b></small>
                  </div>
-                 <small style="color: gray; font-size: 10px;">atleast one uppercase, numeric digit, lowercase, special character, length of 6-20</small>
+                 <small style="color: white; font-size: 10px;">combination of uppercase, numeric digit, lowercase, special character, length of 6-20</small>
                </div>
          
-               <div class="checkbox" style="margin-top: 5px;">
+               <!-- <div class="checkbox" style="margin-top: 5px;">
                  <small style="color: gray;"><input type="checkbox" name="remember"> Remember me</small>
                  <small style="color: navy; margin-left: 42%; cursor: pointer;">forgot password?</small>
-               </div>
-               <button [disabled]="professorloginform.form.invalid" type="submit" class="btn loginbtn">Login</button>
+               </div> -->
+               <button [disabled]="professorloginform.form.invalid" type="submit" class="btn btn-info btn-block btn-lg btn-outline"><i class="fa fa-sign-in"></i> Teacher / Aalim Login</button>
              </form>
-             <div class="sign-up" style=" text-align: center; margin-top: 10px;">Don't have an Account? <small [routerLink]="['/registration']" style="color: navy; text-align: center; cursor: pointer;"><b>Create One</b></small></div>
-             <hr>
-             <p class="text-center mt-3"><b> or Login with </b></p>
-            <div class="text-center">
-              <i class="fa fa-google  mx-3 fa-2x"></i>
-              <i class="fa fa-linkedin mx-3 fa-2x"></i>
-              <i class="fa fa-twitter  mx-3 fa-2x"></i>
-              <i class="fa fa-windows  mx-3 fa-2x"></i>
-              <i class="fa fa-apple fa-retro mx-3 fa-2x"></i>
-              <i class="fa fa-github  mx-3 fa-2x"></i>
+             <div class="sign-up" style=" text-align: center; margin-top: 10px;color:white;">
+              Don't have an Account? 
+              <small [routerLink]="['/registration']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fa fa-user-plus"></i> Create One</b></small>
             </div>
-             </div>
-    
-        <div class="admin-login-form">
-        <h2 class="textual">Admin Login</h2>
-        <form #adminloginform="ngForm" (ngSubmit)="adminLogin()">
-          <small class="text-danger"><b>{{msg}}</b></small>
+           
+
+
+        </div><!--teacher tab pane ends here-->
+        <div class="tab-pane p-4" id="admin"><!--admin tab pane starts here-->
+
+          <h2  style="color:white;text-align:center;">Admin Login</h2>
+          <form #adminloginform="ngForm" (ngSubmit)="adminLogin()">
+            <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <b>{{msg}}</b>
+            </div>
+              <div class="form-group">
+              <label for="email" style="color:white;"> Admin Email address: <b class="text-danger">*</b></label>
+              <input type="email" class="form-control" placeholder="enter admin email" name="email" [(ngModel)]="admin.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+              #adminemail="ngModel"
+              [class.is-invalid]="adminemail.invalid && adminemail.touched"
+              >
+            <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched"><b>required field</b></small>-->
+            <div *ngIf="adminemail.errors && adminemail.invalid && adminemail.touched">
+              <small class="text-danger" *ngIf="adminemail.errors.required" style="color:white;"><b>required field</b></small>
+              <small class="text-danger" *ngIf="adminemail.errors.pattern" style="color:white;"><b>Invalid email Id</b></small>
+            </div>
+            </div>
+      
             <div class="form-group">
-            <label for="email"> Admin Email address: <b class="text-danger">*</b></label>
-            <input type="email" class="form-control" placeholder="enter admin email" name="email" [(ngModel)]="admin.email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
-            #adminemail="ngModel"
-            [class.is-invalid]="adminemail.invalid && adminemail.touched"
-            >
-          <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched"><b>required field</b></small>-->
-          <div *ngIf="adminemail.errors && adminemail.invalid && adminemail.touched">
-            <small class="text-danger" *ngIf="adminemail.errors.required"><b>required field</b></small>
-            <small class="text-danger" *ngIf="adminemail.errors.pattern"><b>Invalid email Id</b></small>
-          </div>
-          </div>
-    
-          <div class="form-group">
-            <label for="pwd" style="margin-top: 5px;">Admin Password: <b class="text-danger">*</b></label>
-            <input type="password" class="form-control" placeholder="enter admin password" name="pwd" [(ngModel)]="admin.password" required 
-            #adminpassword="ngModel"
-            [class.is-invalid]="adminpassword.invalid && adminpassword.touched"
-            >
-            <div *ngIf="adminpassword.errors && adminpassword.invalid && adminpassword.touched">
-              <small class="text-danger" *ngIf="adminpassword.errors.required"><b>required field</b></small>
+              <label for="pwd" style="margin-top: 5px;color:white;" >Admin Password: <b class="text-danger">*</b></label>
+              <input type="password" class="form-control" placeholder="enter admin password" name="pwd" [(ngModel)]="admin.password" required 
+              #adminpassword="ngModel"
+              [class.is-invalid]="adminpassword.invalid && adminpassword.touched"
+              >
+              <div *ngIf="adminpassword.errors && adminpassword.invalid && adminpassword.touched">
+                <small class="text-danger" *ngIf="adminpassword.errors.required" style="color:white;"><b>required field</b></small>
+              </div>
+              <small style="color: white; font-size: 10px;" >Only the admin knows his correct email address & password</small>
             </div>
-            <small style="color: gray; font-size: 10px;">Only the admin knows his correct email address & password</small>
-          </div>
-    
-          <small style="color: navy; margin-left: 69%; cursor: pointer;">forgot password?</small>
-          <button [disabled]="adminloginform.form.invalid" type="submit" class="btn loginbtn">Login</button>
-        </form>
+      
+            <!-- <small style="color: navy; margin-left: 69%; cursor: pointer;">forgot password?</small> -->
+            <button [disabled]="adminloginform.form.invalid" type="submit"  class="btn btn-info btn-block btn-lg btn-outline"><i class="fa fa-sign-in"></i> Admin Login</button>
+          </form>
+          
+                  </div><!--admin tab pane ends here-->
+
+
+        </div>
       </div>
+
+
+    </div>
+       
+
+
+
+
         </div>
       </div>

@@ -1,12 +1,12 @@
  <!-- Navbar -->
- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+ <nav class="main-header navbar navbar-expand navbar-white navbar-light gradient-custom" style="border-color:transparent;">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!noLogin">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a (click)="navigateHome()" class="nav-link">Home</a>
+      <a (click)="navigateHome()" class="nav-link" style="color:white;">Taalimul Quran - Home</a>
     </li>
   </ul>
 
@@ -15,10 +15,10 @@
 
 
     <!-- User Dropdown Menu -->
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown" *ngIf="!noLogin">
       <a class="nav-link" data-toggle="dropdown">
-        <i class="far fa-user"></i>
-        <span class=""> Welcome {{loggedUser}}</span>
+        <i class="far fa-user" style="color:white;"></i>
+        <span class="" style="color:white;"> Welcome {{loggedUser}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
       
@@ -26,20 +26,30 @@
         <a class="dropdown-item dropdown-footer">See All dropdown options</a>
       </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="noLogin">
+      <button class="btn btn-primary btn-shadow btn-sm mr-2" [routerLink]="['/login']">
+        <i class="fa fa-sign-in"></i>
+         Log In
+      </button>
+      <button  class="btn btn-success btn-shadow btn-sm mx-2"  [routerLink]="['/registration']">
+        <i class="fa fa-user-plus"></i>
+         Create Account
+      </button>
+    </li>
+    <li class="nav-item" *ngIf="!noLogin">
       <a class="btn btn-primary" (click)="logout()"   role="button">
         <i class="fa fa-sign-out"></i>
         Logout
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen"  role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
+      <a class="nav-link"  data-widget="fullscreen"  role="button">
+        <i class="fas fa-expand-arrows-alt" style="color:white;"></i>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!noLogin">
       <a class="nav-link" data-widget="control-sidebar" data-slide="true"  role="button">
-        <i class="fas fa-th-large"></i>
+        <i class="fas fa-th-large" style="color:white;"></i>
       </a>
     </li>
   </ul>
@@ -49,7 +59,7 @@
 
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" *ngIf="!noLogin">
   <!-- Brand Logo -->
   <a (click)="navigateHome()" class="brand-link">
     <img src="../../../assets/img/admin.png" alt="User Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

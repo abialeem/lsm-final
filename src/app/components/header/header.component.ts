@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   course_count: any = 0;
   subject_count: any = 0;
 
-
+  noLogin:boolean = true;
   loggedUser = '';
   currRole = '';
   title = '';
@@ -122,13 +122,22 @@ export class HeaderComponent implements OnInit {
     this.username = this.username.replace(/"/g, '');
 
     if(this.currRole === "ADMIN"){
+      this.noLogin = false;
       this.title = "Admin Dashboard";
     }
     else if(this.currRole === "PROFESSOR"){
+      this.noLogin = false;
       this.title = "Professor Dashboard";
     }
     else if(this.currRole === "USER"){
+      this.noLogin = false;
       this.title = "User Dashboard";
+    }
+    else if(this.currRole === "ROLE UNDEFINED"){
+      this.noLogin = true;
+    }
+    else {
+      this.noLogin = true;
     }
 
   }
@@ -149,6 +158,12 @@ export class HeaderComponent implements OnInit {
     }
     else if(this.currRole === "USER"){
       this._router.navigate(['/userdashboard']);
+    }
+    else if(this.currRole === "ROLE UNDEFINED"){
+      this._router.navigate(['/']);
+    }
+    else{
+      this._router.navigate(['/']);
     }
   }
 

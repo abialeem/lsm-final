@@ -13,25 +13,13 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationComponent implements OnInit {
   user = new User();
   professor = new Professor();
-  msg = ' '; 
+  msg :any; 
 
   constructor(private _registrationService : RegistrationService, private _professorService : ProfessorService, private _router : Router) { }
 
   ngOnInit(): void 
   {
-    $(".nav1").addClass("highlight1")
-    $("#home-tab").click(function(){
-      $("#profile").hide();
-      $("#home").show();
-      $(".nav1").addClass("highlight1")
-      $(".nav2").removeClass("highlight2")
-    });
-    $("#profile-tab").click(function(){
-      $("#home").hide();
-      $("#profile").show();
-      $(".nav2").addClass("highlight2")
-      $(".nav1").removeClass("highlight1")
-    });
+   
   }
 
   registerUser()
