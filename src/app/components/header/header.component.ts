@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
           console.log(err);
         }
       );
-    }, 500);
+    }, 5);
 
     setTimeout(() => {
       this.admin.getMadrasaCount().subscribe(
@@ -108,7 +108,7 @@ export class HeaderComponent implements OnInit {
         );
 
 
-    }, 500);
+    }, 5);
 
 
 
@@ -146,6 +146,7 @@ export class HeaderComponent implements OnInit {
   {
     sessionStorage.clear();
     this._router.navigate(['/login']);
+    
   }
 
   navigateHome()
