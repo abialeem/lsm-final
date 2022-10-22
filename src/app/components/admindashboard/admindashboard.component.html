@@ -24,27 +24,14 @@
         <div class="row">
           <!-- /.col-md-6 -->
           <div class="col-lg-6">
-            <!-- <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Users Registered</h6>
-
-                <p class="card-text" >{{usercount}} users registered</p>
-                <a [routerLink]="['/userlist']" class="btn btn-primary">Users List</a>
-              </div>
-            </div> -->
+           
             
             <div class="card">
               <div class="card-header">
                 <h5 class="m-0">User Registration Widget</h5>
               </div>
               <div class="card-body">
-                <!-- <h6 class="card-title">User Registration Widget</h6>
-                <br>
-                  <hr> -->
-                <!-- <p class="card-text">Widget Text Goes Here</p> -->
+              
                  <!-- <div class="sub-text" *ngFor="let user of users | async">{{user}} users registered</div> -->
                    <div class="card-text" *ngFor="let user of users">{{user.username}}  registered</div>
                    <a [routerLink]="['/userlist']" class="btn btn-primary">Users List</a>
