@@ -9,7 +9,7 @@ export class Madrasa
     madrasa_jamiat_id : string = '';
     madrasa_jamaat_id : string = '';
     status : string = '';
-    added_on : string = '';
+    created_at : any = '';
 
     constructor() {}
 }

@@ -9,7 +9,8 @@ import { Course } from '../models/course';
 import { User } from '../models/user';
 import { Madrasa } from '../models/madrasa';
 
-const NAV_URL = environment.apiURL;
+// const NAV_URL = environment.apiURL;
+const NAV_URL = environment.PHP_BACK_URL;
 
 @Injectable({
   providedIn: 'root'
@@ -246,7 +247,7 @@ private Professors: Professor[] = [
 
     //get all stuff starts here
 public  getMadrasas(): Observable<any> {
-      return this._http.get<any>(`${NAV_URL}/api/v1/admins/getMadrasas`);
+      return this._http.get<any>(`${NAV_URL}/admins/getAllMadrasas.php`);
     }
 
     //get all functions stuff ends here
@@ -254,28 +255,42 @@ public  getMadrasas(): Observable<any> {
                           //count of stuff service functions starts here
 public getMadrasaCount(): Observable<any>
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getMadrasaCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=madrasa`);
 }
 public getPrincipalCount(): Observable<any> 
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getPrincipalCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=principal`);
 }
 public getTeacherCount(): Observable<any> 
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getTeacherCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=teacher`);
 }
 public getStudentCount(): Observable<any> 
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getStudentCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=student`);
 }
 public getCourseCount(): Observable<any> 
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getCourseCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=course`);
 }
 public getSubjectCount(): Observable<any> 
 {
-  return this._http.get<any>(`${NAV_URL}/api/v1/admins/getSubjectCount`);
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=subject`);
 }
+public getTopicCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=topic`);
+}
+public getVideoCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=video`);
+}
+public getQuizCount(): Observable<any> 
+{
+  return this._http.get<any>(`${NAV_URL}/admins/adminGetCount.php?type=quiz`);
+}
+
+
                     //count of stuff service functions ends here
 
 

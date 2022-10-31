@@ -215,6 +215,78 @@
         </li>
         <li class="nav-item">
           <a  class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Manage Topics
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-primary right"> {{ topic_count  }}  <!--topics count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allTopics']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Topics</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addTopic']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Topic</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Manage Videos
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-primary right"> {{ video_count  }}  <!--videos count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allVideos']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Videos</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addVideo']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Video</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Manage Quizzes
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-primary right"> {{ quiz_count  }}  <!--subjects count here-->  </span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" [routerLink]="['/allQuizzes']">
+              <a class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Quizzes</p>
+              </a>
+            </li>
+            <li class="nav-item" [routerLink]="['/addQuiz']">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add New Quiz</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Manage Students

@@ -6,7 +6,9 @@ import { Admin } from '../models/admin';
 import { map } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 
-const NAV_URL = environment.apiURL;
+// const NAV_URL = environment.apiURL;
+const NAV_URL = environment.PHP_BACK_URL;
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,18 +54,22 @@ export class LoginService {
 
   public adminLoginFromRemote(admin : Admin)
   {
-  console.log(admin);
-  return this._http.post<any>(`${NAV_URL}/api/v1/auth/loginadmin`,admin).pipe(
-    map(
-      data => {
-        sessionStorage.setItem('USER', admin.email);
-        sessionStorage.setItem('USERNAME', admin.username);
-        sessionStorage.setItem('ROLE', 'ADMIN');
-        sessionStorage.setItem('TOKEN', `Bearer ${data.token}`);
-        return data;
-        }
-      )
-    ); 
+  // console.log(admin);
+  // return this._http.post<any>(`${NAV_URL}/api/v1/auth/loginadmin`,admin).pipe(
+    return this._http.post<any>(`${NAV_URL}/admins/loginAdmin.php`,admin)
+    // .pipe(
+    // map(
+    //   data => {
+    //     // sessionStorage.setItem('USER', admin.email);
+    //     // sessionStorage.setItem('USERNAME', admin.username);
+    //     // sessionStorage.setItem('ROLE', 'ADMIN');
+    //     // sessionStorage.setItem('TOKEN', `Bearer ${data.token}`);
+        
+    //     return data;
+    //     }
+    //   )
+    // )
+    ; 
   }
 
 

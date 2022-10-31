@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdmindashboardComponent implements OnInit {
   name = 'admin';
+  username= '';
   gender = '';
   loggedUser = '';
   currRole = '';
@@ -47,6 +48,10 @@ export class AdmindashboardComponent implements OnInit {
 
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| '{}');
     this.loggedUser = this.loggedUser.replace(/"/g, '');
+
+    this.username = JSON.stringify(sessionStorage.getItem('name')|| '{}');
+    this.username = this.username.replace(/"/g, '');
+
 
     this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}'); 
     this.currRole = this.currRole.replace(/"/g, '');

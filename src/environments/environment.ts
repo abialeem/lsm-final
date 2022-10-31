@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiURL:  "http://localhost:8080",
   NAV_URL:  "http://localhost:8080",
+  PHP_BACK_URL : "http://127.0.0.1/t_q_back/api",
 };
 
 /*

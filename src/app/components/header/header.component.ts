@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   student_count: any = 0;
   course_count: any = 0;
   subject_count: any = 0;
+  topic_count:any = 0;
+  video_count:any = 0;
+  quiz_count:any = 0;
 
   noLogin:boolean = true;
   loggedUser = '';
@@ -30,87 +33,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    setTimeout(() => {
-      this.admin.getMadrasas().subscribe(
-        (res: any) => {
-          console.log(res);
-          this.madrasas = res;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }, 5);
-
-    setTimeout(() => {
-      this.admin.getMadrasaCount().subscribe(
-        (res: any) => {
-          console.log(res);
-          this.madrasa_count = res.data[0].Count;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-        //for principal count
-        this.admin.getPrincipalCount().subscribe(
-          (res: any) => {
-            console.log(res);
-            this.principal_count = res.data[0].Count;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-
-        //for teacher count
-        this.admin.getTeacherCount().subscribe(
-          (res: any) => {
-            console.log(res);
-            this.teacher_count = res.data[0].Count;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-
-         //for student count
-         this.admin.getStudentCount().subscribe(
-          (res: any) => {
-            console.log(res);
-            this.student_count = res.data[0].Count;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-
-         //for course count
-         this.admin.getCourseCount().subscribe(
-          (res: any) => {
-            console.log(res);
-            this.course_count = res.data[0].Count;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-
-        //for subject count
-        this.admin.getSubjectCount().subscribe(
-          (res: any) => {
-            console.log(res);
-            this.subject_count = res.data[0].Count;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-
-
-    }, 5);
-
-
 
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| 'USER EMAIL NOT FOUND');
     this.loggedUser = this.loggedUser.replace(/"/g, '');
@@ -124,6 +46,116 @@ export class HeaderComponent implements OnInit {
     if(this.currRole === "ADMIN"){
       this.noLogin = false;
       this.title = "Admin Dashboard";
+      
+      setTimeout(() => {
+        this.admin.getMadrasas().subscribe(
+          (res: any) => {
+            // console.log(res);
+            this.madrasas = res['data'][0];
+          },
+          (err) => {
+            console.log(err);
+          }
+        ); 
+        this.admin.getMadrasaCount().subscribe(
+          (res: any) => {
+            //console.log(res);
+            this.madrasa_count = res;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+          //for principal count
+          this.admin.getPrincipalCount().subscribe(
+            (res: any) => {
+              //console.log(res);
+              this.principal_count = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+  
+          //for teacher count
+          this.admin.getTeacherCount().subscribe(
+            (res: any) => {
+              //console.log(res);
+              this.teacher_count = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+  
+           //for student count
+           this.admin.getStudentCount().subscribe(
+            (res: any) => {
+              //console.log(res);
+              this.student_count = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+  
+           //for course count
+           this.admin.getCourseCount().subscribe(
+            (res: any) => {
+              //console.log(res);
+              this.course_count = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+  
+          //for subject count
+          this.admin.getSubjectCount().subscribe(
+            (res: any) => {
+              //console.log(res);
+              this.subject_count = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+
+  //for topic count
+  this.admin.getTopicCount().subscribe(
+    (res: any) => {
+      //console.log(res);
+      this.topic_count = res;
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+
+  //for video count
+  this.admin.getVideoCount().subscribe(
+    (res: any) => {
+      //console.log(res);
+      this.video_count = res;
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+  
+  //for quiz count
+  this.admin.getQuizCount().subscribe(
+    (res: any) => {
+      //console.log(res);
+      this.quiz_count = res;
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+
+      }, 5);
+  
     }
     else if(this.currRole === "PROFESSOR"){
       this.noLogin = false;
@@ -140,6 +172,7 @@ export class HeaderComponent implements OnInit {
       this.noLogin = true;
     }
 
+   
   }
 
   logout()

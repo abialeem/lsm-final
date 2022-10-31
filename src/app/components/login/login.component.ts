@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   {
       this._service.loginUserFromRemote(this.user).subscribe(
         (data: any) => {
-          console.log(data);
+          // console.log(data);
           console.log("Response Received");
           sessionStorage.setItem('loggedUser', this.user.email);
           sessionStorage.setItem('USER', this.user.username);
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
   {
       this._service.loginProfessorFromRemote(this.professor).subscribe(
         (data: any) => {
-          console.log(data);
+          // console.log(data);
           console.log("Response Received");
           sessionStorage.clear();
           sessionStorage.setItem('loggedUser', this.professor.email);
@@ -75,13 +75,15 @@ export class LoginComponent implements OnInit {
   {
     this._service.adminLoginFromRemote(this.admin).subscribe(
       (data: any) => {
-        console.log(data);
-        console.log("Response Received");
-        sessionStorage.setItem('loggedUser', this.admin.email);
-        sessionStorage.setItem('USER', this.admin.username);
+        // console.log(data);
+        console.log("Admin Logged In");
+        sessionStorage.setItem('loggedUser', data['data'][0].email);
+        sessionStorage.setItem('USER', data['data'][0].username);
         sessionStorage.setItem('ROLE', "ADMIN");
-        sessionStorage.setItem('name', this.admin.username);
+        sessionStorage.setItem('name', data['data'][0].username);
+        sessionStorage.setItem('adminId', data['data'][0].id);
         sessionStorage.setItem('gender', "undefined");
+        // console.log(data['data'][0].username);
         this._router.navigate(['/admindashboard']);
       },
       (error: { error: any; }) => {

@@ -106,6 +106,6 @@ import { SinglestudentComponent } from './components/singlestudent/singlestudent
     YouTubePlayerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, RegistrationComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
