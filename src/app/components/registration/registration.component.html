@@ -51,8 +51,11 @@
                                     [class.is-invalid]="username.invalid && username.touched">
                                     <small class="text-danger" style="color:white;" [class.d-none]="username.valid || username.untouched"><b>required field</b></small>
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="gender *" name="usergender" [(ngModel)]="user.gender" required 
+                                    <input type="text" class="form-control" placeholder="gender *" name="usergender" 
+                                    [(ngModel)]="user.gender"
+                                     required 
                                     #usergender="ngModel"
                                     [class.is-invalid]="usergender.invalid && usergender.touched">
                                     <small class="text-danger" style="color:white;" [class.d-none]="usergender.valid || usergender.untouched"><b>required field</b></small>
@@ -63,6 +66,7 @@
                                     [class.is-invalid]="userprofession.invalid && userprofession.touched">
                                     <small class="text-danger" style="color:white;" [class.d-none]="userprofession.valid || userprofession.untouched"><b>required field</b></small>
                                 </div>
+
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password *" name="pwd" [(ngModel)]="user.password" required 
                                     #userpassword="ngModel"

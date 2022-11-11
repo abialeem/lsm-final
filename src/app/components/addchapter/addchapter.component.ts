@@ -20,7 +20,7 @@ export class AddchapterComponent implements OnInit {
   constructor(private _router : Router, private _service : ProfessorService) { }
 
   ngOnInit(): void {
-    this.coursenames = this._service.getCourseListNames();
+    // this.coursenames = this._service.getCourseListNames();
 
     $("#chapter2btn,#chapter3btn,#chapter4btn,#chapter5btn,#chapter6btn,#chapter7btn,#chapter8btn").hide();
     $("#chapter2,#chapter3,#chapter4,#chapter5,#chapter6,#chapter7,#chapter8").hide();
@@ -94,16 +94,16 @@ export class AddchapterComponent implements OnInit {
 
   addChapters()
   {
-    this._service.addNewChapters(this.chapter).subscribe(
-      data => {
-        console.log("chapter added Successfully !!!");
-        this._router.navigate(['/professordashboard']);
-      },
-      error => {
-        console.log("chapter adding Failed !!!");
-        console.log(error.error);
-      }
-    )
+    // this._service.addNewChapters(this.chapter).subscribe(
+    //   data => {
+    //     console.log("chapter added Successfully !!!");
+    //     this._router.navigate(['/professordashboard']);
+    //   },
+    //   error => {
+    //     console.log("chapter adding Failed !!!");
+    //     console.log(error.error);
+    //   }
+    // )
   }
 
 }

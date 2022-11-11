@@ -9,7 +9,7 @@ export class Teacher
     courses_count : string = '';
     subjects_count : string = '';
     status : string = '';
-    added_on : string = '';
+    created_at : string = '';
 
     constructor() {}
 }

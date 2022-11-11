@@ -56,7 +56,7 @@ export class LoginService {
   {
   // console.log(admin);
   // return this._http.post<any>(`${NAV_URL}/api/v1/auth/loginadmin`,admin).pipe(
-    return this._http.post<any>(`${NAV_URL}/admins/loginAdmin.php`,admin)
+    return this._http.post<any>(`${NAV_URL}/admins/loginAdmin.php`,admin) 
     // .pipe(
     // map(
     //   data => {

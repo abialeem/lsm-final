@@ -1,1 +1,113 @@
-<p>addsubject works!</p>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color:white;">Manage Subject(s) -  Add Subject </h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']" style="color:white;">Dashboard</a></li>
+            <li class="breadcrumb-item active" style="color:white;">Add Subject</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid p-3">
+
+        <div class="row justify-content-center">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6 col-md-8 col-sm-10 card p-3 my-5">
+
+<div class="card-header"> 
+  <h2 class="card-title">Add A Subject</h2>
+</div>
+<div class="card-body">
+              <form #addSubjectform="ngForm" (ngSubmit)="addSubject();addSubjectform.resetForm();">   
+                   
+                <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                  <button type="button" class="close" (click)="removeMsg()">×</button>
+                  <b>{{msg}}</b>
+                </div>
+                <div class="row addSubject-form" >
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="course_id" class="label label-primary" >Course <small class="text-info">select a course to which the subject will be added</small></label>
+                          <select class="custom-select p-2"  name="course_id" [(ngModel)]="subject.course_id" required 
+                          #course_id="ngModel"
+                          (blur)="validatecourseID(course_id.value);validateTitle(title.value,course_id.value);getSerials(course_id.value)" (change)="validatecourseID(course_id.value);validateTitle(title.value,course_id.value);getSerials(course_id.value)"
+                          [class.is-invalid]="courseIDHasError && course_id.touched">
+                          <option value="null" selected>Select A Course</option>
+                          <option value="{{ course.id }}" *ngFor="let course of courses">{{ course.title }}</option>
+                          
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!courseIDHasError || course_id.untouched"><b>Please Select A Valid Course </b></small>
+                          <small class="text-danger"  [class.d-none]="course_id.valid || course_id.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="title" class="label label-primary" >Subject Title</label>
+                          <input type="text" class="form-control"  id="title" placeholder="Subject Title *" name="title" [(ngModel)]="subject.title" required 
+                          #title="ngModel"
+                          (blur)="validateTitle(title.value,course_id.value)" (change)="validateTitle(title.value,course_id.value)"
+                          [class.is-invalid]="title.invalid && title.touched">
+                          <small class="text-danger"  [class.d-none]="title.valid || title.untouched"><b>required field</b></small>
+                          <small class="text-danger"  [class.d-none]="!subjectExists || title.untouched"><b>Subject With This Title Already Exists For This Course ...Try Different One </b></small>
+                    
+                        </div>
+                      <div class="form-group">
+                        <label for="description" class="label label-primary" >Description</label>
+                          
+                          <textarea class="form-control" placeholder="Subject Description *" name="description" [(ngModel)]="subject.description" required 
+                          #description="ngModel"
+                          [class.is-invalid]="description.invalid && description.touched"></textarea>
+                          <small class="text-danger"  [class.d-none]="description.valid || description.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="row"><!--row for three selects starts-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="serial_no" class="label label-primary" >Subject Serial No <small class="text-info">missing serial no(s) are already taken for this course</small></label>
+                                  <select class="custom-select p-2"  name="serial_no" [(ngModel)]="subject.serial_no" required 
+                                  #serial_no="ngModel"
+                                  (blur)="validateSubjectSerialNo(serial_no.value)" (change)="validateSubjectSerialNo(serial_no.value)"
+                                  [class.is-invalid]="serialNoHasError && serial_no.touched">
+                                  <option value="null" selected>Select Subject Serial No</option>
+                                  <option value="{{ item }}" *ngFor="let item of serials_after; let i = index" >{{ item }}</option>
+                                 
+                                  </select>
+                                  <small class="text-danger"  [class.d-none]="!serialNoHasError || serial_no.untouched"><b>Please Select A Valid Subject Serial No </b></small>
+                                  <small class="text-danger"  [class.d-none]="serial_no.valid || serial_no.untouched"><b>required field</b></small>
+                              </div>
+                        </div>
+                        
+                        
+
+                      </div><!--row for three selects ends here-->
+                      
+                      
+                      
+
+                  </div>
+                 
+              </div>
+              
+              <button [disabled]="addSubjectform.form.invalid  || subjectExists || courseIDHasError || serialNoHasError " type="submit" class="btn btn-success btn-block btn-lg btn-outline btn-shadow mt-3 mb-1">Add Subject</button>
+              
+              </form>
+            </div>
+              <div class="card-footer" style=" text-align: center;">
+                Check Existing Subject(s)? 
+                <small [routerLink]="['/allSubjects']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fas fa-users"></i> View Existing Subject(s)</b></small>
+              </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->

@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" style="color:white;">Add Madrasa</h1>
+          <h1 class="m-0" style="color:white;">Manage Madrasa(s) -  Add Madrasa </h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -20,11 +20,74 @@
   <div class="content">
     <div class="container-fluid p-3">
 
-        <div class="row">
+        <div class="row justify-content-center">
             <!-- /.col-md-6 -->
-            <div class="col-lg-12">
+            <div class="col-lg-6 col-md-8 col-sm-10 card p-3 my-5">
 
-
+<div class="card-header">
+  <h2 class="card-title">Add A Madrasa</h2>
+</div>
+<div class="card-body">
+              <form #addmadrasaform="ngForm" (ngSubmit)="addMadrasa()">
+                <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                  <button type="button" class="close" (click)="removeMsg()">×</button>
+                  <b>{{msg}}</b>
+                </div>
+                <div class="row addmadrasa-form" >
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="madrasa_title" class="label label-primary" >Madrasa Title</label>
+                          <input type="text" class="form-control"  id="madrasa_title" placeholder="Madrasa Title *" name="madrasa_title" [(ngModel)]="madrasa.madrasa_title" required 
+                          #madrasa_title="ngModel"
+                          [class.is-invalid]="madrasa_title.invalid && madrasa_title.touched">
+                          <small class="text-danger"  [class.d-none]="madrasa_title.valid || madrasa_title.untouched"><b>required field</b></small>
+                     
+                        </div>
+                      <div class="form-group">
+                        <label for="madrasa_address" class="label label-primary" >Madrasa Address</label>
+                          <input type="text" class="form-control" placeholder="Madrasa Address *" name="madrasa_address" [(ngModel)]="madrasa.madrasa_address" required 
+                          #madrasa_address="ngModel"
+                          [class.is-invalid]="madrasa_address.invalid && madrasa_address.touched">
+                          <small class="text-danger"  [class.d-none]="madrasa_address.valid || madrasa_address.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="madrasa_jamiat_id" class="label label-primary" >Madrasa Jamiat</label>
+                          <select class="custom-select" (blur)="validateJamiat(madrasa_jamiat_id.value)" (change)="validateJamiat(madrasa_jamiat_id.value)" name="madrasa_jamiat_id" [(ngModel)]="madrasa.madrasa_jamiat_id" required 
+                          #madrasa_jamiat_id="ngModel"
+                          [class.is-invalid]="jamiatHasError && madrasa_jamiat_id.touched">
+                          <option value="null" selected>Select Jamiat For Madrasa</option>
+                          <option value="{{ jamiat.id }}" *ngFor="let jamiat of jamiats">{{jamiat.jamiat}}</option>
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!jamiatHasError || madrasa_jamiat_id.untouched"><b>Please Select A Jamiat </b></small>
+                          <small class="text-danger"  [class.d-none]="madrasa_jamiat_id.valid || madrasa_jamiat_id.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="madrasa_jamaat_id" class="label label-primary" >Madrasa Jamaat</label>
+                        <select class="custom-select" (blur)="validateJamaat(madrasa_jamaat_id.value)" (change)="validateJamaat(madrasa_jamaat_id.value)"  name="madrasa_jamaat_id" [(ngModel)]="madrasa.madrasa_jamaat_id" required 
+                        #madrasa_jamaat_id="ngModel"
+                        [class.is-invalid]="madrasa_jamaat_id.invalid && madrasa_jamaat_id.touched">
+                          <option value="null" selected>Select Jamaat For Madrasa</option>
+                          <option value="{{ jamaat.id }}" *ngFor="let jamaat of jamaats">{{jamaat.jamaat}}</option>
+                        </select>
+                        <small class="text-danger"  [class.d-none]="!jamaatHasError || madrasa_jamaat_id.untouched"><b>Please Select A Jamaat </b></small>
+                         
+                        <small class="text-danger"  [class.d-none]="madrasa_jamaat_id.valid || madrasa_jamaat_id.untouched"><b>required field</b></small>
+                     <!-- <input type="hidden" name="madrasa_student_count" value="0">
+                     <input type="hidden" name="madrasa_teacher_count" value="0">
+                     <input type="hidden" name="status" value="1"> -->
+                      </div>
+                  </div>
+                 
+              </div>
+              
+              <button [disabled]="addmadrasaform.form.invalid || jamaatHasError || jamiatHasError" type="submit" class="btn btn-success btn-block btn-lg btn-outline btn-shadow">Add Madrasa</button>
+              
+              </form>
+            </div>
+              <div class="card-footer" style=" text-align: center;">
+                Check Existing Madrasa(s)? 
+                <small [routerLink]="['/allMadrasas']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fas fa-school"></i> View Existing Madrasa(s)</b></small>
+              </div>
 
             </div>
 

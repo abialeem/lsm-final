@@ -1,1 +1,62 @@
-<p>subjects works!</p>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color:white;">Manage Subject(s)</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']" style="color:white;">Dashboard</a></li>
+            <li class="breadcrumb-item active" style="color:white;">Manage Subjects</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid p-3">
+
+        <div class="row">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-12">
+
+                <div class="card" style="background:transparent;">
+                    <div class="card-header border-0">
+                        <h2 class="card-title" style="color:white;">All Subject(s) List</h2>
+                        <a class="btn btn-success btn-sm float-sm-right" style="color:white;" [routerLink]="['/addSubject']">+ Add A Subject</a>
+                    </div>
+                    <div class="card-body p-5" style="overflow:scroll;background:transparent;">
+                            
+                <!--madrasa table starts here-->
+                
+                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 p-4" style="background:white;">
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-bordered table-striped table-hover "  id="example1" datatable [dtOptions]="dtOptions" *ngIf="subjects.length != 0">
+                     
+                      </table>
+                      <p class="alert alert-warning"  *ngIf="subjects.length == 0">No Subjects Found ...Add One </p>
+                    </div>
+                  </div>
+                 
+                            </div>
+                    
+                <!--madrasa table ends here-->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+
+

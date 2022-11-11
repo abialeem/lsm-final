@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
-import { User } from 'src/app/models/user';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
@@ -24,36 +23,52 @@ export class RegistrationComponent implements OnInit {
 
   registerUser()
   {
-    this._registrationService.registerUserFromRemote(this.user).subscribe(
-      data => {
-        console.log("Registration Success");
-        sessionStorage.setItem("username",this.user.username);
-        sessionStorage.setItem("gender",this.user.gender);
-        this._router.navigate(['/registrationsuccess']);
-      },
-      error => {
-        console.log("Registration Failed");
-        console.log(error.error);
-        this.msg = "User with "+this.user.email+" already exists !!!";
-      }
-    )
+    // this._registrationService.registerUserFromRemote(this.user).subscribe(
+    //   data => {
+    //     console.log("Registration Success");
+    //     sessionStorage.setItem("username",this.user.username);
+    //     sessionStorage.setItem("gender",this.user.gender);
+    //     this._router.navigate(['/registrationsuccess']);
+    //   },
+    //   error => {
+    //     console.log("Registration Failed");
+    //     console.log(error.error);
+    //     this.msg = "User with "+this.user.email+" already exists !!!";
+    //   }
+    // )
   }
 
   registerProfessor()
   {
-    this._registrationService.registerProfessorFromRemote(this.professor).subscribe(
-      data => {
-        console.log("Registration Success");
-        sessionStorage.setItem("doctorname",this.professor.professorname);
-        sessionStorage.setItem("gender",this.professor.gender);
-        this._router.navigate(['/registrationsuccess']);
-      },
-      error => {
-        console.log("Registration Failed");
-        console.log(error.error);
-        this.msg = "Professor with "+this.professor.email+" already exists !!!";
-      }
-    )
+    // this._registrationService.registerProfessorFromRemote(this.professor).subscribe(
+    //   data => {
+    //     console.log("Registration Success");
+    //     sessionStorage.setItem("doctorname",this.professor.professorname);
+    //     sessionStorage.setItem("gender",this.professor.gender);
+    //     this._router.navigate(['/registrationsuccess']);
+    //   },
+    //   error => {
+    //     console.log("Registration Failed");
+    //     console.log(error.error);
+    //     this.msg = "Professor with "+this.professor.email+" already exists !!!";
+    //   }
+    // )
   }
 
 }
+
+class User 
+{
+
+    username : string = '';
+    userid : string = 'empty';
+    email : string = '';
+    profession : string = '';
+    gender : string = '';
+    mobile : string = '';
+    address : string = '';
+    password : string = '';
+
+    constructor() {}
+}
+

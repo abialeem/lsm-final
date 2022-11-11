@@ -13,7 +13,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { ProfessorprofileComponent } from './components/professorprofile/professorprofile.component';
-import { AddprofessorComponent } from './components/addprofessor/addprofessor.component';
 import { ApprovalstatusComponent } from './components/approvalstatus/approvalstatus.component';
 import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
@@ -49,6 +48,19 @@ import { StudentsComponent } from './components/students/students.component';
 import { AddstudentComponent } from './components/addstudent/addstudent.component';
 import { EditstudentComponent } from './components/editstudent/editstudent.component';
 import { SinglestudentComponent } from './components/singlestudent/singlestudent.component';
+import { DataTablesModule } from 'angular-datatables';
+import { TopicsComponent } from './components/topics/topics.component';
+import { AddTopicComponent } from './components/add-topic/add-topic.component';
+import { EditTopicComponent } from './components/edit-topic/edit-topic.component';
+import { SingleTopicComponent } from './components/single-topic/single-topic.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { AddVideoComponent } from './components/add-video/add-video.component';
+import { EditVideoComponent } from './components/edit-video/edit-video.component';
+import { SingleVideoComponent } from './components/single-video/single-video.component';
+import { SingleQuizComponent } from './components/single-quiz/single-quiz.component';
+import { EditQuizComponent } from './components/edit-quiz/edit-quiz.component';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +74,6 @@ import { SinglestudentComponent } from './components/singlestudent/singlestudent
     FooterComponent,
     UserprofileComponent,
     ProfessorprofileComponent,
-    AddprofessorComponent,
     ApprovalstatusComponent,
     AddcourseComponent,
     UserlistComponent,
@@ -94,7 +105,19 @@ import { SinglestudentComponent } from './components/singlestudent/singlestudent
     StudentsComponent,
     AddstudentComponent,
     EditstudentComponent,
-    SinglestudentComponent
+    SinglestudentComponent,
+    TopicsComponent,
+    AddTopicComponent,
+    EditTopicComponent,
+    SingleTopicComponent,
+    VideosComponent,
+    AddVideoComponent,
+    EditVideoComponent,
+    SingleVideoComponent,
+    SingleQuizComponent,
+    EditQuizComponent,
+    AddQuizComponent,
+    QuizzesComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +127,7 @@ import { SinglestudentComponent } from './components/singlestudent/singlestudent
     AppRoutingModule,
     CarouselModule,
     YouTubePlayerModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

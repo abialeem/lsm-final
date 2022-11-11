@@ -1,0 +1,144 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color:white;">Manage Quiz(zes) -  Add Quiz </h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']" style="color:white;">Dashboard</a></li>
+            <li class="breadcrumb-item active" style="color:white;">Add Quiz</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid p-3">
+
+        <div class="row justify-content-center">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6 col-md-8 col-sm-10 card p-3 my-5">
+
+<div class="card-header"> 
+  <h2 class="card-title">Add A Quiz</h2>
+</div>
+<div class="card-body">
+              <form #addQuizform="ngForm" (ngSubmit)="addQuiz();addQuizform.resetForm();">   
+                   
+                <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                  <button type="button" class="close" (click)="removeMsg()">×</button>
+                  <b>{{ msg }}</b>
+                </div>
+                <div class="row addQuiz-form" >
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="course_id" class="label label-primary" >Course <small class="text-info">select a course to which the Quiz will be added</small></label>
+                          <select class="custom-select p-2"  name="course_id" [(ngModel)]="quiz.course_id" required 
+                          #course_id="ngModel"
+                          (blur)="validatecourseID(course_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)"
+                          (change)="validatecourseID(course_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)"
+                          [class.is-invalid]="courseIDHasError && course_id.touched">
+                          <option value="null" selected>Select A Course</option>
+                          <option value="{{ course.id }}" *ngFor="let course of courses">{{ course.title }}</option>
+                          
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!courseIDHasError || course_id.untouched"><b>Please Select A Valid Course </b></small>
+                          <small class="text-danger"  [class.d-none]="course_id.valid || course_id.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="subject_id" class="label label-primary" >Subject <small class="text-info">select a subject to which the Quiz will be added</small></label>
+                          <select class="custom-select p-2"  name="subject_id" [(ngModel)]="quiz.subject_id" required 
+                          #subject_id="ngModel"
+                          (blur)="validatesubjectID(subject_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)" 
+                          (change)="validatesubjectID(subject_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)"
+                          [class.is-invalid]="subjectIDHasError && subject_id.touched">
+                          <option value="null" selected>Select A Subject</option>
+                          <option value="{{ subject.id }}" *ngFor="let subject of subjects">{{ subject.title }}</option>
+                          
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!subjectIDHasError || subject_id.untouched"><b>Please Select A Valid Subject </b></small>
+                          <small class="text-danger"  [class.d-none]="subject_id.valid || subject_id.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="topic_id" class="label label-primary" >Topic <small class="text-info">select a topic to which the Quiz will be added</small></label>
+                          <select class="custom-select p-2"  name="topic_id" [(ngModel)]="quiz.topic_id" required 
+                          #topic_id="ngModel"
+                          (blur)="validatetopicID(topic_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)" 
+                          (change)="validatetopicID(topic_id.value);validateTitle(title.value,topic_id.value,subject_id.value,course_id.value);getSerials(course_id.value,subject_id.value,topic_id.value)"
+                          [class.is-invalid]="topicIDHasError && topic_id.touched">
+                          <option value="null" selected>Select A Topic</option>
+                          <option value="{{ topic.id }}" *ngFor="let topic of topics">{{ topic.title }}</option>
+                          
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!topicIDHasError || topic_id.untouched"><b>Please Select A Valid Topic </b></small>
+                          <small class="text-danger"  [class.d-none]="topic_id.valid || topic_id.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="title" class="label label-primary" >Quiz Title</label>
+                          <input type="text" class="form-control"  id="title" placeholder="Quiz Title *" name="title" [(ngModel)]="quiz.title" required 
+                          #title="ngModel"
+                          (blur)="validateTitle(title.value,topic_id.value,subject_id.value,course_id.value)" 
+                          (change)="validateTitle(title.value,topic_id.value,subject_id.value,course_id.value)"
+                          [class.is-invalid]="title.invalid && title.touched">
+                          <small class="text-danger"  [class.d-none]="title.valid || title.untouched"><b>required field</b></small>
+                          <small class="text-danger"  [class.d-none]="!quizExists || title.untouched"><b>Quiz With This Title Already Exists For This Course ...Try Different One </b></small>
+                    
+                        </div>
+                      <div class="form-group">
+                        <label for="description" class="label label-primary" >Description</label>
+                          
+                          <textarea class="form-control" placeholder="Quiz Description *" name="description" [(ngModel)]="quiz.description" required 
+                          #description="ngModel"
+                          [class.is-invalid]="description.invalid && description.touched"></textarea>
+                          <small class="text-danger"  [class.d-none]="description.valid || description.untouched"><b>required field</b></small>
+                      </div>
+                      
+                      <div class="row"><!--row for three selects starts-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="serial_no" class="label label-primary" >Quiz Serial No <small class="text-info">missing serial no(s) are already taken for this course and selected subject and selected topic</small></label>
+                                  <select class="custom-select p-2"  name="serial_no" [(ngModel)]="quiz.serial_no" required 
+                                  #serial_no="ngModel"
+                                  (blur)="validateQuizSerialNo(serial_no.value)" (change)="validateQuizSerialNo(serial_no.value)"
+                                  [class.is-invalid]="serialNoHasError && serial_no.touched">
+                                  <option value="null" selected>Select Quiz Serial No</option>
+                                  <option value="{{ item }}" *ngFor="let item of serials_after; let i = index" >{{ item }}</option>
+                                 
+                                  </select>
+                                  <small class="text-danger"  [class.d-none]="!serialNoHasError || serial_no.untouched"><b>Please Select A Valid Quiz Serial No </b></small>
+                                  <small class="text-danger"  [class.d-none]="serial_no.valid || serial_no.untouched"><b>required field</b></small>
+                              </div>
+                        </div>
+                        
+                        
+
+                      </div><!--row for three selects ends here-->
+                      
+                      
+                      
+
+                  </div>
+                 
+              </div>
+              
+              <button [disabled]="addQuizform.form.invalid  || quizExists || courseIDHasError || subjectIDHasError || topicIDHasError || serialNoHasError " type="submit" class="btn btn-success btn-block btn-lg btn-outline btn-shadow mt-3 mb-1">Add Quiz</button>
+              
+              </form>
+            </div>
+              <div class="card-footer" style=" text-align: center;">
+                Check Existing Quiz(zes)? 
+                <small [routerLink]="['/allQuizzes']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fas fa-users"></i> View Existing Quiz(zes)</b></small>
+              </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->

@@ -41,9 +41,6 @@ export class FullcourseComponent implements OnInit {
       document.body.appendChild(tag)
     }
 
-    this.chapterlist = this._service.getChappterListByCourseName(this.courseName);
-    this.courselist = this._service.getCourseListByName(this.courseName);
-
   }
 
   openOverview()

@@ -6,8 +6,10 @@ export class Principal
     address : string = '';
     user_id : string = '';
     madrasa_id : string = '';
-    status : string = '';
-    added_on : string = '';
+    status : string = '1';
+    created_at : any ;
+    updated_at : any ;
+    deleted_at : any ;
 
     constructor() {}
 }

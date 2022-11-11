@@ -28,11 +28,13 @@ export class HeaderComponent implements OnInit {
   currRole = '';
   title = '';
   username = '';
+  
 
   constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService) { }
 
   ngOnInit(): void 
   {
+
 
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| 'USER EMAIL NOT FOUND');
     this.loggedUser = this.loggedUser.replace(/"/g, '');
@@ -167,18 +169,20 @@ export class HeaderComponent implements OnInit {
     }
     else if(this.currRole === "ROLE UNDEFINED"){
       this.noLogin = true;
+
     }
     else {
       this.noLogin = true;
     }
 
-   
   }
 
   logout()
   {
     sessionStorage.clear();
-    this._router.navigate(['/login']);
+    // this._router.navigate(['/login']);
+    window.location.replace('/login');
+    // window.location.href = "/login";
     
   }
 

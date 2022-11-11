@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Professor } from '../models/professor';
 import { Admin } from '../models/admin';
-import { Chapter } from '../models/chapter';
 import { Course } from '../models/course';
 import { User } from '../models/user';
 import { Madrasa } from '../models/madrasa';
+import { Subject } from '../models/subject';
+import { Topic } from '../models/topic';
+import { Video } from '../models/video';
+import { Quiz } from '../models/quiz';
 
 // const NAV_URL = environment.apiURL;
 const NAV_URL = environment.PHP_BACK_URL;
@@ -17,237 +19,162 @@ const NAV_URL = environment.PHP_BACK_URL;
 })
 export class AdminService {
 
-  private CHAPTERS : Chapter[] = [
-    {
-      coursename :  'course 1',
-    chapter_name :'chapter 1',
-    chapter_id : '0001'
-    },
-    {
-      coursename :  'course 1',
-    chapter_name :'chapter 2',
-    chapter_id : '0002'
-    },
-    {
-      coursename :  'course 1',
-    chapter_name :'chapter 3',
-    chapter_id : '0003'
-    },
-    {
-      coursename :  'course 2',
-    chapter_name :'chapter 1',
-    chapter_id : '0004'
-    }
-  ];
-
-  private COURSES : Course[] = [
-{
-  coursename :  'course 1',
-    courseid :  '0001',
-    enrolleddate :  '23-04-2022',
-    instructorname :  'professor 1',
-    instructorinstitution :  'institute 1',
-    enrolledcount :  '2',
-    youtubeurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    websiteurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    coursetype :  'quran introduction',
-    skilllevel :  '1',
-    language :  'english',
-    description :  'demo quran introduction course'
-},
-{
-  coursename :  'course 2',
-    courseid :  '0002',
-    enrolleddate :  '23-08-2022',
-    instructorname :  'professor 1',
-    instructorinstitution :  'institute 2',
-    enrolledcount :  '4',
-    youtubeurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    websiteurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    coursetype :  'quran introduction',
-    skilllevel :  '3',
-    language :  'arabic',
-    description :  'demo quran introduction course'
-},
-{
-  coursename :  'course 3',
-    courseid :  '0003',
-    enrolleddate :  '23-08-2022',
-    instructorname :  'professor 3',
-    instructorinstitution :  'institute 1',
-    enrolledcount :  '4',
-    youtubeurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    websiteurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    coursetype :  'quran introduction',
-    skilllevel :  '2',
-    language :  'arabic',
-    description :  'demo quran introduction course'
-},
-{
-  coursename :  'course 4',
-    courseid :  '0004',
-    enrolleddate :  '23-06-2022',
-    instructorname :  'professor 3',
-    instructorinstitution :  'institute 3',
-    enrolledcount :  '1',
-    youtubeurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    websiteurl :  'https://www.youtube.com/watch?v=J73zookBs-c',
-    coursetype :  'quran introduction',
-    skilllevel :  '2',
-    language :  'urdu',
-    description :  'demo quran introduction course'
-}
-  ];
-  private ADMINS: Admin[] = [
-      {
-        username : 'admin1',
-        adminid : '0001',
-        email : 'admin@admin.com',
-        password :  'password'
-      },
-      {
-        username : 'hatim',
-        adminid : '0002',
-        email : 'hatim@admin.com',
-        password :  'password'
-      }
-  ];
-  private USERS: User[] = [
-    {
-      username : 'User Demo 1',
-      userid :  '0001',
-      email :  'userdemo1@taalimulquran.com',
-      profession :  'student',
-      gender :  'male',
-      mobile : '0123456789',
-      address : 'test address',
-      password :  'password'
-    },
-    {
-      username : 'User Demo 2',
-      userid :  '0002',
-      email :  'userdemo2@taalimulquran.com',
-      profession :  'student',
-      gender :  'female',
-      mobile : '0123456798',
-      address : 'test address 2',
-      password :  'password'
-    },
-    {
-      username : 'User Demo 3',
-      userid :  '0003',
-      email :  'userdemo3@taalimulquran.com',
-      profession :  'buisness',
-      gender :  'male',
-      mobile : '0123457689',
-      address : 'test address 3',
-      password :  'password'
-    },
-    {
-      username : 'User Demo 4',
-      userid :  '0004',
-      email :  'userdemo4@taalimulquran.com',
-      profession :  'worker',
-      gender :  'female',
-      mobile : '2103456789',
-      address : 'test address 4',
-      password :  'password'
-    }
-];
-
-private Professors: Professor[] = [
-  {
-    professorname :  'professor 1',
-    professorid :  '0001',
-    email :  'professor1@taalimulquran.com',
-    degreecompleted :  'BEd',
-    institutionname :  'institute 1',
-    department :  'education',
-    experience : '2 years',
-    gender : 'male',
-    mobile :  '9102345678',
-    password :  'password',
-    status : 'true'
-  },
-  {
-    professorname :  'professor 2',
-    professorid :  '0002',
-    email :  'professor2@taalimulquran.com',
-    degreecompleted :  'BEd',
-    institutionname :  'institute 2',
-    department :  'education',
-    experience : '3 years',
-    gender : 'male',
-    mobile :  '9102345678',
-    password :  'password',
-    status : 'true'
-  },
-  {
-    professorname :  'professor 3',
-    professorid :  '0003',
-    email :  'professor3@taalimulquran.com',
-    degreecompleted :  'BEd',
-    institutionname :  'institute 3',
-    department :  'education',
-    experience : '10 years',
-    gender : 'female',
-    mobile :  '9104345678',
-    password :  'password',
-    status : 'true'
-  },
-  {
-    professorname :  'professor 4',
-    professorid :  '0004',
-    email :  'professor4@taalimulquran.com',
-    degreecompleted :  'BEd',
-    institutionname :  'institute 2',
-    department :  'education',
-    experience : '12 years',
-    gender : 'male',
-    mobile :  '9112345678',
-    password :  'password',
-    status : 'true'
-  },
   
-  
-];
-  professor = new Professor();
 
   constructor(private _http : HttpClient) { }
 
-                        //fake service functions starts here
-                        getTotalUsers(): User[] {
-                          return this.USERS;
-                      } 
-
-                      getTotalProfessors(): Professor[] {
-                        return this.Professors;
-                    } 
-
-                    getTotalCourses(): Course[] {
-                        return this.COURSES;
-                    }
-                    getTotalWishlist(): any[]{
-                        return [0];
-                    }
-                    getTotalEnrollments(): any[]{
-                      return [0];
-                  }
-                  getTotalEnrollmentCount(): any{
-                    return 2;
-                }
-                getTotalChapters(): Chapter[] {
-                  return this.CHAPTERS;
-              } 
-                        //fake service functions ends here
-
+                       
             // real service functions starts here
+
+  //checking existing db functions starts here 
+
+public checkIfEmailExists(email:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/userEmailExists.php?email=`+ email);
+}
+
+public checkIfITSNumberExists(its_number:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/studentITSNumberExists.php?its_number=`+ its_number);
+}
+
+public checkIfCourseTitle(course_title:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/courseTitleExists.php?course_title=`+ course_title);
+}
+
+public checkIfSubjectOfCourseExists(subject_title:any,course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/subjectOfCourseExists.php?subject_title=${subject_title}&course_id=${course_id}`);
+}
+
+public checkIfTopicOfSubjectOfCourseExists(topic_title:any,subject_id:any,course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/topicOfSubjectOfCourseExists.php?topic_title=${topic_title}&subject_id=${subject_id}&course_id=${course_id}`);
+}
+
+public checkIfVideoOfTopicOfSubjectOfCourseExists(video_title:any,topic_id:any,subject_id:any,course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/videoOfTopicOfSubjectOfCourseExists.php?video_title=${video_title}&topic_id=${topic_id}&subject_id=${subject_id}&course_id=${course_id}`);
+}
+
+public checkIfQuizOfTopicOfSubjectOfCourseExists(quiz_title:any,topic_id:any,subject_id:any,course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/validation/quizOfTopicOfSubjectOfCourseExists.php?quiz_title=${quiz_title}&topic_id=${topic_id}&subject_id=${subject_id}&course_id=${course_id}`);
+}
+
+  //checking existing db functions ends here
+
+
+
+
+//add stuff functions starts here
+public addMadrasa(madrasa :Madrasa){
+  return this._http.post<any>(`${NAV_URL}/admins/addMadrasa.php`,madrasa);
+}
+
+
+public addPrincipal(principal:any){
+  //  console.log(principal) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addPrincipal.php`,principal);
+}
+
+public addTeacher(teacher:any){
+  //  console.log(teacher) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addTeacher.php`,teacher);
+}
+
+public addStudent(student:any){
+  //  console.log(student) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addStudent.php`,student);
+}
+
+public addCourse(course:Course){
+  //  console.log(course) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addCourse.php`,course);
+}
+
+public addSubject(subject:Subject){
+  //  console.log(subject) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addSubject.php`,subject);
+}
+
+public addTopic(topic:Topic){
+  //  console.log(topic) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addTopic.php`,topic);
+}
+
+public addVideo(video:Video){
+  //  console.log(video) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addVideo.php`,video);
+}
+
+public addQuiz(quiz:Quiz){
+  //  console.log(quiz) ;
+  return this._http.post<any>(`${NAV_URL}/admins/addQuiz.php`,quiz);
+}
+
+
+
+//add stuff functions ends here
+
+//get specific stuff starts here
+
+public getCourseSubjectsSerials(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectsSerials.php?course_id=${course_id}`);
+}
+
+public getCourseSubjectTopicsSerials(course_id:any,subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectTopicsSerials.php?course_id=${course_id}&subject_id=${subject_id}`);
+}
+
+public getCourseSubjectTopicVideosSerials(course_id:any,subject_id:any,topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectTopicVideosSerials.php?course_id=${course_id}&subject_id=${subject_id}&topic_id=${topic_id}`);
+}
+
+public getCourseSubjectTopicQuizzesSerials(course_id:any,subject_id:any,topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectTopicQuizzesSerials.php?course_id=${course_id}&subject_id=${subject_id}&topic_id=${topic_id}`);
+}
+
+public getSingleCourseSubjects(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseSubjects.php?course_id=${course_id}`);
+}
+
+public getSingleSubjectTopics(subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleSubjectTopics.php?subject_id=${subject_id}`);
+}
+
+
+//get specific stuff ends here
 
 
 
     //get all stuff starts here
 public  getMadrasas(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllMadrasas.php`);
+    }
+public  getPrincipals(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllPrincipals.php`);
+    }
+public  getTeachers(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllTeachers.php`);
+    }
+public  getCourses(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllCourses.php`);
+    }
+public  getSubjects(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllSubjects.php`);
+    }
+public  getTopics(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllTopics.php`);
+    }
+public  getVideos(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllVideos.php`);
+    }
+public  getQuizzes(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllQuizzes.php`);
+    }
+public  getStudents(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllStudents.php`);
+    }
+public  getJamaats(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllJamaats.php`);
+    }
+public  getJamiats(): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getAllJamiats.php`);
     }
 
     //get all functions stuff ends here
@@ -292,59 +219,6 @@ public getQuizCount(): Observable<any>
 
 
                     //count of stuff service functions ends here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public addProfessor(professor : Professor):Observable<any>
-  {
-    return this._http.post<any>(`${NAV_URL}/api/v1/admins/addProfessor`,professor);
-  }
-
-  // getTotalProfessors(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalprofessors`);
-  // }
-
-  // getTotalUsers(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalusers`);
-  // }
-
-  // getTotalCourses(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalcourses`);
-  // }
-
-  // getTotalWishlist(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalwishlist`);
-  // }
-
-  // getTotalEnrollments(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalenrollments`);
-  // }
-
-  // getTotalEnrollmentCount(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalenrollmentcount`);
-  // }
-
-  // getTotalChapters(): Observable<any[]> | undefined 
-  // {
-  //   return this._http.get<any>(`${NAV_URL}/api/v1/admins/gettotalchapters`);
-  // }
 
                 //real service functions ends here
 }

@@ -27,6 +27,24 @@
             <div class="card">
               <div class="card-header border-0">
               <div class="d-flex justify-content-between">
+              <h3 class="card-title">Different Users Statistics</h3>
+              <a href="javascript:void(0);">View Report</a>
+              </div>
+              </div>
+              <div class="card-body">
+            <div id="divChart" style="background:white;">
+              <canvas id="Users Analytics"></canvas>
+          </div>
+              </div>
+              </div>
+            </div>
+
+             <!-- /.col-md-6 -->
+          <div class="col-lg-6">
+
+            <div class="card">
+              <div class="card-header border-0">
+              <div class="d-flex justify-content-between">
               <h3 class="card-title">Madrasa Statistics</h3>
               <a href="javascript:void(0);">View Report</a>
               </div>
@@ -106,6 +124,22 @@
                 </div> 
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+
+                  <div class="card-body">
+
+                   
+                    <canvas id="my-chart2">
+
+                    </canvas>
+                    
+
+
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="row">
                 <div class="col-lg-3 col-6">
                 
@@ -168,7 +202,7 @@
               <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="m-0">Madrasa Report</h5>
+                <h5 class="m-0">Registration Reports</h5>
               </div>
               <div class="card-body">
                 <!-- <h6 class="card-title">User Registration Widget</h6>
@@ -176,52 +210,19 @@
                   <hr> -->
                 <!-- <p class="card-text">Widget Text Goes Here</p> -->
                  <!-- <div class="sub-text" *ngFor="let user of users | async">{{user}} users registered</div> -->
+                 <section class="m-3">
                    <div class="card-text" *ngFor="let user of users">{{user.username}}  registered</div>
-                   <a [routerLink]="['/userlist']" class="btn btn-primary">Users List</a>
-              </div>
-            </div>
-              </div>
-              <div class="col-lg-6 col-md-12 col-sm-12">
-
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Teachers / Aalim Report</h5>
-              </div>
-              <div class="card-body">
-                <!-- <h6 class="card-title">User Registration Widget</h6>
-                <br>
-                  <hr> -->
-                <!-- <p class="card-text">Widget Text Goes Here</p> -->
-                 <!-- <div class="sub-text" *ngFor="let user of users | async">{{user}} users registered</div> -->
+                   <a [routerLink]="['/userlist']" class="btn btn-primary">Students List</a>
+                  </section>
+                  <section class="m-3">
                    <div class="card-text" *ngFor="let user of professors">{{user.professorname}}  registered</div>
-                   <a [routerLink]="['/professorlist']" class="btn btn-primary">Professors List</a>
+                   <a [routerLink]="['/professorlist']" class="btn btn-primary">Teachers List</a>
+                  </section>
+                   
               </div>
             </div>
-
-
-
-          </div>
-          <div class="col-lg-6 col-md-12 col-sm-12">
-
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Students / Talibs Report</h5>
               </div>
-              <div class="card-body">
-                <!-- <h6 class="card-title">User Registration Widget</h6>
-                <br>
-                  <hr> -->
-                <!-- <p class="card-text">Widget Text Goes Here</p> -->
-                 <!-- <div class="sub-text" *ngFor="let user of users | async">{{user}} users registered</div> -->
-                   <div class="card-text" *ngFor="let user of professors">{{user.professorname}}  registered</div>
-                   <a [routerLink]="['/professorlist']" class="btn btn-primary">Professors List</a>
-              </div>
-            </div>
-
-
-
-          </div>
-          <!-- /.col-md-6 -->
+             
           <div class="col-lg-6 col-md-12 col-sm-12">
             
               <div class="card">

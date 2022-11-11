@@ -25,7 +25,6 @@ export class ProfessorlistComponent implements OnInit {
     this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}'); 
     this.currRole = this.currRole.replace(/"/g, '');
 
-    this.professorlist = this._service.getProfessorList();
   }
 
 }

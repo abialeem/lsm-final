@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { AddTopicComponent } from './components/add-topic/add-topic.component';
+import { AddVideoComponent } from './components/add-video/add-video.component';
 import { AddchapterComponent } from './components/addchapter/addchapter.component';
 import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { AddmadrasaComponent } from './components/addmadrasa/addmadrasa.component';
 import { AddprincipalComponent } from './components/addprincipal/addprincipal.component';
-import { AddprofessorComponent } from './components/addprofessor/addprofessor.component';
 import { AddstudentComponent } from './components/addstudent/addstudent.component';
 import { AddsubjectComponent } from './components/addsubject/addsubject.component';
 import { AddteacherComponent } from './components/addteacher/addteacher.component';
@@ -12,6 +14,9 @@ import { AdmindashboardComponent } from './components/admindashboard/admindashbo
 import { ApprovalstatusComponent } from './components/approvalstatus/approvalstatus.component';
 import { CourselistComponent } from './components/courselist/courselist.component';
 import { CoursesComponent } from './components/courses/courses.component';
+import { EditQuizComponent } from './components/edit-quiz/edit-quiz.component';
+import { EditTopicComponent } from './components/edit-topic/edit-topic.component';
+import { EditVideoComponent } from './components/edit-video/edit-video.component';
 import { EditcourseComponent } from './components/editcourse/editcourse.component';
 import { EditmadrasaComponent } from './components/editmadrasa/editmadrasa.component';
 import { EditprincipalComponent } from './components/editprincipal/editprincipal.component';
@@ -27,8 +32,12 @@ import { PrincipalsComponent } from './components/principals/principals.componen
 import { ProfessordashboardComponent } from './components/professordashboard/professordashboard.component';
 import { ProfessorlistComponent } from './components/professorlist/professorlist.component';
 import { ProfessorprofileComponent } from './components/professorprofile/professorprofile.component';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { RegistrationsuccessComponent } from './components/registrationsuccess/registrationsuccess.component';
+import { SingleQuizComponent } from './components/single-quiz/single-quiz.component';
+import { SingleTopicComponent } from './components/single-topic/single-topic.component';
+import { SingleVideoComponent } from './components/single-video/single-video.component';
 import { SinglecourseComponent } from './components/singlecourse/singlecourse.component';
 import { SingleprincipalComponent } from './components/singleprincipal/singleprincipal.component';
 import { SinglestudentComponent } from './components/singlestudent/singlestudent.component';
@@ -37,9 +46,11 @@ import { SingleteacherComponent } from './components/singleteacher/singleteacher
 import { StudentsComponent } from './components/students/students.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
+import { TopicsComponent } from './components/topics/topics.component';
 import { UserdashboardComponent } from './components/userdashboard/userdashboard.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { VideosComponent } from './components/videos/videos.component';
 import { WelcomepageComponent } from './components/welcomepage/welcomepage.component';
 
 import { AdminGuard } from './guards/admin.guard';
@@ -80,8 +91,25 @@ const routes: Routes = [
   {path:'addStudent',component:AddstudentComponent,canActivate:[AdminGuard]},
   {path:'editStudent',component:EditstudentComponent,canActivate:[AdminGuard]},
   {path:'singleStudent',component:SinglestudentComponent,canActivate:[AdminGuard]},
+  //topics routes starts here
+  {path:'allTopics',component:TopicsComponent,canActivate:[AdminGuard]},
+  {path:'addTopic',component:AddTopicComponent,canActivate:[AdminGuard]},
+  {path:'editTopic',component:EditTopicComponent,canActivate:[AdminGuard]},
+  {path:'singleTopic',component:SingleTopicComponent,canActivate:[AdminGuard]},
+  //topic routes end here
+  //video routes starts here
+  {path:'allVideos',component:VideosComponent,canActivate:[AdminGuard]},
+  {path:'addVideo',component:AddVideoComponent,canActivate:[AdminGuard]},
+  {path:'editVideo',component:EditVideoComponent,canActivate:[AdminGuard]},
+  {path:'singleVideo',component:SingleVideoComponent,canActivate:[AdminGuard]},
+  //video routes ends here
+  //quiz routes starts here
+  {path:'allQuizzes',component:QuizzesComponent,canActivate:[AdminGuard]},
+  {path:'addQuiz',component:AddQuizComponent,canActivate:[AdminGuard]},
+  {path:'editQuiz',component:EditQuizComponent,canActivate:[AdminGuard]},
+  {path:'singleQuiz',component:SingleQuizComponent,canActivate:[AdminGuard]},
+  //quiz routes ends here
   /*  admin routes ends here */
-  {path:'addProfessor',component:AddprofessorComponent,canActivate:[AdminGuard]},
   {path:'addCourse',component:AddcourseComponent,canActivate:[RouterGuard]},
   {path:'approveprofessor',component:ApprovalstatusComponent,canActivate:[RouterGuard]},
   {path:'professorlist',component:ProfessorlistComponent,canActivate:[RouterGuard]},

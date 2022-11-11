@@ -15,7 +15,7 @@
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
-
+  
   <!-- Main content -->
   <div class="content">
     <div class="container-fluid p-3">
@@ -27,38 +27,24 @@
                 <div class="card" style="background:transparent;">
                     <div class="card-header border-0">
                         <h2 class="card-title" style="color:white;">All Madrasa(s) List</h2>
+                        <a class="btn btn-success btn-sm float-sm-right" style="color:white;" [routerLink]="['/addMadrasa']">+ Add A Madrasa</a>
                     </div>
-                    <div class="card-body" style="overflow:scroll;background:white;">
+                    <div class="card-body p-5" style="overflow:scroll;background:transparent;">
                             
                 <!--madrasa table starts here-->
-                <table class="table table-bordered  table-hover" >
-                    <thead>
-                    <tr>
-                    <th>#Id</th>
-                    <th>Title</th>
-                    <th>Address</th>
-                    <th>Details</th>
-                    <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                     <tr *ngFor="let madrasa of madrasas;let i = index;" >
-                    <td>{{ i + 1 }}</td>
-                    <td style="text-transform:capitalize;">{{ madrasa.madrasa_title }}</td>
-                    <td>
-                        <p><span>Address </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_address }}</span></p>
-                        <p><span>Jamiat </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_jamiat_id }}</span></p>
-                        <p><span>Jamaat </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_jamaat_id }}</span></p>
-                    </td>
-                    <td>
-                    <p><span>Student's Count </span> <span class="badge badge-primary">{{ madrasa.madrasa_student_count }}</span></p>
-                    <p><span>Teacher's Count </span> <span class="badge badge-primary">{{ madrasa.madrasa_teacher_count }}</span></p>
-                    </td>
-                    <td><span class="badge bg-success">90%</span></td>
-                    </tr>
-                    </tbody>
-                    </table>
-
+                
+                    <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 p-4" style="background:white;">
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-bordered table-striped table-hover "  id="example1" datatable [dtOptions]="dtOptions"  *ngIf="madrasas.length != 0">
+                      
+                      </table>
+                      <p class="alert alert-warning"  *ngIf="madrasas.length == 0">No Madrasas Found ...Add One </p>
+                    </div>
+                  </div>
+                 
+                            </div>
+                    
                 <!--madrasa table ends here-->
 
                     </div>
@@ -71,3 +57,55 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
+
+
+
+
+
+<!-- 
+<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+  <div class="row">
+    <div class="col-sm-12">
+      <table id="example1" class="table table-bordered table-hover dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                <thead>
+                <tr>
+                  <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id of madrasa">ID</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Title:madrasa">Title</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Address:madrasa" style="display: none;">Address</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Details:madrasa" style="display: none;">Details</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Actions" style="display: none;">Actions</th></tr>
+                </thead>
+                <tbody>
+                <tr class="odd" *ngFor="let madrasa of madrasas;let i = index;">
+                <td >{{ i + 1 }}</td>
+                <td>
+                  <p>{{ madrasa.madrasa_title }}</p>
+                </td>
+                <td>
+                  <p><span>Address </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_address }}</span></p>
+                  <p><span>Jamiat </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_jamiat_id }}</span></p>
+                  <p><span>Jamaat </span> <span class="text-info" style="text-transform:capitalize">{{ madrasa.madrasa_jamaat_id }}</span></p>
+                </td>
+                <td >
+                  <p><span>Student's Count </span> <span class="badge badge-primary">{{ madrasa.madrasa_student_count }}</span></p>
+                  <p><span>Teacher's Count </span> <span class="badge badge-primary">{{ madrasa.madrasa_teacher_count }}</span></p>
+                </td>
+                <td >actions here</td>
+                </tr>
+               
+              </tbody>
+                <tfoot>
+                <tr>
+                  <th rowspan="1" colspan="1">ID</th>
+                  <th rowspan="1" colspan="1">Title</th>
+                  <th rowspan="1" colspan="1" >Address</th>
+                  <th rowspan="1" colspan="1" >Details</th>
+                  <th rowspan="1" colspan="1" >Actions</th>
+                </tr>
+                </tfoot>
+                </table>
+              </div>
+            </div>
+           
+                      </div> -->
+  

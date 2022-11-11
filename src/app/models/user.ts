@@ -1,14 +1,14 @@
 export class User 
 {
 
-    username : string = '';
     userid : string = 'empty';
+    username : string = '';
     email : string = '';
-    profession : string = '';
-    gender : string = '';
-    mobile : string = '';
-    address : string = '';
     password : string = '';
-
+    user_type :string = '';
+    created_at : any ;
+    updated_at : any ;
+    deleted_at : any ;
+    
     constructor() {}
 }

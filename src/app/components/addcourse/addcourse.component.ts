@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
-import { ProfessorService } from 'src/app/services/professor.service';
-import * as $ from 'jquery';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-addcourse',
@@ -11,46 +10,138 @@ import * as $ from 'jquery';
 })
 export class AddcourseComponent implements OnInit {
 
-  course = new Course();
-  msg = ' ';
+  courseExists = false;
 
-  constructor(private _professorService : ProfessorService, private _router : Router) { }
+  courseTypeHasError = true;
+
+  courseSkillLevelHasError = true;
+
+  courseLanguageHasError = true;
+
+  course = new Course() ;
+
+
+  msg = "";
+  currRole = '';
+  noLogin:boolean = true;
+  loggedUser = '';
+  username = '';
+
+  
+  constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService) { }
 
   ngOnInit(): void 
   {
-    $("#websitelink, #youtubelink").css("display","none");
-    $("#websitelink").hide();
     
-    $("select").on('change', function() {
-      $(this).find("option:selected").each(function() {
-          var option = $(this).attr("value");
-          if(option === "Website") {
-            $("#websitelink").css("display","block");
-            $("#youtubelink").css("display","none");
-          } 
-          else if(option === "Youtube")
-          {
-            $("#youtubelink").css("display","block");
-            $("#websitelink").css("display","none");
-          }
-      });
-    }).change();
+    this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| 'USER EMAIL NOT FOUND');
+    this.loggedUser = this.loggedUser.replace(/"/g, '');
+  
+    this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| 'ROLE UNDEFINED'); 
+    this.currRole = this.currRole.replace(/"/g, '');
+          //check username in session storage again not working yet
+    this.username = JSON.stringify(sessionStorage.getItem('USER')|| 'USERNAME UNDEFINED'); 
+    this.username = this.username.replace(/"/g, '');
+  
+  
+    if(this.currRole === "ADMIN"){
+  
+    //   setTimeout(() => {
+    //     this.admin.getMadrasas().subscribe(
+    //       (res: any) => {
+    //          //console.log(res);
+    //         this.madrasas = res['data'];
+            
+    //       },
+    //       (err) => {
+    //         console.log(err);
+    //       }
+    //     );
+    
+        
+        
+    //   }, 5);
+    }
+
+
+
+  } //end of ngOnInit function
+
+  
+  validateTitle(course_title: any){
+    
+
+      //check if course title of course exists already in server db
+      this.admin.checkIfCourseTitle(course_title).subscribe(
+              (res: any) => {
+                 //console.log(res);
+                 if(res['result']==0){
+                  this.courseExists = false;
+                 }
+                 else{
+                  this.courseExists = true;
+                 }
+              
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+
+}
+
+validateCourseType(course_type: any){
+  if(course_type=='null'){
+    this.courseTypeHasError = true;
+  }
+  else{
+    this.courseTypeHasError = false;
   }
 
-  addCourse()
-  {
-    this._professorService.addCourse(this.course).subscribe(
-      data => {
-        console.log("Course added Successfully !!!");
-        this._router.navigate(['/addchapter']);
-      },
-      error => {
-        console.log("Process Failed");
-        console.log(error.error);
-        this.msg = "Course with "+this.course.coursename+" already exists !!!";
-      }
-    )
+}
+
+validateSkillLevel(skill_level: any){
+  if(skill_level=='null'){
+    this.courseSkillLevelHasError = true;
   }
-  
+  else{
+    this.courseSkillLevelHasError = false;
+  }
+
+}
+
+validateCourseLanguage(language: any){
+  if(language=='null'){
+    this.courseLanguageHasError = true;
+  }
+  else{
+    this.courseLanguageHasError = false;
+  }
+
+}
+
+
+
+addCourse():void{
+
+console.log('add course submitted');
+this.admin.addCourse(this.course).subscribe(
+(data: any) => {
+      //console.log(data);
+      //show success msg to admin user
+      this.msg="Course Added Successfully ";
+
+    },
+    (error: { error: any; }) => {
+      console.log(error.error);
+      this.msg= error.error.message;
+    }
+)
+
+}
+
+removeMsg():void{
+this.msg = '';
+}
+
 
 }

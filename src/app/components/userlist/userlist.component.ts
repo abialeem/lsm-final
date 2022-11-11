@@ -10,13 +10,13 @@ import { UserService } from 'src/app/services/user.service';
 export class UserlistComponent implements OnInit {
 
   // users : Observable<User[]> | undefined;
-   users : User[] | undefined;
+  // users : User[] | undefined;
 
   constructor(private _serive : UserService) { }
 
   ngOnInit(): void 
   {
-    this.users = this._serive.getAllUsers();
+   // this.users = this._serive.getAllUsers();
   }
 
 }

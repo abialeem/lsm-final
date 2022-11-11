@@ -32,9 +32,9 @@ export class ApprovalstatusComponent implements OnInit {
     this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}'); 
     this.currRole = this.currRole.replace(/"/g, '');
 
-    this.professorlist = this._service.getProfessorList();
-    // this.approval = this._service.getProfessorListByEmail(this.loggedUser);
-    this.approval = this._service.getProfessorList();
+    // this.professorlist = this._service.getProfessorList();
+    // // this.approval = this._service.getProfessorListByEmail(this.loggedUser);
+    // this.approval = this._service.getProfessorList();
 
     if(this.currRole === 'professor' || this.currRole === 'PROFESSOR')
     {
@@ -48,22 +48,22 @@ export class ApprovalstatusComponent implements OnInit {
     }
   }
 
-  acceptRequest(curremail : string)
-  {
-    this.responses = this._service.acceptRequestForProfessorApproval(curremail);
-    $("#acceptbtn").hide();
-    $("#rejectbtn").hide();
-    $("#acceptedbtn").show();
-    $("#rejectedbtn").hide();
-  }
+  // acceptRequest(curremail : string)
+  // {
+  //   this.responses = this._service.acceptRequestForProfessorApproval(curremail);
+  //   $("#acceptbtn").hide();
+  //   $("#rejectbtn").hide();
+  //   $("#acceptedbtn").show();
+  //   $("#rejectedbtn").hide();
+  // }
 
-  rejectRequest(curremail : string)
-  {
-    this.responses = this._service.rejectRequestForProfessorApproval(curremail);
-    $("#acceptbtn").hide();
-    $("#rejectbtn").hide();
-    $("#acceptedbtn").hide();
-    $("#rejectedbtn").show();
-  }
+  // rejectRequest(curremail : string)
+  // {
+  //   this.responses = this._service.rejectRequestForProfessorApproval(curremail);
+  //   $("#acceptbtn").hide();
+  //   $("#rejectbtn").hide();
+  //   $("#acceptedbtn").hide();
+  //   $("#rejectedbtn").show();
+  // }
 
 }

@@ -27,8 +27,7 @@ export class MycoursesComponent implements OnInit {
     this.currRole = JSON.stringify(sessionStorage.getItem('ROLE')|| '{}'); 
     this.currRole = this.currRole.replace(/"/g, '');
 
-    this.myenrollments = this._service.getEnrollmentByEmail(this.loggedUser,this.currRole);
-
+   
     const target = 'https://www.youtube.com/iframe_api'
 
   if (!this.isScriptLoaded(target)) {

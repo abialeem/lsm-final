@@ -1,1 +1,123 @@
-<p>addstudent works!</p>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color:white;">Manage Student(s) -  Add Student </h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']" style="color:white;">Dashboard</a></li>
+            <li class="breadcrumb-item active" style="color:white;">Add Student</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid p-3">
+
+        <div class="row justify-content-center">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6 col-md-8 col-sm-10 card p-3 my-5">
+
+<div class="card-header"> 
+  <h2 class="card-title">Add A Student</h2>
+</div>
+<div class="card-body">
+              <form #addStudentform="ngForm" (ngSubmit)="addStudent();addStudentform.resetForm();">   
+
+                <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+                  <button type="button" class="close" (click)="removeMsg()">×</button>
+                  <b>{{msg}}</b>
+                </div>
+                <div class="row addStudent-form" >
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="title" class="label label-primary" >Student Title</label>
+                          <input type="text" class="form-control"  id="title" placeholder="Student Title *" name="title" [(ngModel)]="studentdata.title" required 
+                          #title="ngModel"
+                          [class.is-invalid]="title.invalid && title.touched">
+                          <small class="text-danger"  [class.d-none]="title.valid || title.untouched"><b>required field</b></small>
+                     
+                        </div>
+                      <div class="form-group">
+                        <label for="address" class="label label-primary" >Student Address</label>
+                          <input type="text" class="form-control" placeholder="Student Address *" name="address" [(ngModel)]="studentdata.address" required 
+                          #address="ngModel"
+                          [class.is-invalid]="address.invalid && address.touched">
+                          <small class="text-danger"  [class.d-none]="address.valid || address.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="its_number" class="label label-primary" >ITS Number <small class="text-info">ITS Number should be unique and can be registered with us once only </small></label>
+                          <input type="number" class="form-control" placeholder="Student ITS Number  *" name="its_number" [(ngModel)]="studentdata.its_number" required 
+                          #its_number="ngModel"
+                          min="100000"
+                          max="9999999" 
+                          (blur)="validateITSNumber(its_number.value)" (change)="validateITSNumber(its_number.value)"
+                          [class.is-invalid]="its_number.invalid && its_number.touched" autocomplete="off">
+                          <small class="text-danger"  [class.d-none]="its_number.valid || its_number.untouched"><b>Please Enter A Valid ITS Number </b></small>
+                        
+                          <small class="text-danger"  [class.d-none]="!itsNumberExists || its_number.untouched"><b>ITS Number Already registered with us ...Try Different One </b></small>
+                    
+                          <small class="text-danger"  [class.d-none]="its_number.valid || its_number.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="username" class="label label-primary" >Username </label>
+                          <input type="text" class="form-control" placeholder="Student Username  *" name="username" [(ngModel)]="studentdata.username" required 
+                          #username="ngModel"
+                          (blur)="validateUsername(username.value)" (change)="validateUsername(username.value)"
+                          [class.is-invalid]="username.invalid && username.touched" autocomplete="off">
+                          <small class="text-danger"  [class.d-none]="!usernameHasError || username.untouched"><b>Please Enter A Valid Username </b></small>
+                        
+                          <small class="text-danger"  [class.d-none]="username.valid || username.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="label label-primary" >Email <small class="text-info">this will be Student's login email </small></label>
+                          <input type="email" class="form-control" placeholder="Student Email  *" name="email" [(ngModel)]="studentdata.email" required 
+                          #email="ngModel"
+                          email
+                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          (blur)="validateEmail(email.value)" (change)="validateEmail(email.value)"
+                          [class.is-invalid]="email.invalid && email.touched" autocomplete="off">
+                          <small class="text-danger"  [class.d-none]="!emailHasError || email.untouched"><b>Please Enter A Valid Email </b></small>
+                        
+                          <small class="text-danger"  [class.d-none]="!emailExists || email.untouched"><b>Email Id Already registered with us ...Try Different One </b></small>
+                    
+                          <small class="text-danger"  [class.d-none]="email.valid || email.untouched"><b>required field</b></small>
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="label label-primary" >Password <small class="text-info">this will be Student's login password </small></label>
+                          <input type="password" class="form-control" placeholder="Student Password  *" name="password" [(ngModel)]="studentdata.password" required 
+                          #password="ngModel"
+                          (blur)="validatePassword(password.value)" (change)="validatePassword(password.value)"
+                          [class.is-invalid]="password.invalid && password.touched" autocomplete="off">
+                          <small class="text-danger"  [class.d-none]="!passwordHasError || password.untouched"><b>Please Enter A Valid Password - min six digits </b></small>
+                        
+                          <small class="text-danger"  [class.d-none]="password.valid || password.untouched"><b>required field</b></small>
+                      </div>
+                      
+
+                  </div>
+                 
+              </div>
+              
+              <button [disabled]="addStudentform.form.invalid || usernameHasError || emailHasError || passwordHasError || emailExists || itsNumberExists " type="submit" class="btn btn-success btn-block btn-lg btn-outline btn-shadow">Add Student</button>
+              
+              </form>
+            </div>
+              <div class="card-footer" style=" text-align: center;">
+                Check Existing Student(s)? 
+                <small [routerLink]="['/allStudents']" class="btn btn-success btn-shadow" style=" text-align: center; cursor: pointer;"><b><i class="fas fa-users"></i> View Existing Student(s)</b></small>
+              </div>
+
+            </div>
+
+        </div>
+
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
