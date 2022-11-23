@@ -28,7 +28,7 @@
   <h2 class="card-title">Add A Madrasa</h2>
 </div>
 <div class="card-body">
-              <form #addmadrasaform="ngForm" (ngSubmit)="addMadrasa()">
+              <form #addmadrasaform="ngForm" (ngSubmit)="addMadrasa();addmadrasaform.resetForm();">
                 <div class="alert alert-danger alert-dismissible" *ngIf="msg">
                   <button type="button" class="close" (click)="removeMsg()">×</button>
                   <b>{{msg}}</b>
@@ -81,7 +81,7 @@
               </div>
               
               <button [disabled]="addmadrasaform.form.invalid || jamaatHasError || jamiatHasError" type="submit" class="btn btn-success btn-block btn-lg btn-outline btn-shadow">Add Madrasa</button>
-              
+               
               </form>
             </div>
               <div class="card-footer" style=" text-align: center;">

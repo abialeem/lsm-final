@@ -9,7 +9,7 @@ export class Student
     user_id : string = '';
     its_number : string = '';
     status : string = '';
-    added_on : string = '';
+    created_at : string = '';
 
     constructor() {}
 }

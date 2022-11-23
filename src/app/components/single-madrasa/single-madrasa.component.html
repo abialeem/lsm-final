@@ -1,0 +1,335 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color:white;">View Madrasa #{{ madrasa.id }}</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/admindashboard']" style="color:white;">Dashboard</a></li>
+            <li class="breadcrumb-item active " [routerLink]="['/allMadrasas']" style="color:white;cursor:pointer;">All Madrasas</li>
+            <li class="breadcrumb-item active" style="color:white;">Madrasa #{{ madrasa.id }}</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid p-3">
+            <div class="row">
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                        <!--madrasa image and title and status-->
+                    <div class="card card-primary" style="background:transparent;">
+                         <div class="card-body p-3 row" style="background:transparent;">
+                            <i class="fas fa-school fa-6x col-12 p-3" style="text-align: center;color:white;"></i>
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Madrasa Title </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ madrasa.madrasa_title }}</span>
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Address </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ madrasa.madrasa_address }}</span>
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Jamaat </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ madrasa.jamaat }}</span>
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Jamiat </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ madrasa.jamiat }}</span>
+                           
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Madrasa Status </span> <span [ngClass]="madrasa.status == '1' ? 'alert-info' : 'alert-danger'" class="col-lg-4 col-md-12 col-sm-12 p-2 alert-sm" style="text-transform:capitalize;font-size:16px;color:white;text-align: center;">{{ (madrasa.status=="1")? "Active": "Inactive" }}</span>
+                        </div>
+                    </div>
+                    <div class="card card-primary" style="background:transparent;">
+                        <div class="card-header" style="background:transparent;">
+                            <div class="row">
+                            <h5 style="color:white;" class="card-title col-lg-7 col-md-7 col-sm-7 col-xs-7" ><i class="fas fa-school" style="text-align: center;color:white;"></i> Madrasa Faculty</h5>
+                            
+                            <span class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <a class="btn btn-default btn-sm " style="background: #6a11cb;color:white;" data-toggle="modal" data-target="#modal-updateprincipal">+ Update Principal</a>
+                            </span>
+                            </div>
+                        </div>
+
+                        <div class="card-body p-3 row" style="background:transparent;">
+                            <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Principal </span> 
+                            <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">
+                                 <span [ngClass]="madrasa.principal == 'not assigned yet' ? 'alert alert-danger' : '' " >{{ madrasa.principal }}</span>
+                                 <span class='btn-group ml-3' id='principal_{{ madrasa_principal.id }}_actions' *ngIf="madrasa_principal.id!=null">
+                                    <a class="btn btn-default  btn-sm" style="background: #6a11cb;" [routerLink]="['/singlePrincipal/'+madrasa_principal.id]" title='View Principal Details'><i class='fa fa-eye pointer' style="color:white;" ></i></a>
+                                    <a class="btn btn-default btn-sm" style="background: #6a11cb;" [routerLink]="['/editPrincipal/'+madrasa_principal.id]" title='Edit Principal Details'><i class='fa fa-edit pointer' style="color:white;" ></i></a>
+                                    <a class="btn btn-default btn-sm" style="background: #6a11cb;" (click)="unassignPrincipal(madrasa_principal)" title='Remove Principal From Madrasa'><i class='fa fa-trash pointer' style="color:white;" ></i></a>
+                                 </span>
+                            </span>
+                           
+                           <span class="col-lg-8 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;"> <i class=" fas fa-chalkboard-teacher  " style="text-align: center;color:white;"></i> Teacher Count </span> <span class=" col-lg-4 col-md-12 col-sm-12  p-2" style="text-transform:capitalize;font-size:20px;"><span class="badge badge-primary  p-2" style="color:#3d0a78;background:white;">{{ madrasa.madrasa_teacher_count }}</span></span>
+                           <span class="col-lg-8 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;"><i class=" fas fa-users  " style="text-align: center;color:white;"></i> Student Count </span> <span class=" col-lg-4 col-md-12 col-sm-12  p-2" style="text-transform:capitalize;font-size:20px;"><span class="badge badge-primary p-2" style="color:#3d0a78;background:white;">{{ madrasa.madrasa_student_count }}</span></span>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-lg-8">
+                   <div class="card card-primary" style="background:transparent;">
+                    <div class="card-header" style="background:transparent;">
+                        <h5 style="color:white;" class="card-title"><i class=" fas fa-chalkboard-teacher  " style="text-align: center;color:white;"></i> Madrasa Teacher(s)</h5>
+                        <a class="btn btn-default btn-sm float-sm-right" style="background: #6a11cb;color:white;"  data-toggle="modal" data-target="#modal-assignteachers">+ Assign Teacher(s) To Madrasa</a>
+                    </div>
+                    <div class="card-body p-3" style="background:transparent;">
+                      
+                    <!--list of teachers starts here-->
+
+                    <ul class="products-list product-list-in-card row pl-2 pr-2" style="background:transparent;" *ngIf="madrasa_teachers.length != 0">
+                        <li class="item p-3  mb-2 col-lg-4 col-md-6 col-sm-12" style="background:transparent;border-radius:3px;" *ngFor="let teacher of madrasa_teachers" >
+                   <div class=" card card-default ">
+                    <div class="card-header">
+                        <h4 class="card-title"> 
+                            <i class="fas fa-chalkboard-teacher fa-2x " style="text-align: center;vertical-align: middle;color:#6610f2;"></i>
+                            <span style="text-align: center;vertical-align: middle;color:#6610f2;" > Teacher #{{ teacher.id }}</span>
+                        </h4>
+                        <span [ngClass]="teacher.status == '1' ? 'badge badge-success' : 'badge badge-danger'" 
+                             class="float-sm-right"
+                              >
+                              {{ (teacher.status=="1")? "Active": "Inactive" }}
+                            </span>
+                    </div>
+                    <div class="card-body">
+                        <p  >
+                            <span class="font-weight-bold" >Title</span>
+                             <span  style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ teacher.title }}</span>
+                        </p>
+                        <p>
+                            <span class="font-weight-bold">Address</span>
+                             <span style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ teacher.address }}</span>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class='btn-group col-lg-12 col-md-12  col-sm-12 center' id='student_{{ teacher.id }}_actions'>
+                            <a class="btn btn-primary  btn-sm"  [routerLink]="['/singleTeacher/'+teacher.id]" title='View Teacher Details'><i class='fa fa-eye pointer'  style="color:white;" ></i></a>
+                            <a class="btn btn-info  btn-sm"  [routerLink]="['/editTeacher/'+teacher.id]" title='Edit Teacher Details'><i class='fa fa-edit pointer'  style="color:white;" ></i></a>
+                            <a class="btn btn-danger  btn-sm"  (click)="unassignTeacher(teacher)" title='Remove Teacher From Madrasa'><i class='fa fa-trash pointer' style="color:white;" ></i></a>
+                         </div>
+                    </div>
+                   </div>
+                        </li>
+                        </ul>
+                      <p *ngIf="madrasa_teachers.length == 0" class="alert alert-warning"> no teachers found for this madrasa</p>
+                    <!--list of teachers ends here-->
+
+                   </div>
+               </div>
+
+
+               <div class="card card-primary" style="background:transparent;">
+                <div class="card-header" style="background:transparent;">
+                    <h5 style="color:white;" class="card-title" ><i class=" fas fa-users  " style="text-align: center;color:white;"></i> Madrasa Student(s)</h5>
+                    <a class="btn btn-default btn-sm float-sm-right" style="background: #6a11cb;color:white;" data-toggle="modal" data-target="#modal-assignstudents">+ Assign Student(s) To Madrasa</a>
+                </div>
+                <div class="card-body p-3" style="background:transparent;">
+                    <ul class="products-list product-list-in-card row  pl-2 pr-2" style="background:transparent;" *ngIf="madrasa_students.length != 0">
+                        <li class="item p-3  mb-2 col-lg-4 col-md-6  col-sm-12" style="background:transparent;border-radius:3px;" *ngFor="let student of madrasa_students" >
+                            <div class=" card card-default ">
+                                <div class="card-header">
+                                    <h4 class="card-title"> 
+                                        <i class="fas fa-users fa-2x " style="text-align: center;vertical-align: middle;color:#6610f2;"></i>
+                                        <span style="text-align: center;vertical-align: middle;color:#6610f2;" > Student #{{ student.id }}</span>
+                                    </h4>
+                                    <span [ngClass]="student.status == '1' ? 'badge badge-success' : 'badge badge-danger'" 
+                                         class="float-sm-right"
+                                          >
+                                          {{ (student.status=="1")? "Active": "Inactive" }}
+                                        </span>
+                                </div>
+                                <div class="card-body">
+                                    <p  >
+                                        <span class="font-weight-bold" >Title</span>
+                                         <span  style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ student.title }}</span>
+                                    </p>
+                                    <p>
+                                        <span class="font-weight-bold">ITS Number</span>
+                                         <span style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ student.its_number }}</span>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class='btn-group col-lg-12 col-md-12  col-sm-12 center' id='student_{{ student.id }}_actions'>
+                                        <a class="btn btn-primary  btn-sm"  [routerLink]="['/singleStudent/'+student.id]" title='View Student Details'><i class='fa fa-eye pointer' style="color:white;" ></i></a>
+                                        <a class="btn btn-info  btn-sm"  [routerLink]="['/editStudent/'+student.id]" title='Edit Student Details'><i class='fa fa-edit pointer' style="color:white;"  ></i></a>
+                                        <a class="btn btn-danger  btn-sm"  (click)="unassignStudent(student)" title='Remove Student From Madrasa'><i class='fa fa-trash pointer' style="color:white;" ></i></a>
+                                        </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        </ul>
+                      <p *ngIf="madrasa_students.length == 0" class="alert alert-warning"> no students found for this madrasa</p>
+                  
+               </div>
+           </div>
+
+
+
+                </div>
+            </div><!--row ends here-->
+            
+            
+            </div><!--container fluid ends here-->
+    </div><!--content div ends here-->
+
+
+  
+                <!--modal for assign teachers to madrasa starts here-->
+    <div class="modal fade" id="modal-assignteachers" style="display: none;" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <form #assignteachersform="ngForm" (ngSubmit)="assignTeachers();assignteachersform.resetForm();removeMsg();">
+         <div class="modal-header">
+        <h4 class="modal-title">Assign Teachers To Madrasa #{{ madrasa.id }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="removeMsg()">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p><span>Madrasa ID : </span> <span class="text-info">{{ madrasa.id }}</span></p>
+            <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+              <button type="button" class="close" (click)="removeMsg()">×</button>
+              <b>{{msg}}</b>
+            </div>
+            <div class="row addmadrasa-form" >
+                    <div class="col-12">
+                        <div class="form-group">
+                            <p class="alert alert-info ">
+                                Note :<br>
+                                 - HOLD On Command on mac or Ctrl on Windows or long holds on andriod .<br>
+                                 - Missing Teachers are already aasigned to other madrasas,remove them from there firstly.
+                            </p>
+                            <label for="madrasa_select_teachers" class="label label-primary" >Select Teacher(s) To Be Assigned </label>
+                              <select class="form-control p-3" (blur)="validateSelectedTeachers(selectTeachers.value)" (change)="validateSelectedTeachers(selectTeachers.value)" name="madrasa_select_teachers" id="madrasa_select_teachers" [(ngModel)]="selectedTeachers" required 
+                              #selectTeachers="ngModel"
+                              multiple
+                              [class.is-invalid]="selectTeachersHasError && selectTeachers.touched">
+                              <option value="null" selected>Select Teacher(s) For Madrasa</option>
+                              <option value="{{ teacher.id }}" class="p-2" *ngFor="let teacher of availableTeachers"><span style="text-transform: capitalize;">Title = {{teacher.title}} , ID = {{ teacher.id }}</span></option>
+                              </select>
+                              <small class="text-danger"  [class.d-none]="!selectTeachersHasError || selectTeachers.untouched"><b>Please Select Atleast One Teacher </b></small>
+                              <small class="text-danger"  [class.d-none]="selectTeachers.valid || selectTeachers.untouched"><b>required field</b></small>
+                          </div>
+                    </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"  (click)="assignteachersform.resetForm();removeMsg();">Close</button>
+        <button class="btn btn-primary" [disabled]="assignteachersform.form.invalid ||  selectTeachersHasError" type="submit">Assign Teacher(s)</button>
+        </div>
+    </form>
+        </div>
+        
+        </div>
+        
+        </div><!--modal for assign teachers to madrasa ends here-->
+
+           <!--modal for assign students to madrasa starts here-->
+    <div class="modal fade" id="modal-assignstudents" style="display: none;" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form #assignstudentsform="ngForm" (ngSubmit)="assignStudents();assignstudentsform.resetForm();removeMsg();">
+         <div class="modal-header">
+        <h4 class="modal-title">Assign Students To Madrasa #{{ madrasa.id }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="removeMsg()">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <p><span>Madrasa ID : </span> <span class="text-info">{{ madrasa.id }}</span></p>
+            <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+              <button type="button" class="close" (click)="removeMsg()">×</button>
+              <b>{{msg}}</b>
+            </div>
+            <div class="row addmadrasa-form" >
+                <div class="col-12">
+                    <div class="form-group">
+                        <p class="alert alert-info ">
+                            Note :<br>
+                             - HOLD On Command on mac or Ctrl on Windows or long holds on andriod .<br>
+                             - Missing Students are already aasigned to other madrasas,remove them from there firstly.
+                        </p>
+                        <label for="madrasa_select_students" class="label label-primary" >Select Student(s) To Be Assigned </label>
+                          <select class="form-control p-3"
+                        (blur)="validateSelectedStudents(selectStudents.value)"
+                        (change)="validateSelectedStudents(selectStudents.value)" 
+                        name="madrasa_select_students" 
+                        id="madrasa_select_students" 
+                        [(ngModel)]="selectedStudents" 
+                        required 
+                          #selectStudents="ngModel"
+                          multiple
+                          [class.is-invalid]="selectStudentsHasError && selectStudents.touched">
+                          <option value="null" selected>Select Student(s) For Madrasa</option>
+                          <option value="{{ student.id }}" class="p-2" *ngFor="let student of availableStudents"><span style="text-transform: capitalize;">Title = {{student.title}} , ID = {{ student.id }} , ITS = {{ student.its_number }} </span></option>
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!selectStudentsHasError || selectStudents.untouched"><b>Please Select Atleast One Student </b></small>
+                          <small class="text-danger"  [class.d-none]="selectStudents.valid || selectStudents.untouched"><b>required field</b></small>
+                      </div>
+                </div>
+        </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="assignstudentsform.resetForm();removeMsg()">Close</button>
+        <button  class="btn btn-primary" [disabled]="assignstudentsform.form.invalid ||  selectStudentsHasError" type="submit">Assign Student(s)</button>
+        </div>
+             </form>
+        </div>
+        
+        </div>
+        
+        </div><!--modal for assign students to madrasa ends here-->
+
+
+            <!--modal for update principal to madrasa starts here-->
+    <div class="modal fade" id="modal-updateprincipal" style="display: none;" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form #assignprincipalform="ngForm" (ngSubmit)="assignPrincipal();assignprincipalform.resetForm();removeMsg();">
+        <div class="modal-content">
+         <div class="modal-header">
+        <h4 class="modal-title">Update Principal for Madrasa #{{ madrasa.id }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="removeMsg()">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <p><span>Madrasa ID : </span> <span class="text-info">{{ madrasa.id }}</span></p>
+            <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+              <button type="button" class="close" (click)="removeMsg()">×</button>
+              <b>{{msg}}</b>
+            </div>
+            <div >
+                <p ><span class="text-default">Madrasa's Principal </span> <span [ngClass]="madrasa.principal == 'not assigned yet' ? 'alert alert-danger' : 'alert alert-success' ">{{ (madrasa.principal=="not assigned yet")? "Not Assigned Yet": madrasa.principal }}</span></p>
+            </div>
+            <div class="row addmadrasa-form" >
+                <div class="col-12">
+                    <div class="form-group">
+                        <p class="alert alert-info ">
+                            Note :<br>
+                             - Missing Principal(s) are already aasigned to other madrasas,remove them from there firstly.
+                        </p>
+                        <label for="madrasa_select_principal" class="label label-primary" >Select Principal To Be Assigned </label>
+                          <select class="form-control p-3"
+                        (blur)="validateSelectedPrincipal(selectPrincipal.value)"
+                        (change)="validateSelectedPrincipal(selectPrincipal.value)" 
+                        name="madrasa_select_principal" 
+                        id="madrasa_select_principal" 
+                        [(ngModel)]="selectedPrincipal" 
+                        required 
+                          #selectPrincipal="ngModel"
+                          [class.is-invalid]="selectPrincipalHasError && selectPrincipal.touched">
+                          <option value="null" selected>Select Principal For Madrasa</option>
+                          <option value="{{ principal.id }}" class="p-2" *ngFor="let principal of availablePrincipals"><span style="text-transform: capitalize;">Title = {{principal.title}} , ID = {{ principal.id }}  </span></option>
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!selectPrincipalHasError || selectPrincipal.untouched"><b>Please Select Valid Principal </b></small>
+                          <small class="text-danger"  [class.d-none]="selectPrincipal.valid || selectPrincipal.untouched"><b>required field</b></small>
+                      </div>
+                </div>
+        </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="assignprincipalform.resetForm();removeMsg()">Close</button>
+            <button  class="btn btn-primary" [disabled]="assignprincipalform.form.invalid ||  selectPrincipalHasError" type="submit">Update Principal</button>
+        </div>
+        </div>
+        </form>
+        </div>
+        
+        </div><!--modal for update principal to madrasa ends here-->

@@ -27,7 +27,6 @@ import { FullcourseComponent } from './components/fullcourse/fullcourse.componen
 import { LoginComponent } from './components/login/login.component';
 import { MadrasasComponent } from './components/madrasas/madrasas.component';
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
-import { MywishlistComponent } from './components/mywishlist/mywishlist.component';
 import { PrincipalsComponent } from './components/principals/principals.component';
 import { ProfessordashboardComponent } from './components/professordashboard/professordashboard.component';
 import { ProfessorlistComponent } from './components/professorlist/professorlist.component';
@@ -35,6 +34,7 @@ import { ProfessorprofileComponent } from './components/professorprofile/profess
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { RegistrationsuccessComponent } from './components/registrationsuccess/registrationsuccess.component';
+import { SingleMadrasaComponent } from './components/single-madrasa/single-madrasa.component';
 import { SingleQuizComponent } from './components/single-quiz/single-quiz.component';
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { SingleVideoComponent } from './components/single-video/single-video.component';
@@ -70,27 +70,32 @@ const routes: Routes = [
    /*  admin routes starts here */
   {path:'allMadrasas',component:MadrasasComponent,canActivate:[AdminGuard]},
   {path:'addMadrasa',component:AddmadrasaComponent,canActivate:[AdminGuard]},
-  {path:'editMadrasa',component:EditmadrasaComponent,canActivate:[AdminGuard]},
+  {path:'editMadrasa/:id',component:EditmadrasaComponent,canActivate:[AdminGuard]},
+  {path:'singleMadrasa/:id',component:SingleMadrasaComponent,canActivate:[AdminGuard]},
   {path:'allPrincipals',component:PrincipalsComponent,canActivate:[AdminGuard]},
   {path:'addPrincipal',component:AddprincipalComponent,canActivate:[AdminGuard]},
-  {path:'editPrincipal',component:EditprincipalComponent,canActivate:[AdminGuard]},
-  {path:'singlePrincipal',component:SingleprincipalComponent,canActivate:[AdminGuard]},
+  {path:'editPrincipal/:id',component:EditprincipalComponent,canActivate:[AdminGuard]},
+  {path:'singlePrincipal/:id',component:SingleprincipalComponent,canActivate:[AdminGuard]},
+  //teacher routes starts here
   {path:'allTeachers',component:TeachersComponent,canActivate:[AdminGuard]},
   {path:'addTeacher',component:AddteacherComponent,canActivate:[AdminGuard]},
-  {path:'editTeacher',component:EditteacherComponent,canActivate:[AdminGuard]},
-  {path:'singleTeacher',component:SingleteacherComponent,canActivate:[AdminGuard]},
+  {path:'editTeacher/:id',component:EditteacherComponent,canActivate:[AdminGuard]},
+  {path:'singleTeacher/:id',component:SingleteacherComponent,canActivate:[AdminGuard]},
+  //teacher routes ends here
   {path:'allCourses',component:CoursesComponent,canActivate:[AdminGuard]},
   {path:'addCourse',component:AddcourseComponent,canActivate:[AdminGuard]},
-  {path:'editCourse',component:EditcourseComponent,canActivate:[AdminGuard]},
-  {path:'singleCourse',component:SinglecourseComponent,canActivate:[AdminGuard]},
+  {path:'editCourse/:id',component:EditcourseComponent,canActivate:[AdminGuard]},
+  {path:'singleCourse/:id',component:SinglecourseComponent,canActivate:[AdminGuard]},
   {path:'allSubjects',component:SubjectsComponent,canActivate:[AdminGuard]},
   {path:'addSubject',component:AddsubjectComponent,canActivate:[AdminGuard]},
-  {path:'editSubject',component:EditsubjectComponent,canActivate:[AdminGuard]},
-  {path:'singleSubject',component:SinglesubjectComponent,canActivate:[AdminGuard]},
+  {path:'editSubject/:id',component:EditsubjectComponent,canActivate:[AdminGuard]},
+  {path:'singleSubject/:id',component:SinglesubjectComponent,canActivate:[AdminGuard]}, 
+  //student routes starts here
   {path:'allStudents',component:StudentsComponent,canActivate:[AdminGuard]},
   {path:'addStudent',component:AddstudentComponent,canActivate:[AdminGuard]},
-  {path:'editStudent',component:EditstudentComponent,canActivate:[AdminGuard]},
-  {path:'singleStudent',component:SinglestudentComponent,canActivate:[AdminGuard]},
+  {path:'editStudent/:id',component:EditstudentComponent,canActivate:[AdminGuard]},
+  {path:'singleStudent/:id',component:SinglestudentComponent,canActivate:[AdminGuard]},
+  //student routes ends here
   //topics routes starts here
   {path:'allTopics',component:TopicsComponent,canActivate:[AdminGuard]},
   {path:'addTopic',component:AddTopicComponent,canActivate:[AdminGuard]},
@@ -119,7 +124,6 @@ const routes: Routes = [
   {path:'fullcourse/:coursename',component:FullcourseComponent,canActivate:[RouterGuard]},
   {path:'editprofessorprofile',component:ProfessorprofileComponent,canActivate:[ProfessorGuard]},
   {path:'edituserprofile',component:UserprofileComponent,canActivate:[UserGuard]},
-  {path:'mywishlist',component:MywishlistComponent,canActivate:[RouterGuard]},
   {path:'mycourses',component:MycoursesComponent,canActivate:[RouterGuard]}
 ];
 

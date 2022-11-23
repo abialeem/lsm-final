@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MywishlistComponent } from './mywishlist.component';
+import { SingleMadrasaComponent } from './single-madrasa.component';
 
-describe('MywishlistComponent', () => {
-  let component: MywishlistComponent;
-  let fixture: ComponentFixture<MywishlistComponent>;
+describe('SingleMadrasaComponent', () => {
+  let component: SingleMadrasaComponent;
+  let fixture: ComponentFixture<SingleMadrasaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MywishlistComponent ]
+      declarations: [ SingleMadrasaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MywishlistComponent);
+    fixture = TestBed.createComponent(SingleMadrasaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -21,7 +21,6 @@ import { CourselistComponent } from './components/courselist/courselist.componen
 import { FullcourseComponent } from './components/fullcourse/fullcourse.component';
 import { AddchapterComponent } from './components/addchapter/addchapter.component';
 import { MycoursesComponent } from './components/mycourses/mycourses.component';
-import { MywishlistComponent } from './components/mywishlist/mywishlist.component';
 import { WelcomepageComponent } from './components/welcomepage/welcomepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
@@ -61,6 +60,7 @@ import { SingleQuizComponent } from './components/single-quiz/single-quiz.compon
 import { EditQuizComponent } from './components/edit-quiz/edit-quiz.component';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
+import { SingleMadrasaComponent } from './components/single-madrasa/single-madrasa.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +82,6 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
     FullcourseComponent,
     AddchapterComponent,
     MycoursesComponent,
-    MywishlistComponent,
     WelcomepageComponent,
     MadrasasComponent,
     AddmadrasaComponent,
@@ -117,7 +116,8 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
     SingleQuizComponent,
     EditQuizComponent,
     AddQuizComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    SingleMadrasaComponent
   ],
   imports: [
     BrowserModule,

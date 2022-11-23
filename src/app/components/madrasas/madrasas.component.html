@@ -21,24 +21,25 @@
     <div class="container-fluid p-3">
 
         <div class="row">
-            <!-- /.col-md-6 -->
+            <!-- /.col-md-12 -->
             <div class="col-lg-12">
 
                 <div class="card" style="background:transparent;">
                     <div class="card-header border-0">
-                        <h2 class="card-title" style="color:white;">All Madrasa(s) List</h2>
+                        <h2 class="card-title" style="color:white;" >All Madrasa(s) List</h2>
                         <a class="btn btn-success btn-sm float-sm-right" style="color:white;" [routerLink]="['/addMadrasa']">+ Add A Madrasa</a>
                     </div>
                     <div class="card-body p-5" style="overflow:scroll;background:transparent;">
-                            
+                        
                 <!--madrasa table starts here-->
                 
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 p-4" style="background:white;">
         <div class="row">
           <div class="col-sm-12">
-            <table class="table table-bordered table-striped table-hover "  id="example1" datatable [dtOptions]="dtOptions"  *ngIf="madrasas.length != 0">
+            <table class="table table-bordered table-striped table-hover "  id="example1" datatable [dtOptions]="dtOptions"   *ngIf="madrasas.length != 0">
                       
                       </table>
+                      
                       <p class="alert alert-warning"  *ngIf="madrasas.length == 0">No Madrasas Found ...Add One </p>
                     </div>
                   </div>
@@ -62,7 +63,17 @@
 
 
 
-<!-- 
+<!--          table with dtTrigger code
+ <table class="table table-bordered table-striped table-hover "  id="example1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  *ngIf="madrasas.length != 0">
+                      
+                      </table>
+
+                    -->
+
+
+
+<!--          table from jquery old version
+
 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
   <div class="row">
     <div class="col-sm-12">
