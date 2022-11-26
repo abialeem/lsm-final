@@ -5,6 +5,7 @@ export class Teacher
     title : string = '';
     address : string = '';
     madrasa_id : string = '';
+    madrasa ?: any = '';
     user_id : string = '';
     courses_count : string = '';
     subjects_count : string = '';

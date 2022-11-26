@@ -13,6 +13,6 @@ export class Madrasa
     jamaat?: any = '';
     jamiat?: any = '';
     principal?: any = '';
-
+    
     constructor() {}
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Teacher } from 'src/app/models/teacher';
 import { AdminService } from 'src/app/services/admin.service';
-
+ 
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
@@ -59,7 +59,7 @@ export class TeachersComponent implements OnInit {
             return data;
     },
     },
-    {
+    { 
       title: 'Courses Count',
       data: 'courses_count',
       render: function (data:any) {
@@ -121,13 +121,6 @@ export class TeachersComponent implements OnInit {
     // Configure the buttons
     buttons: [
       "copy", "csv", "excel", "pdf", "print", "colvis"
-      // {
-      //   text: 'Some button',
-      //   key: '1',
-      //   action: function (e, dt, node, config) {
-      //     alert('Button activated');
-      //   }
-      // }
     ]
   };
   

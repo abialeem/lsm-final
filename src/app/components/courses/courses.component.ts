@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { AdminService } from 'src/app/services/admin.service';
@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit {
 
   dtOptions: any = {};
 
-  constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService) { }
+  constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
 
@@ -31,41 +31,98 @@ export class CoursesComponent implements OnInit {
         data: 'id'
       }, {
         title: 'Title',
-        data: 'title'
+        data: 'title',
+        render: function (data:any) {
+          data = '<span class="text-default" style="font-size:14px;text-transform:capitalize;font-weight:bold;">'+ data +'</span>';
+              return data;
+      },
       },
       {
         title: 'Description',
-        data: 'description'
+        data: 'description',
+        render: function (data:any) {
+          data = '<span class="text-secondary" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+              return data;
+      },
       },
       {
         title: 'Course Type',
-        data: 'course_type'
+        data: 'course_type',
+        render: function (data:any) {
+          data = '<span class="badge badge-primary p-2" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+              return data;
+      },
       },
       {
         title: 'Skill Level',
-        data: 'skill_level'
+        data: 'skill_level',
+        render: function (data:any) {
+          data = '<span class="badge badge-success p-2" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+              return data;
+      },
       },
       {
           title : 'Language',
-          data : 'language'
+          data : 'language',
+          render: function (data:any) {
+                if(data === "urdu"){
+                  data = '<span class="text-info" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+                }
+                else{
+                  data = '<span class="text-secondary" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+                }
+           
+                return data;
+        },
       },
       {
+        title : 'Subject Count',
+        data : 'subjects_count',
+        render: function (data:any) {
+              if(data === "0"){
+                data = '<span class="badge badge-danger p-2" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+              }
+              else{
+                data = '<span class="badge badge-success p-2" style="font-size:14px;text-transform:capitalize;">'+ data +'</span>';
+              }
+         
+              return data;
+      },
+    }, 
+      {
         title : 'Status',
-        data : 'status'
+        data : 'status',
+        render: function (data:any) {
+              if(data === "0"){
+                data = '<span class="text-danger" style="font-size:14px;text-transform:capitalize;">In Active</span>';
+              }
+              else{
+                data = '<span class="text-success" style="font-size:14px;text-transform:capitalize;">Active</span>';
+              }
+         
+              return data;
+      },
+      },
+      {
+        title: 'Actions',
+        data: 'id',
+        orderable: false,
+        "render":  (data:any) => { 
+          return `<div class='actions-buttons  center' id='${data}'>
+     <i class='fa fa-eye pointer'  title='View Course' view-config-id="${data}"></i>
+     <i class='fa fa-edit pointer' title='Edit Course' edit-config-id="${data}"></i>
+     </div>`;
+      }
+        
       }
     ],
       // Declare the use of the extension in the dom parameter
       dom: 'Bfrtip',
+      responsive: true,
+      deferRender: true,
       // Configure the buttons
       buttons: [
         "copy", "csv", "excel", "pdf", "print", "colvis"
-        // {
-        //   text: 'Some button',
-        //   key: '1',
-        //   action: function (e, dt, node, config) {
-        //     alert('Button activated');
-        //   }
-        // }
       ]
     };
     
@@ -101,6 +158,19 @@ export class CoursesComponent implements OnInit {
   
   
 
+  }     //  ngOnInit function ends here
+
+  ngAfterViewInit() {
+    this.renderer.listen('document', 'click', (event:any ) => {
+        if (event.target.hasAttribute("edit-config-id")) {
+             this._router.navigate(["/editCourse/" + event.target.getAttribute("edit-config-id")]);
+            //console.log('edit btn clicked for madrasa ' + event.target.getAttribute("edit-config-id") );
+        }
+        if (event.target.hasAttribute("view-config-id")) {
+             this._router.navigate(["/singleCourse/" + event.target.getAttribute("view-config-id")]);
+            //console.log('view btn clicked for madrasa ' + event.target.getAttribute("view-config-id") );
+        }
+    });
   }
 
 }

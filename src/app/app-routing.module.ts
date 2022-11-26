@@ -99,20 +99,20 @@ const routes: Routes = [
   //topics routes starts here
   {path:'allTopics',component:TopicsComponent,canActivate:[AdminGuard]},
   {path:'addTopic',component:AddTopicComponent,canActivate:[AdminGuard]},
-  {path:'editTopic',component:EditTopicComponent,canActivate:[AdminGuard]},
-  {path:'singleTopic',component:SingleTopicComponent,canActivate:[AdminGuard]},
+  {path:'editTopic/:id',component:EditTopicComponent,canActivate:[AdminGuard]},
+  {path:'singleTopic/:id',component:SingleTopicComponent,canActivate:[AdminGuard]},
   //topic routes end here
   //video routes starts here
   {path:'allVideos',component:VideosComponent,canActivate:[AdminGuard]},
   {path:'addVideo',component:AddVideoComponent,canActivate:[AdminGuard]},
-  {path:'editVideo',component:EditVideoComponent,canActivate:[AdminGuard]},
-  {path:'singleVideo',component:SingleVideoComponent,canActivate:[AdminGuard]},
+  {path:'editVideo/:id',component:EditVideoComponent,canActivate:[AdminGuard]},
+  {path:'singleVideo/:id',component:SingleVideoComponent,canActivate:[AdminGuard]},
   //video routes ends here
   //quiz routes starts here
   {path:'allQuizzes',component:QuizzesComponent,canActivate:[AdminGuard]},
   {path:'addQuiz',component:AddQuizComponent,canActivate:[AdminGuard]},
-  {path:'editQuiz',component:EditQuizComponent,canActivate:[AdminGuard]},
-  {path:'singleQuiz',component:SingleQuizComponent,canActivate:[AdminGuard]},
+  {path:'editQuiz/:id',component:EditQuizComponent,canActivate:[AdminGuard]},
+  {path:'singleQuiz/:id',component:SingleQuizComponent,canActivate:[AdminGuard]},
   //quiz routes ends here
   /*  admin routes ends here */
   {path:'addCourse',component:AddcourseComponent,canActivate:[RouterGuard]},

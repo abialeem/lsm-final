@@ -108,21 +108,24 @@ export class MadrasasComponent implements OnInit  {
 
           return data;
       },
+      },{
+        title : 'Status',
+        data : 'status',
+        render: function (data:any) {
+              if(data === "0"){
+                data = '<span class="text-danger" style="font-size:14px;text-transform:capitalize;">In Active</span>';
+              }
+              else{
+                data = '<span class="text-success" style="font-size:14px;text-transform:capitalize;">Active</span>';
+              }
+         
+              return data;
+      },
       },
       {
         title: 'Actions',
         data: 'id',
         orderable: false,
-        // defaultContent: `
-        // <a class="btn btn-secondary btn-sm" id="${ id }"   style="color:white;" title="edit this madrasa" ><i class="fa fa-pencil"></i></a>
-        // <a class="btn btn-danger btn-sm"  style="color:white;" title="delete this madrasa" ><i class="fa fa-trash"></i></a>
-        // `,
-  //       render: function (data:any) {
-          
-  //             data = '<span class="btn btn-secondary btn-sm" id="edit_madrasa_'+ data  +'"><i class="fa fa-pencil"></i> edit</span> ';
-          
-  //     return data;
-  // },
   "render":  (data:any) => { 
     return `<div class='actions-buttons  center' id='${data}'>
      
@@ -139,26 +142,12 @@ export class MadrasasComponent implements OnInit  {
       //scrollX: true,
       responsive: true,
       deferRender: true,
-      // "paging": true,
-      // "ordering": true,
-      // "info": true,
       // Configure the buttons
       buttons: [
-        "copy", "csv", "excel", "pdf", "print", "colvis",
-        
-        // {
-        //   text: 'Some button',
-        //   key: '1',
-        //   action: function (e:any, dt:any, node:any, config:any) {
-        //     alert('Button activated');
-            
-        //   }
-        // }
+        "copy", "csv", "excel", "pdf", "print", "colvis"
       ]
     };
 
-    
-    
     this.loggedUser = JSON.stringify(sessionStorage.getItem('loggedUser')|| 'USER EMAIL NOT FOUND');
     this.loggedUser = this.loggedUser.replace(/"/g, '');
 

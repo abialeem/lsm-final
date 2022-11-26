@@ -137,23 +137,29 @@ public unassignTeacher(teacher:Teacher){
 }
 
 public assignStudent(student:Student){
-  //  console.log(teacher) ;
   return this._http.post<any>(`${NAV_URL}/admins/assignStudentToMadrasa.php`,student);
 }
 
 public unassignStudent(student:Student){
-  //  console.log(teacher) ;
   return this._http.post<any>(`${NAV_URL}/admins/unassignStudentToMadrasa.php`,student);
 }
-            //assign and unassign from madrasas ends here
+           
+public assignCourse(course:Course){
+  return this._http.post<any>(`${NAV_URL}/admins/assignCourseToMadrasa.php`,course);
+}
 
+public unassignCourse(course:Course){
+  return this._http.post<any>(`${NAV_URL}/admins/unassignCourseToMadrasa.php`,course);
+}
+
+             //assign and unassign from madrasas ends here
 
 
 //    assign/unassign or update functions ends here
 
 
 //get specific stuff starts here
-
+            //get serials  stuff starts here
 public getCourseSubjectsSerials(course_id:any): Observable<any>{
   return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectsSerials.php?course_id=${course_id}`);
 }
@@ -170,20 +176,22 @@ public getCourseSubjectTopicQuizzesSerials(course_id:any,subject_id:any,topic_id
   return this._http.get<any>(`${NAV_URL}/admins/getCourseSubjectTopicQuizzesSerials.php?course_id=${course_id}&subject_id=${subject_id}&topic_id=${topic_id}`);
 }
 
-public getSingleCourseSubjects(course_id:any): Observable<any>{
-  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseSubjects.php?course_id=${course_id}`);
+public getSubjectTopicsSerials(subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSubjectTopicsSerials.php?subject_id=${subject_id}`);
 }
 
-public getSingleSubjectTopics(subject_id:any): Observable<any>{
-  return this._http.get<any>(`${NAV_URL}/admins/getSingleSubjectTopics.php?subject_id=${subject_id}`);
+public getTopicVideosSerials(topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getTopicVideosSerials.php?topic_id=${topic_id}`);
 }
 
-public getJamaatTitle(jamaat_id:any): Observable<any>{
-  return this._http.get<any>(`${NAV_URL}/admins/getJamaatTitle.php?jamaat_id=${jamaat_id}`);
+public getTopicQuizzesSerials(topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getTopicQuizzesSerials.php?topic_id=${topic_id}`);
 }
+            //get serials stuff ends here
 
-public getJamiatTitle(jamiat_id:any): Observable<any>{
-  return this._http.get<any>(`${NAV_URL}/admins/getJamiatTitle.php?jamiat_id=${jamiat_id}`);
+             //single madrasa stuff starts here
+public getSingleMadrasaCourses(madrasa_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaCourses.php?madrasa_id=${madrasa_id}`);
 }
 
 public getSingleMadrasaTeachers(madrasa_id:any): Observable<any>{
@@ -197,7 +205,63 @@ public getSingleMadrasaStudents(madrasa_id:any): Observable<any>{
 public getSingleMadrasaPrincipal(madrasa_id:any): Observable<any>{
   return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaPrincipal.php?madrasa_id=${madrasa_id}`);
 }
-//get specific stuff ends here
+             //single madrasa stuff ends here
+
+
+          //single course stuff starts here
+public getSingleCourseSubjects(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseSubjects.php?course_id=${course_id}`);
+}
+
+public getSingleCourseTopics(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseTopics.php?course_id=${course_id}`);
+}
+
+public getSingleCourseVideos(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseVideos.php?course_id=${course_id}`);
+}
+
+public getSingleCourseQuizzes(course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleCourseQuizzes.php?course_id=${course_id}`);
+}
+         //single course stuff ends here
+    
+          //single subject stuff starts here
+public getSingleSubjectTopics(subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleSubjectTopics.php?subject_id=${subject_id}`);
+}
+
+public getSingleSubjectVideos(subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleSubjectVideos.php?subject_id=${subject_id}`);
+}
+
+public getSingleSubjectQuizzes(subject_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleSubjectQuizzes.php?subject_id=${subject_id}`);
+
+}
+          //single subject stuff ends here
+
+          //single topic stuff starts here
+public getSingleTopicVideos(topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleTopicVideos.php?topic_id=${topic_id}`);
+}
+public getSingleTopicQuizzes(topic_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleTopicQuizzes.php?topic_id=${topic_id}`);
+}
+
+          //single topic stuff ends here
+
+
+
+public getJamaatTitle(jamaat_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getJamaatTitle.php?jamaat_id=${jamaat_id}`);
+}
+
+public getJamiatTitle(jamiat_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getJamiatTitle.php?jamiat_id=${jamiat_id}`);
+}
+ 
+  //get specific stuff ends here
 
 
 
@@ -208,6 +272,9 @@ public  getMadrasas(): Observable<any> {
 public getMadrasasWithoutPrincipal(): Observable<any> {
   return this._http.get<any>(`${NAV_URL}/admins/getMadrasasWithoutPrincipal.php`);
 }
+public  getUnassignedMadrasas(teacher_id:any): Observable<any> {
+  return this._http.get<any>(`${NAV_URL}/admins/getUnassignedMadrasas.php?teacher_id=${teacher_id}`);
+}
 public  getPrincipals(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllPrincipals.php`);
     }
@@ -217,8 +284,8 @@ public  getUnassignedPrincipals(): Observable<any> {
 public  getTeachers(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllTeachers.php`);
     }
-public  getUnassignedTeachers(): Observable<any> {
-      return this._http.get<any>(`${NAV_URL}/admins/getUnassignedTeachers.php`);
+public  getUnassignedTeachers(madrasa_id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getUnassignedTeachers.php?madrasa_id=${madrasa_id}`);
     }
 public  getCourses(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllCourses.php`);
@@ -266,6 +333,30 @@ public  getJamiats(): Observable<any> {
 
     public getSingleTeacher(id:any): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getSingleTeacher.php?teacher_id=${ id }`);
+    }
+
+    public getSingleCourse(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleCourse.php?course_id=${ id }`);
+    }
+
+    public getSingleSubject(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleSubject.php?subject_id=${ id }`);
+    }
+
+    public getSingleTopic(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleTopic.php?topic_id=${ id }`);
+    }
+
+    public getSingleVideo(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleVideo.php?video_id=${ id }`);
+    }
+
+    public getSingleQuiz(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleQuiz.php?quiz_id=${ id }`);
+    }
+
+    public getSingleStudent(id:any): Observable<any> {
+      return this._http.get<any>(`${NAV_URL}/admins/getSingleStudent.php?student_id=${ id }`);
     }
 
     //get single stuff for viewing,deleting and editing singles ends here

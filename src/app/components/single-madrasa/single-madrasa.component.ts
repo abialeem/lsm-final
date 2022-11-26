@@ -5,6 +5,7 @@ import { Madrasa } from 'src/app/models/madrasa';
 import { Teacher } from 'src/app/models/teacher';
 import { Student } from 'src/app/models/student';
 import { Principal } from 'src/app/models/principal';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-single-madrasa',
@@ -22,9 +23,11 @@ export class SingleMadrasaComponent implements OnInit {
 
   madrasa = new Madrasa();
   current_madrasa_id : any = '';
+  madrasa_courses : Course[] = [];
   madrasa_teachers : Teacher[] = [];
   madrasa_students : Student[] = [];
   madrasa_principal = new Principal();
+  madrasa_data_count = new Madrasa_data_count();
 
   selectedTeachers: any[] = [];
   selectedStudents: any[] = [];
@@ -45,6 +48,8 @@ export class SingleMadrasaComponent implements OnInit {
   selectPrincipalHasError = true;
 
   selectTeachersHasError = true;
+
+  selectCoursesHasError = true;
 
   constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService) { }
 
@@ -76,14 +81,36 @@ export class SingleMadrasaComponent implements OnInit {
           }
         );
 
+        this.admin.getSingleMadrasaCourses(this.current_madrasa_id).subscribe(
+          (res: any) => {
+             //console.log(res);
+             if(res['data'] == undefined){
+              this.madrasa_courses = [];
+              this.madrasa_data_count.course_count = 0;
+             }
+             else{
+              this.madrasa_courses = res['data'];
+              this.madrasa_data_count.course_count = res['data'].length;
+             }
+            
+            //console.log(this.madrasa_courses);
+          },
+          (err) => {
+            //console.log(err);
+            this.madrasa_teachers = [];
+          }
+        );
+
         this.admin.getSingleMadrasaTeachers(this.current_madrasa_id).subscribe(
           (res: any) => {
              //console.log(res);
              if(res['data'] == undefined){
               this.madrasa_teachers = [];
+              this.madrasa_data_count.teacher_count = 0;
              }
              else{
               this.madrasa_teachers = res['data'];
+              this.madrasa_data_count.teacher_count = res['data'].length;
              }
             
             //console.log(this.madrasa_teachers);
@@ -100,9 +127,11 @@ export class SingleMadrasaComponent implements OnInit {
             
             if(res['data'] == undefined){
               this.madrasa_students = [];
+              this.madrasa_data_count.student_count = 0 ;
              }
              else{
               this.madrasa_students = res['data'];
+              this.madrasa_data_count.student_count = res['data'].length;
               //console.log(this.madrasa_students);
              }
           },
@@ -114,9 +143,16 @@ export class SingleMadrasaComponent implements OnInit {
 
         this.admin.getSingleMadrasaPrincipal(this.current_madrasa_id).subscribe(
           (res: any) => {
-             //console.log(res);
+             console.log(res);
             this.madrasa_principal = res['data'][0];
+              if(res['data'][0].id == null){
+                this.madrasa_data_count.principal_assigned = '0';
+              }
+              else{
+                this.madrasa_data_count.principal_assigned = '1';
+              }
             //console.log(this.madrasa_principal);
+            console.log(this.madrasa_data_count.principal_assigned);
           },
           (err) => {
             //console.log(err);
@@ -124,10 +160,54 @@ export class SingleMadrasaComponent implements OnInit {
           }
         );
 
-        this.admin.getUnassignedTeachers().subscribe(
+        this.admin.getUnassignedTeachers(this.current_madrasa_id).subscribe(
           (res: any) => {
              //console.log(res);
-            this.availableTeachers = res['data'];
+           
+           
+            if(res['data'].length > 0){
+
+              this.availableTeachers = res['data'];
+               // console.log (this.availableTeachers);
+
+
+               
+                                  //old way of getting available teachers starts here
+
+
+              // for (let i = 0; i < this.availableTeachers.length; i++) {
+              //     if(this.availableTeachers[i] != undefined ){
+              //       if(this.availableTeachers[i].madrasa_id!="not assigned yet"){
+              //         for (let j = 0; j < this.availableTeachers[i].madrasa_id.length; j++) {
+              //               if( this.availableTeachers[i].madrasa_id[j] == this.current_madrasa_id ){
+              //                   //remove this element from array
+              //                  //console.log ("inside loop 2 "+this.availableTeachers[i].madrasa_id[j]);
+              //                  this.availableTeachers.splice(i, 1);
+              //              }
+                          
+
+              //          }
+              //       }else{
+              //            //some element has not assigned yet madrasa id , hence skip them dont slice them
+              //            continue 
+              //            }
+              //     }
+              //     else{
+              //             //some element has undefined madrasa id so empty the array for security
+              //       this.availableTeachers = [];
+              //     }
+              // }
+
+
+                             //old way of getting available teachers starts here
+
+
+
+              //console.log (this.availableTeachers );
+            }
+            else{
+              this.availableTeachers = [];
+            }
             //console.log(this.availableTeachers);
           },
           (err) => {
@@ -231,6 +311,36 @@ export class SingleMadrasaComponent implements OnInit {
    
   }         //end of unassignTeacher function
 
+  unassignCourse(course:Course){
+    //unassign course from madrasa
+    this.admin.unassignCourse(course).subscribe(
+      (data: any) => {
+       // console.log(data);
+        //show success msg to admin user
+        this.msg="Madrasa Course unassigned Successfully ";
+        this.ngOnInit();
+          // the unassign teacher flow ends here 
+      },
+      (error: { error: any; }) => {
+        //console.log(error.error);
+        this.msg= error.error.message;
+        this.ngOnInit();
+      }
+    )
+
+  }     //end of unassignCourse function
+
+
+  validateSelectedCourses(selectedCourses: any){
+    if(selectedCourses=='null'){
+      this.selectCoursesHasError = true;
+    }
+    else{
+      this.selectCoursesHasError = false;
+    }
+    // console.log(selectTeachers);
+  }//end of validateSelectedCourses function
+
 
 
   validateSelectedTeachers(selectedTeachers: any){
@@ -241,7 +351,7 @@ export class SingleMadrasaComponent implements OnInit {
       this.selectTeachersHasError = false;
     }
     // console.log(selectTeachers);
-  }//end of validateSelectTeachers function
+  }//end of validateSelectedTeachers function
 
 
   validateSelectedStudents(selected: any){
@@ -262,7 +372,7 @@ export class SingleMadrasaComponent implements OnInit {
       this.selectPrincipalHasError = false;
     }
     // console.log(selected);
-  }//end of validateSelectPrincipal function
+  }//end of validateSelectedPrincipal function
 
 
 
@@ -373,3 +483,11 @@ export class SingleMadrasaComponent implements OnInit {
   }
 
 } //end of class main
+
+class Madrasa_data_count {
+  teacher_count : any = '0';
+  student_count : any = '0';
+  course_count : any = '0';
+  principal_assigned : any = '0' ; 
+ constructor() {}
+}

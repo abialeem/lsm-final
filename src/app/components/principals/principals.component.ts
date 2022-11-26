@@ -56,6 +56,19 @@ export class PrincipalsComponent implements OnInit {
        
             return data;
     },
+    },{
+      title : 'Status',
+      data : 'status',
+      render: function (data:any) {
+            if(data === "0"){
+              data = '<span class="text-danger" style="font-size:14px;text-transform:capitalize;">In Active</span>';
+            }
+            else{
+              data = '<span class="text-success" style="font-size:14px;text-transform:capitalize;">Active</span>';
+            }
+       
+            return data;
+    },
     },
     {
       title: 'Actions',
@@ -77,13 +90,6 @@ export class PrincipalsComponent implements OnInit {
     // Configure the buttons
     buttons: [
       "copy", "csv", "excel", "pdf", "print", "colvis"
-      // {
-      //   text: 'Some button',
-      //   key: '1',
-      //   action: function (e, dt, node, config) {
-      //     alert('Button activated');
-      //   }
-      // }
     ]
   };
   

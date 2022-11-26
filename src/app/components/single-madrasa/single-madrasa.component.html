@@ -3,7 +3,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" style="color:white;">View Madrasa #{{ madrasa.id }}</h1>
+          <h1 class="m-0 row" style="color:white;">
+            <span class="col-lg-6 col-12">View Madrasa #{{ madrasa.id }}</span>
+            <span class="col-lg-6 col-12 btn-group">
+                <a class=" btn btn-primary btn-sm " style="float:right;" [routerLink]="['/allMadrasas']" > All Madrasa(s) </a>
+                <a class=" btn btn-info btn-sm " style="float:right;" [routerLink]="['/addMadrasa']" >+ Add A Madrasa </a>
+            </span>
+          </h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -16,7 +22,7 @@
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
-
+ 
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid p-3">
@@ -61,16 +67,150 @@
                            <span class="col-lg-8 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;"><i class=" fas fa-users  " style="text-align: center;color:white;"></i> Student Count </span> <span class=" col-lg-4 col-md-12 col-sm-12  p-2" style="text-transform:capitalize;font-size:20px;"><span class="badge badge-primary p-2" style="color:#3d0a78;background:white;">{{ madrasa.madrasa_student_count }}</span></span>
                        </div>
                    </div>
-                </div>
+                </div><!--main col-lg-4 ends here -->
+
+                            <!--main col-lg-8 starts here-->
                 <div class="col-lg-8">
+                    
+                      <!--madrasa stats section starts here-->
+                <div class="card card-primary col-lg-12 col-md-12 col-sm-12" style="background:transparent;overflow:hidden;">
+                    <div class="card-header p-2"  style="background:transparent;" >
+                            <h4 class="card-title" style="color:white;"> <i class="fas fa-school" style="text-align: center;color:white;"></i> Madrasa Statistics</h4>
+                    </div>
+                    <div class="card-body p-2 row" style="background: transparent;">
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-info">
+                            <div class="inner">
+                            <h3>{{ madrasa_data_count.teacher_count }}</h3>
+                            <p>Teachers</p>
+                            </div>
+                            <div class="icon">
+                            <i class="fa fa-chalkboard-teacher"></i>
+                            </div>
+                            <!-- <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                            </div>
+                            </div>
+
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                    <h3>{{ madrasa_data_count.student_count }}</h3>
+                                    <p>Students</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                    </div>
+                                    <!-- <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box " [ngClass]="(madrasa_data_count.principal_assigned == '1')? 'bg-primary' : 'bg-danger'">
+                                    <div class="inner">
+                                    <h3>
+                                        <span *ngIf="madrasa_data_count.principal_assigned == '1'"><i class="fa fa-check"></i></span>
+                                        <span *ngIf="madrasa_data_count.principal_assigned == '0'"><i class="fa fa-xmark"></i></span>
+                                    </h3>
+                                    <p>Principal</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fa fa-brain"></i>
+                                    </div>
+                                    <!-- <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                    <h3>{{ madrasa_data_count.course_count }}</h3>
+                                    <p>Courses</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fa fa-list"></i>
+                                    </div>
+                                    <!-- <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            
+
+                    </div>
+            </div>
+
+                <!--madrasa stats section ends here-->
+
+                <!--madrasa courses section starts here-->
+                <div class="card card-primary" style="background:transparent;">
+                    <div class="card-header" style="background:transparent;">
+                        <h5 style="color:white;" class="card-title">
+                            <i class=" fas fa-list  " style="text-align: center;color:white;"></i>
+                             Madrasa Course(s)
+                             <span class="badge badge-default p-2" style="color: #6a11cb;background-color:white;">
+                                {{ madrasa_data_count.course_count}}
+                             </span>
+                            </h5>
+                        <a class="btn btn-default btn-sm float-sm-right" style="background: #6a11cb;color:white;"  data-toggle="modal" data-target="#modal-assigncourses">+ Assign Course(s) To Madrasa</a>
+                    </div>
+                    <div class="card-body p-3" style="background:transparent;">
+
+                            <!--existing madrasa courses list here -->
+                            <ul class="products-list product-list-in-card row pl-2 pr-2" style="background:transparent;" *ngIf="madrasa_courses.length != 0">
+                                <li class="item p-3  mb-2 col-lg-4 col-md-6 col-sm-12" style="background:transparent;border-radius:3px;" *ngFor="let course of madrasa_courses" >
+                           <div class=" card card-default ">
+                            <div class="card-header">
+                                <h4 class="card-title"> 
+                                    <i class="fas fa-chalkboard-teacher fa-2x " style="text-align: center;vertical-align: middle;color:#6610f2;"></i>
+                                    <span style="text-align: center;vertical-align: middle;color:#6610f2;" > Course #{{ course.id }}</span>
+                                </h4>
+                                <span [ngClass]="course.status == '1' ? 'badge badge-success' : 'badge badge-danger'" 
+                                     class="float-sm-right"
+                                      >
+                                      {{ (course.status=="1")? "Active": "Inactive" }}
+                                    </span>
+                            </div>
+                            <div class="card-body">
+                                <p  >
+                                    <span class="font-weight-bold" >Title</span>
+                                     <span  style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ course.title }}</span>
+                                </p>
+                                <p>
+                                    <span class="font-weight-bold">Description</span>
+                                     <span style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ course.description }}</span>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <div class='btn-group col-lg-12 col-md-12  col-sm-12 center' id='course_{{ course.id }}_actions'>
+                                    <a class="btn btn-primary  btn-sm"  [routerLink]="['/singleCourse/'+course.id]" title='View course Details'><i class='fa fa-eye pointer'  style="color:white;" ></i></a>
+                                    <a class="btn btn-info  btn-sm"  [routerLink]="['/editCourse/'+course.id]" title='Edit course Details'><i class='fa fa-edit pointer'  style="color:white;" ></i></a>
+                                    <a class="btn btn-danger  btn-sm"  (click)="unassignCourse(course)" title='Remove course From Madrasa'><i class='fa fa-trash pointer' style="color:white;" ></i></a>
+                                 </div>
+                            </div>
+                           </div>
+                                </li>
+                                </ul>
+                              <p *ngIf="madrasa_courses.length == 0" class="alert alert-warning"> no course found for this madrasa</p>
+                            
+                            <!--existing madrasa courses list ends here-->
+                    </div>
+                </div>
+                <!--madrasa courses section ends here-->
+
+                <!--madrasa teachers section starts here-->
                    <div class="card card-primary" style="background:transparent;">
                     <div class="card-header" style="background:transparent;">
-                        <h5 style="color:white;" class="card-title"><i class=" fas fa-chalkboard-teacher  " style="text-align: center;color:white;"></i> Madrasa Teacher(s)</h5>
+                        <h5 style="color:white;" class="card-title">
+                            <i class=" fas fa-chalkboard-teacher  " style="text-align: center;color:white;"></i>
+                             Madrasa Teacher(s)
+                             <span class="badge badge-default p-2" style="color: #6a11cb;background-color:white;">
+                                {{ madrasa_data_count.teacher_count}}
+                             </span>
+                            </h5>
                         <a class="btn btn-default btn-sm float-sm-right" style="background: #6a11cb;color:white;"  data-toggle="modal" data-target="#modal-assignteachers">+ Assign Teacher(s) To Madrasa</a>
                     </div>
                     <div class="card-body p-3" style="background:transparent;">
                       
                     <!--list of teachers starts here-->
+
 
                     <ul class="products-list product-list-in-card row pl-2 pr-2" style="background:transparent;" *ngIf="madrasa_teachers.length != 0">
                         <li class="item p-3  mb-2 col-lg-4 col-md-6 col-sm-12" style="background:transparent;border-radius:3px;" *ngFor="let teacher of madrasa_teachers" >
@@ -97,7 +237,7 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <div class='btn-group col-lg-12 col-md-12  col-sm-12 center' id='student_{{ teacher.id }}_actions'>
+                        <div class='btn-group col-lg-12 col-md-12  col-sm-12 center' id='teacher_{{ teacher.id }}_actions'>
                             <a class="btn btn-primary  btn-sm"  [routerLink]="['/singleTeacher/'+teacher.id]" title='View Teacher Details'><i class='fa fa-eye pointer'  style="color:white;" ></i></a>
                             <a class="btn btn-info  btn-sm"  [routerLink]="['/editTeacher/'+teacher.id]" title='Edit Teacher Details'><i class='fa fa-edit pointer'  style="color:white;" ></i></a>
                             <a class="btn btn-danger  btn-sm"  (click)="unassignTeacher(teacher)" title='Remove Teacher From Madrasa'><i class='fa fa-trash pointer' style="color:white;" ></i></a>
@@ -111,11 +251,19 @@
 
                    </div>
                </div>
+                    <!--madrasa teachers section ends here-->
 
+                    <!--madrasa students section starts here-->
 
                <div class="card card-primary" style="background:transparent;">
                 <div class="card-header" style="background:transparent;">
-                    <h5 style="color:white;" class="card-title" ><i class=" fas fa-users  " style="text-align: center;color:white;"></i> Madrasa Student(s)</h5>
+                    <h5 style="color:white;" class="card-title" >
+                        <i class=" fas fa-users  " style="text-align: center;color:white;"></i>
+                         Madrasa Student(s)
+                         <span class="badge badge-default p-2" style="color: #6a11cb;background-color:white;">
+                            {{ madrasa_data_count.student_count}}
+                         </span>
+                        </h5>
                     <a class="btn btn-default btn-sm float-sm-right" style="background: #6a11cb;color:white;" data-toggle="modal" data-target="#modal-assignstudents">+ Assign Student(s) To Madrasa</a>
                 </div>
                 <div class="card-body p-3" style="background:transparent;">
@@ -193,7 +341,7 @@
                             <p class="alert alert-info ">
                                 Note :<br>
                                  - HOLD On Command on mac or Ctrl on Windows or long holds on andriod .<br>
-                                 - Missing Teachers are already aasigned to other madrasas,remove them from there firstly.
+                                 - Missing Teachers are already assigned to this madrasa.
                             </p>
                             <label for="madrasa_select_teachers" class="label label-primary" >Select Teacher(s) To Be Assigned </label>
                               <select class="form-control p-3" (blur)="validateSelectedTeachers(selectTeachers.value)" (change)="validateSelectedTeachers(selectTeachers.value)" name="madrasa_select_teachers" id="madrasa_select_teachers" [(ngModel)]="selectedTeachers" required 

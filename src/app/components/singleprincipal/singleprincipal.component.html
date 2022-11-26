@@ -3,7 +3,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" style="color:white;">View Principal #{{ principal.id }}</h1>
+          <h1 class="m-0 row" style="color:white;">
+            <span class="col-lg-6 col-12">View Principal #{{ principal.id }}</span>
+            <span class="col-lg-6 col-12 btn-group">
+                <a class=" btn btn-primary btn-sm " style="float:right;" [routerLink]="['/allPrincipals']" > All Principal(s) </a>
+                <a class=" btn btn-info btn-sm " style="float:right;" [routerLink]="['/addPrincipal']" >+ Add A Principal </a>
+            </span>
+        </h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -114,7 +120,7 @@
                         <div class="form-group">
                             <p class="alert alert-info ">
                                 Note :<br>
-                                 - Missing Madrasa(s) are already have aasigned principal(s),remove them from there firstly.
+                                 - Missing Madrasa(s) are already have assigned principal(s),remove them from there firstly.
                             </p>
                             <label for="madrasa_select_principal" class="label label-primary" >Select Madrasa To Be Assigned </label>
                               <select class="form-control p-3"
