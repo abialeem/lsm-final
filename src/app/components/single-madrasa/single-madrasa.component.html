@@ -481,3 +481,61 @@
         </div>
         
         </div><!--modal for update principal to madrasa ends here-->
+
+
+             <!--modal for assign courses to madrasa starts here-->
+    <div class="modal fade" id="modal-assigncourses" style="display: none;" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form #assigncoursesform="ngForm" (ngSubmit)="assignCourses();assigncoursesform.resetForm();removeMsg();">
+         <div class="modal-header">
+        <h4 class="modal-title">Assign Courses To Madrasa #{{ madrasa.id }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="removeMsg()">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <p><span>Madrasa ID : </span> <span class="text-info">{{ madrasa.id }}</span></p>
+            <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+              <button type="button" class="close" (click)="removeMsg()">×</button>
+              <b>{{msg}}</b>
+            </div>
+            <div class="row addmadrasa-form" >
+                <div class="col-12">
+                    <div class="form-group">
+                        <p class="alert alert-info ">
+                            Note :<br>
+                             - HOLD On Command on mac or Ctrl on Windows or long holds on andriod .<br>
+                             - Missing Courses are already assigned to this madrasas.
+                        </p>
+                        <label for="madrasa_select_courses" class="label label-primary" >Select Course(s) To Be Assigned </label>
+                          <select class="form-control p-3"
+                        (blur)="validateSelectedCourses(selectCourses.value)"
+                        (change)="validateSelectedStudents(selectCourses.value)" 
+                        name="madrasa_select_courses" 
+                        id="madrasa_select_courses" 
+                        [(ngModel)]="selectedCourses"
+                        required 
+                          #selectCourses="ngModel"
+                          multiple
+                          [class.is-invalid]="selectCoursesHasError && selectCourses.touched">
+                          <option value="null" selected>Select Course For Madrasa</option>
+                          <option value="{{ course.id }}" class="p-2" *ngFor="let course of availableCourses"><span style="text-transform: capitalize;">Title = {{course.title}} , ID = {{ course.id }} , Type = {{ course.course_type }} </span></option>
+                          </select>
+                          <small class="text-danger"  [class.d-none]="!selectCoursesHasError || selectCourses.untouched"><b>Please Select Vaild A Course </b></small>
+                          <small class="text-danger"  [class.d-none]="selectCourses.valid || selectCourses.untouched"><b>required field</b></small>
+                      </div>
+                </div>
+        </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="assigncoursesform.resetForm();removeMsg()">Close</button>
+        <button  class="btn btn-primary" [disabled]="assigncoursesform.form.invalid ||  selectCoursesHasError" type="submit">Assign Course(s)</button>
+        </div>
+             </form>
+        </div>
+        
+        </div>
+        
+        </div><!--modal for assign courses to madrasa ends here-->

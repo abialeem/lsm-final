@@ -11,7 +11,7 @@ export class Course
      created_at : any = '';
      updated_at : any = '';
      deleted_at : any = '';
- 
+    madrasa_id ?: any = '0';
     
     constructor() {}
 

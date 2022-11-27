@@ -32,16 +32,20 @@ export class SingleMadrasaComponent implements OnInit {
   selectedTeachers: any[] = [];
   selectedStudents: any[] = [];
   selectedPrincipal:any = '';
+  selectedCourses: any[] = [];
 
   toBeUpdatedPrincipal = new Principal();
   toBeUpdatedTeacher = new Teacher();
   toBeUpdatedStudent = new Student();
+  toBeUpdatedCourse = new Course();
 
   availableTeachers: Teacher[] = [];
 
   availableStudents: Student[] = [];
 
   availablePrincipals: Principal[] = [];
+
+  availableCourses: Course[] = [];
 
   selectStudentsHasError = true;
 
@@ -143,7 +147,7 @@ export class SingleMadrasaComponent implements OnInit {
 
         this.admin.getSingleMadrasaPrincipal(this.current_madrasa_id).subscribe(
           (res: any) => {
-             console.log(res);
+             //console.log(res);
             this.madrasa_principal = res['data'][0];
               if(res['data'][0].id == null){
                 this.madrasa_data_count.principal_assigned = '0';
@@ -152,7 +156,7 @@ export class SingleMadrasaComponent implements OnInit {
                 this.madrasa_data_count.principal_assigned = '1';
               }
             //console.log(this.madrasa_principal);
-            console.log(this.madrasa_data_count.principal_assigned);
+           // console.log(this.madrasa_data_count.principal_assigned);
           },
           (err) => {
             //console.log(err);
@@ -163,47 +167,9 @@ export class SingleMadrasaComponent implements OnInit {
         this.admin.getUnassignedTeachers(this.current_madrasa_id).subscribe(
           (res: any) => {
              //console.log(res);
-           
-           
             if(res['data'].length > 0){
-
               this.availableTeachers = res['data'];
                // console.log (this.availableTeachers);
-
-
-               
-                                  //old way of getting available teachers starts here
-
-
-              // for (let i = 0; i < this.availableTeachers.length; i++) {
-              //     if(this.availableTeachers[i] != undefined ){
-              //       if(this.availableTeachers[i].madrasa_id!="not assigned yet"){
-              //         for (let j = 0; j < this.availableTeachers[i].madrasa_id.length; j++) {
-              //               if( this.availableTeachers[i].madrasa_id[j] == this.current_madrasa_id ){
-              //                   //remove this element from array
-              //                  //console.log ("inside loop 2 "+this.availableTeachers[i].madrasa_id[j]);
-              //                  this.availableTeachers.splice(i, 1);
-              //              }
-                          
-
-              //          }
-              //       }else{
-              //            //some element has not assigned yet madrasa id , hence skip them dont slice them
-              //            continue 
-              //            }
-              //     }
-              //     else{
-              //             //some element has undefined madrasa id so empty the array for security
-              //       this.availableTeachers = [];
-              //     }
-              // }
-
-
-                             //old way of getting available teachers starts here
-
-
-
-              //console.log (this.availableTeachers );
             }
             else{
               this.availableTeachers = [];
@@ -219,12 +185,34 @@ export class SingleMadrasaComponent implements OnInit {
         this.admin.getUnassignedStudents().subscribe(
           (res: any) => {
              //console.log(res);
+             if(res['data'].length > 0){
             this.availableStudents = res['data'];
             //console.log(this.availableStudents);
+          }
+          else{
+            this.availableStudents = [];
+          }
           },
           (err) => {
             //console.log(err);
             this.availableStudents = [];
+          }
+        );
+
+        this.admin.getUnassignedCourses(this.current_madrasa_id).subscribe(
+          (res: any) => {
+             //console.log(res);
+             if(res['data'].length > 0){
+            this.availableCourses = res['data'];
+            //console.log(this.availableCourses);
+          }
+          else{
+            this.availableCourses = [];
+          }
+          },
+          (err) => {
+            //console.log(err);
+            this.availableCourses = [];
           }
         );
 
@@ -313,6 +301,8 @@ export class SingleMadrasaComponent implements OnInit {
 
   unassignCourse(course:Course){
     //unassign course from madrasa
+    //console.log(course);
+    course.madrasa_id = this.current_madrasa_id;
     this.admin.unassignCourse(course).subscribe(
       (data: any) => {
        // console.log(data);
@@ -322,7 +312,7 @@ export class SingleMadrasaComponent implements OnInit {
           // the unassign teacher flow ends here 
       },
       (error: { error: any; }) => {
-        //console.log(error.error);
+      //  console.log(error.error);
         this.msg= error.error.message;
         this.ngOnInit();
       }
@@ -373,6 +363,41 @@ export class SingleMadrasaComponent implements OnInit {
     }
     // console.log(selected);
   }//end of validateSelectedPrincipal function
+
+
+  assignCourses():void{
+
+    // console.log('assign courses submitted');
+     //console.log(this.selectedCourses);
+ 
+     for(let i=0; i<this.selectedCourses.length; i++){
+        
+       if(this.selectedCourses[i] != "null"){
+         //console.log(this.selectedCourses[i]);
+         this.toBeUpdatedCourse.id = this.selectedCourses[i];
+         this.toBeUpdatedCourse.madrasa_id = this.current_madrasa_id;
+ 
+         //console.log(this.toBeUpdatedCourse);
+           //call function from admin service to assignteacher
+           this.admin.assignCourse(this.toBeUpdatedCourse).subscribe(
+             (data: any) => {
+               //console.log(data);
+               //show success msg to admin user
+               this.msg="Course Assigned  Successfully ";
+               this.ngOnInit();
+                 // the assign teacher flow ends here 
+             },
+             (error: { error: any; }) => {
+               //console.log(error.error);
+               this.msg= error.error.message;
+               this.ngOnInit();
+             }
+           )
+       } //check to exclude the null option ends here
+    }  //for loop ends here
+         //refresh the component here
+        
+   }
 
 
 

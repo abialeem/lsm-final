@@ -290,6 +290,9 @@ public  getUnassignedTeachers(madrasa_id:any): Observable<any> {
 public  getCourses(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllCourses.php`);
     }
+public getUnassignedCourses(madrasa_id:any): Observable<any> {
+  return this._http.get<any>(`${NAV_URL}/admins/getUnassignedCourses.php?madrasa_id=${madrasa_id}`);
+}
 public  getSubjects(): Observable<any> {
       return this._http.get<any>(`${NAV_URL}/admins/getAllSubjects.php`);
     }
