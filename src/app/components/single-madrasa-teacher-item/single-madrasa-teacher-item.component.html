@@ -1,0 +1,128 @@
+<div class=" card card-default ">
+    <div class="card-header row">
+        <h4 class="card-title col-lg-10 col-md-12 col-sm-12 " style="overflow:hidden;text-overflow:ellipsis;"> 
+            <i 
+            class="fas fa-chalkboard-teacher  "
+             style="text-align: center;vertical-align: middle;color:#6610f2;"
+             ></i>
+            <span 
+            style="text-align: center;vertical-align: middle;color:#6610f2;text-transform: capitalize;"
+            class="text-limit"
+             > {{ teacher.title }}
+            </span> 
+            <span [ngClass]="teacher.status == '1' ? 'badge badge-success' : 'badge badge-danger'" 
+        class="float-right "
+         >
+         {{ (teacher.status=="1")? "Active": "Inactive" }}
+       </span>
+        </h4>
+                    <!--dropdown for actions starts here-->
+            <div class="dropdown col-lg-2 col-md-12 col-sm-12 ">
+                <button class="btn btn-default btn-sm dropdown-toggle float-right" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-hammer"></i> Actions
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <a class="btn btn-primary  btn-sm dropdown-item"  [routerLink]="['/singleTeacher/'+teacher.id]" title='View Teacher Details'><i class='fa fa-eye pointer'  ></i> View Teacher</a>
+                  <a class="btn btn-info  btn-sm dropdown-item"  [routerLink]="['/editTeacher/'+teacher.id]" title='Edit Teacher Details'><i class='fa fa-edit pointer'  ></i> Edit Teacher</a>
+                  <a class="btn btn-danger  btn-sm dropdown-item"  (click)="unassignTeacher(teacher)" title='Remove Teacher From Madrasa'><i class='fa fa-trash pointer'  ></i> Remove From Madrasa</a>
+                </div>
+              </div>
+               <!--dropdown for actions ends here-->
+    </div>
+    <div class="card-body">
+        <p>
+            <span class="font-weight-bold">Address</span>
+             <span style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ teacher.address }}</span>
+        </p>
+        <hr/>
+        <!--teacher subjects list starts here-->
+        <div class="card card-default row">
+            <div class="card-header">
+                <h3 class="card-title">Teacher's Assigned Subjects</h3>
+            </div>
+            <div class="card-body table-responsive" >
+                <table class="table table-hover" >
+                    <!-- <caption>Assigned Teachers for Subjects</caption> -->
+                    <thead>
+                        <tr>
+                        <th scope="col">Subjects Assigned</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subject of teacher_subjects" >
+                            <td>
+                                <span  
+                                style="color:rgb(72, 68, 68);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-transform: capitalize;overflow:hidden;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                                {{ subject.title }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group-vertical">
+                                    <button type="button" class="btn btn-primary btn-sm"  (click)="selectSubject(subject.title,subject.id)"  data-toggle="modal" attr.data-target="#modal-assign_data_teachersubject-{{subject.id}}" ><i class="fa fa-eye"></i>View Assignment Details</button>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="unassignSubjectTeacher(teacher_id,subject.id,madrasa_id)"><i class="fa fa-trash"></i>Unassign Teacher From Subject</button>
+                                    <button type="button" class="btn btn-info btn-sm" [routerLink]="['/singleSubject/'+subject.id]"><i class="fa fa-eye"></i>View Subject</button>
+                                  </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+             <!--teacher subjects list ends here-->
+    </div>
+   </div>
+
+
+
+
+   <!--modal for assign teacher to madrasa subject starts here-->
+   <div class="modal fade" id="modal-assign_data_teachersubject-{{selectedSubjectID}}" style="display: none;" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <div class="modal-header">
+    <h4 class="modal-title">Details Of Teacher's Assignment To The Subject #{{ selectedSubject }} -  Madrasa #{{ madrasa_id }}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="removeSelectSubject();">
+    <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    
+    <p><span>Madrasa ID : </span> <span class="text-info">{{ madrasa_id }}</span></p>
+    <p><span>Subject : </span> <span class="text-info">{{ selectedSubject }}</span></p>
+    <!-- 
+        <div class="alert alert-danger alert-dismissible" *ngIf="msg">
+          <button type="button" class="close" (click)="removeMsg()">×</button>
+          <b>{{msg}}</b>
+        </div>
+        <div class="row addmadrasa-form" >
+                <div class="col-12">
+                    <div class="form-group">
+                         <p class="alert alert-info ">
+                            Note :<br>
+                             - HOLD On Command on mac or Ctrl on Windows or long holds on andriod .<br>
+                             - Missing Teachers are already assigned to this madrasa.
+                        </p> 
+                        <label for="madrasa_select_teachers" class="label label-primary" >Select Teacher(s) To Be Assigned </label>
+                          <select class="form-control p-3" (blur)="validateSelectedTeacher(selectTeacher.value)" (change)="validateSelectedTeacher(selectTeacher.value)" name="madrasa_subject_select_teachers" id="madrasa_subject_select_teachers" [(ngModel)]="selectedTeacher" required 
+                          #selectTeacher="ngModel"
+                          [class.is-invalid]="selectTeacherHasError && selectTeacher.touched">
+                          <option value="null" selected>Select Teacher(s) For Madrasa</option>
+                          <option value="{{ teacher.id }}" class="p-2" *ngFor="let teacher of availableTeachers"><span style="text-transform: capitalize;">Title = {{teacher.title}} , ID = {{ teacher.id }}</span></option>
+                          </select>
+                          <small class="text-danger"  [class.d-none]="selectTeacher.valid || selectTeacher.untouched"><b>required field</b></small>
+                      </div>
+                       <div class="form-group">
+                        <input type="hidden" name="subject_id" value="{{ selectedSubjectID }}" [(ngModel)]="selectedSubjectID">
+                      </div> 
+                </div>
+        </div>
+    </div>-->
+    <div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"  (click)="removeSelectSubject();">Close Detail Box</button>
+    </div> 
+    </div>
+    
+    </div>
+    
+    </div><!--modal for assign teacher to subject to madrasa ends here-->

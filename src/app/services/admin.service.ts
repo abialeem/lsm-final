@@ -59,6 +59,7 @@ public checkIfQuizOfTopicOfSubjectOfCourseExists(quiz_title:any,topic_id:any,sub
   return this._http.get<any>(`${NAV_URL}/admins/validation/quizOfTopicOfSubjectOfCourseExists.php?quiz_title=${quiz_title}&topic_id=${topic_id}&subject_id=${subject_id}&course_id=${course_id}`);
 }
 
+
   //checking existing db functions ends here
 
 
@@ -194,6 +195,22 @@ public getSingleMadrasaCourses(madrasa_id:any): Observable<any>{
   return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaCourses.php?madrasa_id=${madrasa_id}`);
 }
 
+public getSingleMadrasaCourseSubjects(course_id:any,madrasa_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaCourseSubjects.php?course_id=${course_id}&madrasa_id=${madrasa_id}`);
+}
+
+public getSingleMadrasaTeacherSubjects(madrasa_id:any,teacher_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaTeacherSubjects.php?madrasa_id=${madrasa_id}&teacher_id=${teacher_id}`);
+}
+
+public unAssignTeacherFromSubjectOfMadrasa(teacher_id:any,subject_id:any,madrasa_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/unAssignTeacherFromSubjectOfMadrasa.php?teacher_id=${teacher_id}&subject_id=${subject_id}&madrasa_id=${madrasa_id}`);
+}
+
+public assignTeacherToSubjectOfMadrasa(teacher_id:any,subject_id:any,madrasa_id:any,course_id:any): Observable<any>{
+  return this._http.get<any>(`${NAV_URL}/admins/assignTeacherToSubjectOfMadrasa.php?teacher_id=${teacher_id}&subject_id=${subject_id}&madrasa_id=${madrasa_id}&course_id=${course_id}`);
+}
+
 public getSingleMadrasaTeachers(madrasa_id:any): Observable<any>{
   return this._http.get<any>(`${NAV_URL}/admins/getSingleMadrasaTeachers.php?madrasa_id=${madrasa_id}`);
 }
@@ -260,6 +277,7 @@ public getJamaatTitle(jamaat_id:any): Observable<any>{
 public getJamiatTitle(jamiat_id:any): Observable<any>{
   return this._http.get<any>(`${NAV_URL}/admins/getJamiatTitle.php?jamiat_id=${jamiat_id}`);
 }
+
  
   //get specific stuff ends here
 

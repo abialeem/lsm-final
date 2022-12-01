@@ -13,6 +13,10 @@ export class Subject
     updated_at : string = '';
     deleted_at : string = '';
 
+    //optional parameters
+    teacher_id ?: number = 0;
+    teacher_title ?: string = '';
+    
 
     constructor() {}
 

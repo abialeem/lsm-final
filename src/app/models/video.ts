@@ -13,6 +13,7 @@ export class Video
     serial_no : any = '';
     status : any = '';
     video_src : any = '';
+    video_id : any = '';
     attachment_count : any = '';
     created_at : string = '';
 

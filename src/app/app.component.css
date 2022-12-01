@@ -16,3 +16,11 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .text-limit {
+        display: inline;
+        width: 100px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }

@@ -52,6 +52,7 @@
                     <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Topic  </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ video.topic_title }}</span>
                     <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Serial No </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ video.serial_no }}</span>
                     <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Video Source </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ video.video_src }}</span>
+                    <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Video ID </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;color:white;">{{ video.video_id }}</span>
                     <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Attachments </span> <span class=" col-lg-8 col-md-12 col-sm-12 p-2" style="text-transform:capitalize;font-size:16px;"><span class="badge badge-default p-2"  style="color: #6a11cb;background-color:white;">{{ video.attachment_count }}</span></span>
                    
                     <span class="col-lg-4 col-md-12 col-sm-12 p-2" style="font-size:16px;font-weight:bold;color:white;">Video Status </span> <span [ngClass]="video.status == '1' ? 'alert-info' : 'alert-danger'" class="col-lg-4 col-md-12 col-sm-12 p-2 alert-sm" style="text-transform:capitalize;font-size:16px;color:white;text-align: center;">{{ (video.status=="1")? "Active": "Inactive" }}</span>
@@ -79,7 +80,6 @@
                                     <div class="icon">
                                     <i class="fa fa-paperclip"></i>
                                     </div>
-                                    <!-- <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
                                 </div>
                             </div>
 
@@ -89,6 +89,21 @@
                  </div>
 
                 <!--video stats section ends here-->
+
+                <!--video viewing area section starts here-->
+                <div class="card card-primary col-lg-12 col-md-12 col-sm-12 mh-100" style="background:transparent;overflow:scroll;">
+                    <div class="card-header p-2"  style="background:transparent;" >
+                            <h4 class="card-title" style="color:white;"> <i class="fas fa-video" style="text-align: center;color:white;"></i>View Video</h4>
+                    </div>
+                    <div class="card-body p-2 " style="background:transparent;">
+
+                        <youtube-player [videoId]="video.video_id" suggestedQuality="hd720" controls="0"> </youtube-player>
+
+                    </div>
+
+                </div>
+
+                <!--video viewing area section ends here-->
 
             <!--video attachments section starts here-->
 <div class="card card-primary col-lg-12 col-md-12 col-sm-12" style="background:transparent;overflow:hidden;">

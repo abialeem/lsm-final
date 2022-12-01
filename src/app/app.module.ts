@@ -61,6 +61,9 @@ import { EditQuizComponent } from './components/edit-quiz/edit-quiz.component';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { SingleMadrasaComponent } from './components/single-madrasa/single-madrasa.component';
+import { SingleMadrasaCourseItemComponent } from './components/single-madrasa-course-item/single-madrasa-course-item.component';
+import { SingleMadrasaTeacherItemComponent } from './components/single-madrasa-teacher-item/single-madrasa-teacher-item.component';
+import { SingleMadrasaStudentItemComponent } from './components/single-madrasa-student-item/single-madrasa-student-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,7 +120,10 @@ import { SingleMadrasaComponent } from './components/single-madrasa/single-madra
     EditQuizComponent,
     AddQuizComponent,
     QuizzesComponent,
-    SingleMadrasaComponent
+    SingleMadrasaComponent,
+    SingleMadrasaCourseItemComponent,
+    SingleMadrasaTeacherItemComponent,
+    SingleMadrasaStudentItemComponent
   ],
   imports: [
     BrowserModule,

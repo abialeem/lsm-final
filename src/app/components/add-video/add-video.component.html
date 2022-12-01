@@ -105,6 +105,14 @@
                           [class.is-invalid]="video_src.invalid && video_src.touched"></textarea>
                           <small class="text-danger"  [class.d-none]="video_src.valid || video_src.untouched"><b>required field</b></small>
                       </div>
+                      <div class="form-group">
+                        <label for="video_id" class="label label-primary" >Video ID <small class="text-info">video url last part after www.youtube.com&v=<strong>123456abc89</strong></small></label>
+                          
+                          <textarea class="form-control" placeholder="Video ID  " name="video_id" [(ngModel)]="video.video_id" required 
+                          #video_id="ngModel"
+                          [class.is-invalid]="video_id.invalid && video_id.touched"></textarea>
+                          <small class="text-danger"  [class.d-none]="video_id.valid || video_id.untouched"><b>required field</b></small>
+                      </div>
                       <div class="row"><!--row for three selects starts-->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">

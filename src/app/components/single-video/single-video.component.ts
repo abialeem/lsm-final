@@ -26,6 +26,9 @@ export class SingleVideoComponent implements OnInit {
   video_subject = new Subject();
   video_topic = new Topic();
   video_data_count = new Video_data_count();
+
+
+  apiLoaded = false;
  
   constructor(private activatedRoute: ActivatedRoute, private _router : Router, protected admin : AdminService) { }
 
@@ -39,7 +42,7 @@ export class SingleVideoComponent implements OnInit {
     this.username = JSON.stringify(sessionStorage.getItem('USER')|| 'USERNAME UNDEFINED'); 
     this.username = this.username.replace(/"/g, '');
 
-    if(this.currRole === "ADMIN"){
+    if(this.currRole === "ADMIN"){ 
       this.current_video_id = this.activatedRoute.snapshot.paramMap.get("id");
 
       this.admin.getSingleVideo(this.current_video_id).subscribe(
@@ -52,6 +55,7 @@ export class SingleVideoComponent implements OnInit {
                      (res: any) => {
                      //console.log(res);
                       this.video_course= res['data'][0];
+                      //console.log(this.video.video_src);
                       //console.log(this.video_course);
                       },
                     (err) => {
@@ -88,7 +92,12 @@ export class SingleVideoComponent implements OnInit {
 
     }   //admin check if ends here
 
-
+    if (!this.apiLoaded) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
 
   } //end of ngOnInit function here
 

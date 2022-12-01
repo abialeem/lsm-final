@@ -299,26 +299,11 @@ export class SingleMadrasaComponent implements OnInit {
    
   }         //end of unassignTeacher function
 
-  unassignCourse(course:Course){
-    //unassign course from madrasa
-    //console.log(course);
-    course.madrasa_id = this.current_madrasa_id;
-    this.admin.unassignCourse(course).subscribe(
-      (data: any) => {
-       // console.log(data);
-        //show success msg to admin user
-        this.msg="Madrasa Course unassigned Successfully ";
-        this.ngOnInit();
-          // the unassign teacher flow ends here 
-      },
-      (error: { error: any; }) => {
-      //  console.log(error.error);
-        this.msg= error.error.message;
-        this.ngOnInit();
-      }
-    )
-
-  }     //end of unassignCourse function
+  verifyUnassignment(value:number){
+    if(value==1){
+      this.ngOnInit();
+    }
+  }
 
 
   validateSelectedCourses(selectedCourses: any){
